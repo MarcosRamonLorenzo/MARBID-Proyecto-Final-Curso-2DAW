@@ -1,32 +1,29 @@
 import React, { Fragment } from "react";
-import "./Login.scss";
+import "./Register.scss";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
   // Genera un número aleatorio entre 0 y 1 para seleccionar una imagen de forma aleatoria.
   const numeroAleatorio = Math.random();
 
   // Selecciona la imagen de fondo según el número aleatorio.
   const imagenDeFondo =
     numeroAleatorio < 0.5
-      ? "/src/assets/Tierra_HD.jpg"
-      : "/src/assets/bosque_HD.jpg";
+      ? "/src/assets/saturno_tierra.jpg"
+      : "/src/assets/saturno_tierra.jpg";
 
   return (
     <Fragment>
       <div
-        className="gridLogin"
+        className="gridRegister"
         style={{ backgroundImage: `url("${imagenDeFondo}")` }}
       >
-        <Link to="/">
-          <img src="\src\assets\marbidSVG.svg" alt="" />
-        </Link>
         <div className="divFormulario">
-          <h1>Inicio de sesión</h1>
+          <h1>Registro</h1>
           <p>
-            ¿Eres un nuevo usuario?{" "}
-            <Link to={"/Registro"}>
-              <strong>Crear una cuenta.</strong>
+            ¿Ya tienes una cuenta?{" "}
+            <Link to={"/IniciarSesion"}>
+              <strong>Inicia sesión.</strong>
             </Link>
           </p>
           <hr className="hrNormal" />
@@ -42,7 +39,13 @@ const Login = () => {
             <span className="bar"></span>
             <label>Contraseña</label>
           </div>
-          <button>Entrar</button>
+          <div className="inputFormulario">
+            <input required type="password" class="input" />
+            <span className="highlight"></span>
+            <span className="bar"></span>
+            <label>Repite la contraseña</label>
+          </div>
+          <button>Registrarse</button>
           <div className="hrOContainer">
             <hr />
             <span>O</span>
@@ -173,13 +176,13 @@ const Login = () => {
               <p>Continuar con GitHub</p>
             </div>
           </div>
-          <p>
-            ¿Has olvidado la contraseña? <strong>Recupérala aquí.</strong>
-          </p>
         </div>
+        <Link to="/">
+          <img src="\src\assets\marbidSVG.svg" alt="" />
+        </Link>
       </div>
     </Fragment>
   );
 };
 
-export default Login;
+export default Register;

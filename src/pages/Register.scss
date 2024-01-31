@@ -1,6 +1,6 @@
 @import "../App.scss";
 
-.gridLogin {
+.gridRegister {
   display: grid;
   grid-template-columns: 1fr 1fr;
   background-size: cover;
@@ -14,7 +14,9 @@
     height: 0px;
     img {
       height: 10em;
-      margin-left: 70px;
+      position: absolute;
+      right: 0; /* Mueve la imagen a la parte derecha. */
+      margin-right: 70px;
     }
   }
 
@@ -25,7 +27,7 @@
     padding: 20px;
     border-radius: 8px;
     margin: auto; /* Centra el formulario y lo hace pequeño. */
-    margin-left: 0; /* Le quita el margin de la izquierda. */
+    margin-right: 0; /* Le quita el margin de la derecha. */
 
     h1 {
       margin-bottom: 10px;
@@ -124,12 +126,12 @@
     }
 
     /*
-    *
-    *
-    *  A continuación el CSS para los inputs, sacado de una página web. 
-    *
-    *
-    */
+      *
+      *
+      *  A continuación el CSS para los inputs, sacado de una página web. 
+      *
+      *
+      */
 
     .inputFormulario {
       position: relative;
