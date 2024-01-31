@@ -1,19 +1,14 @@
-import "./App.scss";
-import { Button } from "react-bootstrap";
-import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home.jsx";
-import InicioSesion from "./pages/Login.jsx";
+import React, { Fragment, useState } from "react";
+import "./App.css";
+import Login from "./paginas/Login.jsx";
 
 function App() {
+  const [count, setCount] = useState(0);
+
   return (
-    <>
-      <div className="contenedor-principal">
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/iniciarSesion" element={<InicioSesion />}></Route>
-        </Routes>
-      </div>
-    </>
+    <Fragment>
+      <Login />
+    </Fragment>
   );
 }
 
