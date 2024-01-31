@@ -1,0 +1,21 @@
+@import "../../App.scss";
+
+.inisgnias {
+  margin-top: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .insignias-marcas {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 15%;
+
+    img {
+      width: auto;
+      height: 3em;
+    }
+  }
+}
