@@ -1,0 +1,228 @@
+.gridLogin {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+
+  a {
+    width: 0px;
+    height: 0px;
+    img {
+      height: 10em;
+      margin-left: 70px;
+    }
+  }
+
+  .divFormulario {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: auto; /* Centra el formulario y lo hace pequeño. */
+    margin-left: 0; /* Le quita el margin de la izquierda. */
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 10px;
+
+      strong {
+        color: #5271ff;
+      }
+    }
+
+    .hrNormal {
+      height: 1px;
+      width: 67%;
+      border: none; /* El hr tiene borde, así lo elimino. */
+      background-color: #5f5d5d;
+      margin: 10px 0; /* Añado margin a todo y quito el margin de la izquierda. */
+    }
+
+    button {
+      margin-top: 10px;
+      background-color: #4caf50;
+      color: white;
+      padding: 8px 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #45a049;
+      }
+    }
+
+    .hrOContainer {
+      position: relative;
+      margin: 10px 0;
+
+      hr {
+        top: 0px;
+        border: none;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          #000 49%,
+          transparent 50%,
+          #000 51%
+        );
+      }
+
+      span {
+        position: absolute;
+        top: 5px; // Centro el span para ponerlo como una O.
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0 5px;
+        background-color: white;
+        font-size: smaller;
+      }
+    }
+
+    .divIniciarSesionCon {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 15px;
+
+      div {
+        display: flex;
+        align-items: center;
+        border: #000000a8 0.5px solid;
+        height: 40px;
+        gap: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 10px;
+        transition: background-color 0.3s, transform 0.3s; /* Agregamos transición para el color de fondo y el tamaño */
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.1);
+          transform: scale(1.05);
+        }
+
+        svg {
+          width: 20px;
+        }
+
+        p {
+          margin: 0;
+          font-size: 10px;
+        }
+      }
+    }
+
+    /*
+    *
+    *
+    *  A continuación el CSS para los inputs, sacado de una página web. 
+    *
+    *
+    */
+
+    .inputFormulario {
+      position: relative;
+      margin-top: 10px;
+      margin-bottom: 5px;
+
+      .input {
+        font-size: 16px;
+        padding: 10px 10px 10px 5px;
+        display: block;
+        width: 478px; /* Línea negra del .bar. */
+        border: none;
+        border-bottom: 1px solid #515151;
+        background: transparent;
+      }
+
+      .input:focus {
+        outline: none;
+      }
+
+      label {
+        color: #000000;
+        font-size: 18px;
+        font-weight: normal;
+        position: absolute;
+        pointer-events: none;
+        left: 5px;
+        top: 10px;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+      }
+
+      .input:focus ~ label,
+      .input:valid ~ label {
+        top: -10px;
+        font-size: 14px;
+        color: #5264ae;
+      }
+
+      .bar {
+        position: relative;
+        display: block;
+        width: 478px; /* Línea azul al clickear, tocar si es necesario en el media. */
+      }
+
+      .bar:before,
+      .bar:after {
+        content: "";
+        height: 2px;
+        width: 0;
+        bottom: 1px;
+        position: absolute;
+        background: #5264ae;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+      }
+
+      .bar:before {
+        left: 50%;
+      }
+
+      .bar:after {
+        right: 50%;
+      }
+
+      .input:focus ~ .bar:before,
+      .input:focus ~ .bar:after {
+        width: 50%;
+      }
+
+      .highlight {
+        position: absolute;
+        height: 60%;
+        width: 100px;
+        top: 25%;
+        left: 0;
+        pointer-events: none;
+        opacity: 0.5;
+      }
+
+      .input:focus ~ .highlight {
+        animation: inputHighlighter 0.3s ease;
+      }
+
+      @keyframes inputHighlighter {
+        from {
+          background: #5264ae;
+        }
+
+        to {
+          width: 0;
+          background: transparent;
+        }
+      }
+    }
+  }
+}

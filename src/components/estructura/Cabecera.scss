@@ -1,0 +1,134 @@
+@import "../../App.scss";
+
+.cabecera {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  img {
+    height: 10em;
+  }
+  .navegation {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 5em;
+
+    a {
+      /* Debido a que <Link /> es un <a /> en la práctica tengo que poner esto. */
+      text-decoration: none;
+    }
+
+    li {
+      list-style-type: none;
+      color: #121010;
+      font-family: inherit;
+      cursor: pointer;
+      position: relative;
+      border: none;
+      background: none;
+      text-transform: uppercase;
+      transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+      transition-duration: 400ms;
+      transition-property: color;
+    }
+
+    li:focus,
+    li:hover {
+      color: #121010;
+    }
+
+    li:focus:after,
+    li:hover:after {
+      width: 100%;
+      left: 0%;
+    }
+
+    li:after {
+      content: "";
+      pointer-events: none;
+      bottom: -2px;
+      left: 50%;
+      position: absolute;
+      width: 0%;
+      height: 3px;
+      background-image: linear-gradient(
+        to right,
+        $primary-color 50%,
+        $secundary-color 50%
+      );
+      transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+      transition-duration: 400ms;
+      transition-property: width, left;
+    }
+
+    .boton-unirse {
+      position: relative;
+      transition: all 0.3s ease-in-out;
+      padding-block: 0.5rem;
+      padding-inline: 1.25rem;
+      background-color: $primary-color;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: $text-color;
+      gap: 10px;
+      font-weight: bold;
+      border: 2px solid #ffffff4d;
+      outline: none;
+      overflow: hidden;
+      font-size: 15px;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .boton-unirse:hover {
+      transform: scale(1.05);
+      border-color: #fff9;
+    }
+
+    .boton-unirse:hover .icon {
+      transform: translate(4px);
+    }
+
+    .boton-unirse:hover::before {
+      animation: shine 1.5s ease-out infinite;
+    }
+
+    .boton-unirse::before {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100%;
+      background-image: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 0) 70%
+      );
+      top: 0;
+      left: -100px;
+      opacity: 0.6;
+    }
+
+    @keyframes shine {
+      0% {
+        left: -100px;
+      }
+
+      60% {
+        left: 100%;
+      }
+
+      to {
+        left: 100%;
+      }
+    }
+  }
+}
