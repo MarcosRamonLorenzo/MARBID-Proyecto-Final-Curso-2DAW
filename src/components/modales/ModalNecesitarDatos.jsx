@@ -14,7 +14,7 @@ const ModalNecesitarDatos = ({ mostrar, setMostrar }) => {
           <p>Por favor, ingresa la contraseña y el usuario.</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setMostrar(false)}>
+          <Button variant="danger" onClick={() => setMostrar(false)}>
             Aceptar
           </Button>
         </Modal.Footer>
