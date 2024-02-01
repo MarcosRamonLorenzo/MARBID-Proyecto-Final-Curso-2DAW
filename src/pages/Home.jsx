@@ -3,6 +3,7 @@ import Cabecera from "../components/estructura/Cabecera";
 import HeroSection from "../components/estructura/HeroSection";
 import Buscador from "../components/estructura/Buscador";
 import Insignias from "../components/estructura/Insignias";
+import Categorias from "../components/estructura/Categorias";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <HeroSection />
       <Buscador />
       <Insignias />
+      <Categorias />
     </div>
   );
 };

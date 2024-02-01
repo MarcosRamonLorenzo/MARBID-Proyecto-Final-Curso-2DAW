@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 500 500"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="LOGOAPLI - copia.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   width="100%"
+   height="100%"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.1752115"
+     inkscape:cx="270.16414"
+     inkscape:cy="265.05867"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">.cls-1{fill:#fff;}.cls-2{fill:#035b8c;}.cls-3{fill:#f26d3d;}.cls-4{fill:#5271ff;}.cls-5{fill:#f25ea3;}</style>
+  </defs>
+  <g
+     id="OBJECTS"
+     inkscape:export-filename="LOGOAPLICACIÓN.svg"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96"
+     transform="matrix(4.1805729,0,0,4.1805729,-827.40522,-796.48101)">
+    <path
+       class="cls-2"
+       d="m 288,296.17 0.4,-0.27 a 4,4 0 0 1 -0.4,0.28 z"
+       transform="translate(0,-7)"
+       id="path1" />
+    <path
+       class="cls-3"
+       d="m 279,258.61 c 1.47,-2 4.27,-1.57 5.64,0.51 10,15.08 8.43,31.21 4.41,43.38 a 56.86,56.86 0 0 0 24.56,-57 C 292.72,231.66 279.28,257.79 279,258.61 Z"
+       transform="translate(0,-7)"
+       id="path2" />
+    <path
+       class="cls-4"
+       d="m 313.62,245.53 c -20.91,-13.88 -34.34,12.26 -34.61,13.08 v 0 l -18.6,25.85 a 3.3,3.3 0 0 1 -5.36,0 l -18.6,-25.85 v 0 c -0.27,-0.82 -13.71,-27 -34.61,-13.08 a 56.63,56.63 0 0 1 19,-33.39 v 0 c 12.58,0 28.84,23.57 34.68,32.72 a 2.63,2.63 0 0 0 4.43,0 c 5.84,-9.15 22.11,-32.72 34.68,-32.72 v 0 a 56.6,56.6 0 0 1 18.99,33.39 z"
+       transform="translate(0,-7)"
+       id="path3" />
+    <path
+       class="cls-5"
+       d="m 236.43,258.61 c -1.47,-2 -4.27,-1.57 -5.65,0.51 -9.94,15.08 -8.42,31.21 -4.4,43.38 A 56.69,56.69 0 0 1 201,255.21 a 56.12,56.12 0 0 1 0.83,-9.68 c 20.89,-13.87 34.33,12.26 34.6,13.08 z"
+       transform="translate(0,-7)"
+       id="path4" />
+  </g>
+</svg>
