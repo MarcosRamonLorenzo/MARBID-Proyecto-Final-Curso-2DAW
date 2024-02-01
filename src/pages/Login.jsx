@@ -1,14 +1,21 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import "./Login.scss";
 import { Link } from "react-router-dom";
+import ModalNecesitarDatos from "../components/modales/ModalNecesitarDatos";
 
 const Login = () => {
+  // Valor para mostrar el modal.
+  const valorInicialModal = false;
   // Genera un número aleatorio entre 0 y 1 para seleccionar una imagen de forma aleatoria.
   const numeroAleatorio = Math.random();
+  // Estado para el modal.
+  const [mostrar, setMostrar] = useState(valorInicialModal);
+  // Estado para el fondo de pantalla. Esto lo he hecho para que al saltar el modal no actualice la imagen de fondo.
+  const [numeroDeFondoDePantalla] = useState(numeroAleatorio);
 
-  // Selecciona la imagen de fondo según el número aleatorio.
+  // Selecciona la imagen de fondo según el número aleatorio que haya en el estado.
   const imagenDeFondo =
-    numeroAleatorio < 0.5
+    numeroDeFondoDePantalla < 0.5
       ? "/src/assets/Tierra_HD.jpg"
       : "/src/assets/bosque_HD.jpg";
 
@@ -31,18 +38,24 @@ const Login = () => {
           </p>
           <hr className="hrNormal" />
           <div className="inputFormulario">
-            <input required type="text" class="input" />
+            <input required type="text" className="input" />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Email</label>
           </div>
           <div className="inputFormulario">
-            <input required type="password" class="input" />
+            <input required type="password" className="input" />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Contraseña</label>
           </div>
-          <button>Entrar</button>
+          <button
+            onClick={() => {
+              setMostrar(true);
+            }}
+          >
+            Entrar
+          </button>
           <div className="hrOContainer">
             <hr />
             <span>O</span>
@@ -178,6 +191,9 @@ const Login = () => {
           </p>
         </div>
       </div>
+      {mostrar && (
+        <ModalNecesitarDatos mostrar={mostrar} setMostrar={setMostrar} />
+      )}
     </Fragment>
   );
 };
