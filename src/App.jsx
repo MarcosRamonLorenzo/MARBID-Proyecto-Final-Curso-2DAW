@@ -1,9 +1,9 @@
 import "./App.scss";
-import { Button } from "react-bootstrap";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
+import Explora from "./pages/Explora.jsx";
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/IniciarSesion" element={<Login />} />
           <Route path="/Registro" element={<Register />} />
+          <Route path="/Explora" element={<Explora />} />
         </Routes>
       </div>
     </>
