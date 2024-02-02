@@ -7,8 +7,12 @@ const Cabecera = () => {
     <div className="cabecera">
       <img src="\src\assets\marbidSVG.svg" alt="" />
       <ul className="navegation">
-        <li>Home</li>
-        <li>Explora</li>
+        <Link to="/">
+          <li>Home</li>
+        </Link>
+        <Link to="/Explora">
+          <li>Explora</li>
+        </Link>
         <Link to="/IniciarSesion">
           <li>Iniciar Sesión</li>
         </Link>
