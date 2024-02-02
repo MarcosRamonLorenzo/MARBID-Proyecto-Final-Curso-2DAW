@@ -1,0 +1,60 @@
+.grid-tarjetas-dibujos {
+  margin-top: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .contenedor-grid-tarjetas {
+    display: grid;
+    grid-gap: 5% 2%;
+    grid-template-areas:
+      "diseñoGrafico diseñoGrafico wordpress dinero"
+      "arte           cine       videojuegos      videojuegos";
+
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 80em;
+    margin: 0 auto;
+  }
+
+  .diseño-grafico-card {
+    grid-area: diseñoGrafico;
+    width: 100%;
+    grid-column: span 2;
+  }
+
+  .wordpress-card,
+  .money-card,
+  .arte-card,
+  .cine-card,
+  .videojuegos-card {
+    width: 100%;
+  }
+
+  .wordpress-card {
+    grid-area: wordpress;
+  }
+
+  .money-card {
+    grid-area: dinero;
+  }
+  .arte-card {
+    grid-area: arte;
+  }
+
+  .cine-card {
+    grid-area: cine;
+  }
+
+  .videojuegos-card {
+    grid-area: videojuegos;
+    grid-column: span 2;
+  }
+
+  img {
+    width: 100%;
+    height: 18em;
+    border-radius: 20px;
+    object-fit: cover; /* Para mantener las proporciones de la imagen */
+  }
+}
