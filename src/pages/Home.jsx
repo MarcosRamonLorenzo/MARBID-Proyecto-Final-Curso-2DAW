@@ -5,6 +5,7 @@ import Buscador from "../components/estructura/Buscador";
 import Insignias from "../components/estructura/Insignias";
 import Categorias from "../components/estructura/Categorias";
 import GridTarjetasDibujos from "../components/estructura/GridTarjetasDibujos";
+import Footer from "../components/estructura/Footer";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <Insignias />
       <Categorias />
       <GridTarjetasDibujos />
+      <Footer />
     </div>
   );
 };

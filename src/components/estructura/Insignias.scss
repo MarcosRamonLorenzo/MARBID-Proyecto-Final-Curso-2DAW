@@ -18,4 +18,18 @@
       height: 3em;
     }
   }
+  @media screen and (max-width: 800px) {
+    .insignias-marcas {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 10%;
+      width: 20em;
+
+      img {
+        width: 2em;
+        height: 2em;
+      }
+    }
+  }
 }

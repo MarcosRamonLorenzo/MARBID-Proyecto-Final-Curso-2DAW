@@ -1,6 +1,7 @@
 .grid-tarjetas-dibujos {
-  margin-top: 4%;
+  margin-top: 1%;
   display: flex;
+  height: 45em;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -56,5 +57,8 @@
     height: 18em;
     border-radius: 20px;
     object-fit: cover; /* Para mantener las proporciones de la imagen */
+  }
+
+  @media (max-width: 600px) {
   }
 }

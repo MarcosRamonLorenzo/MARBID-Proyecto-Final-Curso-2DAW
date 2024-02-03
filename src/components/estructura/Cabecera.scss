@@ -5,6 +5,10 @@
   justify-content: space-around;
   align-items: center;
 
+  .menu-hamburguesa {
+    display: none;
+  }
+
   img {
     height: 10em;
   }
@@ -129,6 +133,16 @@
       to {
         left: 100%;
       }
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .menu-hamburguesa {
+      display: block;
+    }
+
+    .navegation {
+      display: none;
     }
   }
 }
