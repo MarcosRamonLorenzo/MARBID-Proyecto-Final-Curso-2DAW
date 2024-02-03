@@ -10,7 +10,6 @@ const Explora = () => {
       <Cabecera />
       <Buscador />
       <Servicios />
-      <Insignias />
     </div>
   );
 };

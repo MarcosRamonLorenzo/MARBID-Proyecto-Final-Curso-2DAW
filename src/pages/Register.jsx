@@ -28,19 +28,19 @@ const Register = () => {
           </p>
           <hr className="hrNormal" />
           <div className="inputFormulario">
-            <input required type="text" class="input" />
+            <input required type="text" className="input" />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Email</label>
           </div>
           <div className="inputFormulario">
-            <input required type="password" class="input" />
+            <input required type="password" className="input" />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Contraseña</label>
           </div>
           <div className="inputFormulario">
-            <input required type="password" class="input" />
+            <input required type="password" className="input" />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Repite la contraseña</label>

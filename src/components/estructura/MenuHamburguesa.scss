@@ -1,0 +1,42 @@
+@import "../../App.scss";
+
+.contenedor-menu-hamburguesa {
+  .icono-menu-hamburguesa {
+    width: 3.5em;
+    margin-bottom: 2%;
+    cursor: pointer;
+  }
+
+  .manu-hambuerguesa-open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #222; /* Cambia a tu color de fondo preferido */
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between; /* Alinea los elementos arriba */
+    align-items: flex-start;
+    padding: 10%;
+
+    .cerrar-menu {
+      color: #fff;
+      font-size: 2em;
+      cursor: pointer;
+    }
+
+    .elementos-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1.5em;
+        list-style-type: none;
+      }
+    }
+  }
+}

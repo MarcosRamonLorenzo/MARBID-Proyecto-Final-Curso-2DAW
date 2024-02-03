@@ -1,6 +1,7 @@
 import React from "react";
 import "./Cabecera.scss";
 import { Link } from "react-router-dom";
+import MenuHamburguesa from "./MenuHamburguesa";
 
 const Cabecera = () => {
   return (
@@ -30,6 +31,9 @@ const Cabecera = () => {
           </button>
         </Link>
       </ul>
+      <div className="menu-hamburguesa">
+        <MenuHamburguesa />
+      </div>
     </div>
   );
 };
