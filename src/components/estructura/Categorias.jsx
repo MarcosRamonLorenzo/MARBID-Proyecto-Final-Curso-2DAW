@@ -2,7 +2,7 @@ import React from "react";
 import "./Categorias.scss";
 const Categorias = () => {
   return (
-    /*Tarjetas de cateogrias en el home*/
+    /* Tarjetas de cateogrias en el home. */
     <div className="categorias-home">
       <h2>Categorias</h2>
       <h5>Explora las direrentes cateogrias que ofrecemos</h5>
