@@ -12,6 +12,34 @@
       display: flex;
       justify-content: center;
       align-items: flex-end;
+
+      span {
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-left: 2%;
+        background: linear-gradient(
+          to right,
+          $primary-color 10%,
+          $third-color 50%,
+          $secundary-color 60%
+        );
+        background-size: auto auto;
+        background-clip: border-box;
+        background-size: 200% auto;
+        color: #fff;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textclip 7s linear infinite;
+        display: inline-block;
+      }
+
+      @keyframes textclip {
+        to {
+          background-position: 200% center;
+        }
+      }
     }
     display: flex;
     flex-direction: column;
@@ -42,35 +70,6 @@
     color: $third-color;
     font-family: $fuente-enfasis-palabra;
     font-weight: bold;
-  }
-}
-
-span {
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: bold;
-  margin-left: 2%;
-  background: linear-gradient(
-    to right,
-    $primary-color 10%,
-    $third-color 50%,
-    $secundary-color 60%
-  );
-  background-size: auto auto;
-  background-clip: border-box;
-  background-size: 200% auto;
-  color: #fff;
-  background-clip: text;
-  text-fill-color: transparent;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: textclip 7s linear infinite;
-  display: inline-block;
-}
-
-@keyframes textclip {
-  to {
-    background-position: 200% center;
   }
 }
 
