@@ -8,6 +8,11 @@
   margin-bottom: 5%;
 
   .hero-section-1 {
+    p {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -37,5 +42,67 @@
     color: $third-color;
     font-family: $fuente-enfasis-palabra;
     font-weight: bold;
+  }
+}
+
+span {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left: 2%;
+  background: linear-gradient(
+    to right,
+    $primary-color 10%,
+    $third-color 50%,
+    $secundary-color 60%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .hero-section {
+    grid-template-columns: 1fr; // Cambia a una sola columna en tabletas
+
+    .hero-section-1,
+    .hero-section-2 {
+      text-align: center;
+      align-items: center;
+    }
+
+    .hero-section-1 {
+      order: 2; // Cambia el orden para invertir los contenedores
+    }
+
+    .hero-section-2 {
+      order: 1; // Cambia el orden para invertir los contenedores
+    }
+
+    video {
+      width: 80%;
+    }
+
+    .hero-section-1 video {
+      display: none;
+    }
+
+    p {
+      width: 100%;
+      font-size: 3em; // Ajusta el tamaño de la fuente para tabletas
+    }
   }
 }

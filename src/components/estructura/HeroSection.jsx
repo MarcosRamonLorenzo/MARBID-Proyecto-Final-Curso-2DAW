@@ -8,7 +8,7 @@ const HeroSection = () => {
           <source src="/src/assets/video1.mp4" type="video/mp4" />
         </video>
         <p>
-          BE A <span className="special-word">FREELANCER</span>
+          BE <span> FREELANCER</span>
         </p>
       </div>
       <div className="hero-section-2">

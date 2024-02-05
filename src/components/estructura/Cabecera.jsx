@@ -1,11 +1,14 @@
 import React from "react";
 import "./Cabecera.scss";
 import { Link } from "react-router-dom";
+import MenuHamburguesa from "./MenuHamburguesa";
 
 const Cabecera = () => {
   return (
     <div className="cabecera">
-      <img src="\src\assets\marbidSVG.svg" alt="" />
+      <Link to="/">
+        <img src="\src\assets\marbidSVG.svg" alt="" />
+      </Link>
       <ul className="navegation">
         <Link to="/">
           <li>Home</li>
@@ -30,6 +33,9 @@ const Cabecera = () => {
           </button>
         </Link>
       </ul>
+      <div className="menu-hamburguesa">
+        <MenuHamburguesa />
+      </div>
     </div>
   );
 };
