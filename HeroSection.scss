@@ -1,0 +1,107 @@
+@import "../../App.scss";
+
+.hero-section {
+  margin-top: 3%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 3%;
+  margin-bottom: 5%;
+
+  .hero-section-1 {
+    p {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      span {
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-left: 2%;
+        background: linear-gradient(
+          to right,
+          $primary-color 10%,
+          $third-color 50%,
+          $secundary-color 60%
+        );
+        background-size: auto auto;
+        background-clip: border-box;
+        background-size: 200% auto;
+        color: #fff;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textclip 7s linear infinite;
+        display: inline-block;
+      }
+
+      @keyframes textclip {
+        to {
+          background-position: 200% center;
+        }
+      }
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .hero-section-2 {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  video {
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    width: 70%;
+    height: auto;
+  }
+
+  p {
+    width: 70%;
+    height: auto;
+    font-weight: bold;
+    font-size: 4em;
+  }
+  .special-word {
+    color: $third-color;
+    font-family: $fuente-enfasis-palabra;
+    font-weight: bold;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .hero-section {
+    grid-template-columns: 1fr; // Cambia a una sola columna en tabletas
+
+    .hero-section-1,
+    .hero-section-2 {
+      text-align: center;
+      align-items: center;
+    }
+
+    .hero-section-1 {
+      order: 2; // Cambia el orden para invertir los contenedores
+    }
+
+    .hero-section-2 {
+      order: 1; // Cambia el orden para invertir los contenedores
+    }
+
+    video {
+      width: 80%;
+    }
+
+    .hero-section-1 video {
+      display: none;
+    }
+
+    p {
+      width: 100%;
+      font-size: 3em; // Ajusta el tamaño de la fuente para tabletas
+    }
+  }
+}
