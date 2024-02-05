@@ -6,7 +6,9 @@ import MenuHamburguesa from "./MenuHamburguesa";
 const Cabecera = () => {
   return (
     <div className="cabecera">
-      <img src="\src\assets\marbidSVG.svg" alt="" />
+      <Link to="/">
+        <img src="\src\assets\marbidSVG.svg" alt="" />
+      </Link>
       <ul className="navegation">
         <Link to="/">
           <li>Home</li>

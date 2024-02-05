@@ -7,6 +7,7 @@
   background-position: center;
   height: 100vh;
   font-family: $fuente-roboto;
+  transition: backgroundImage 0.3s, transform 0.3s;
 
   a {
     text-decoration: none; /* Eliminar la barra azul. */
