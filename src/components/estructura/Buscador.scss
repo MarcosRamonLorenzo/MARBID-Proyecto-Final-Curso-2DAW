@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 6%;
 
   .input-buscar-servicio:focus {
     border-color: $primary-color;
@@ -12,5 +13,19 @@
   .boton-buscar-servicio {
     background-color: $secundary-color;
     border: 0;
+  }
+
+  @media screen and (max-width: 460px) {
+    .row {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2%;
+    }
+
+    .row div {
+      margin: 1%;
+    }
   }
 }

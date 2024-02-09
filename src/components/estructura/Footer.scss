@@ -1,0 +1,35 @@
+footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 7%;
+  margin-top: 6%;
+  margin-bottom: 5%;
+
+  img {
+    height: 3em;
+    width: 3em;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  .redes {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  footer {
+    flex-direction: column;
+    margin: 4%;
+  }
+}
