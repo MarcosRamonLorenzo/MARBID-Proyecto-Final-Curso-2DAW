@@ -1,0 +1,28 @@
+@import "../App.scss";
+
+.panel-control {
+  margin: 0 2%;
+  height: 100vh;
+}
+
+.nav-item:hover {
+  transition: 0.5s;
+}
+
+.nav-item .nav-link {
+  color: $text-color-black;
+}
+
+#nav-panel-control .nav-link:focus {
+  border-color: rgb(38, 34, 34);
+  border-bottom-color: transparent;
+  border-width: 1.5px;
+}
+
+#nav-panel-control .nav-link:not(:focus) {
+  border-width: 1px;
+  border-bottom-color: rgb(38, 34, 34);
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
