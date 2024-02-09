@@ -6,27 +6,16 @@
     margin-bottom: 20px;
   }
 
-  .contenedor-grid-tarjetas {
-    display: grid;
-    grid-gap: 15px;
+  .row div {
+    //Para que se separen las tarjetas
+    margin-top: 2%;
   }
 
-  .diseño-grafico-card,
-  .videojuegos-card {
-    img {
-      width: 100%;
-      height: 10em;
-      border-radius: 20px;
-      object-fit: cover;
-    }
-    .wordpress-card {
-      img {
-        width: 100%;
-        height: 10em;
-        border-radius: 20px;
-        object-fit: cover;
-      }
-    }
+  img {
+    width: 100%;
+    height: 18em;
+    border-radius: 20px;
+    object-fit: cover;
   }
 
   @media (max-width: 600px) {
@@ -41,5 +30,10 @@
         max-width: 100%;
       }
     }
+  }
+
+  //Animación Tarejetas
+
+  .diseño-grafico-card img:hover::before {
   }
 }

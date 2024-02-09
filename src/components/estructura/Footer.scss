@@ -1,11 +1,13 @@
 footer {
   display: flex;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 7%;
+  margin: 3% 0;
 
   img {
-    height: 4em;
-    width: 4em;
+    height: 3em;
+    width: 3em;
   }
 
   div {
