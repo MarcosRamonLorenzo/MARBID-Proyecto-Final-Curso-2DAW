@@ -143,7 +143,7 @@
         font-size: 16px;
         padding: 10px 10px 10px 5px;
         display: block;
-        width: 478px; /* Línea negra del .bar. */
+        width: 100%; /* Línea negra del .bar. */
         border: none;
         border-bottom: 1px solid #515151;
         background: transparent;
@@ -176,7 +176,7 @@
       .bar {
         position: relative;
         display: block;
-        width: 478px; /* Línea azul al clickear, tocar si es necesario en el media. */
+        width: 100%; /* Línea azul al clickear, tocar si es necesario en el media. */
       }
 
       .bar:before,
@@ -227,6 +227,74 @@
         to {
           width: 0;
           background: transparent;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 397px) {
+  .gridRegister {
+    // Cada elemento del grid se pone por separado en columnas.
+    grid-template-columns: 1fr;
+
+    // Defino el orden de las áreas en el grid ya que el a está debajo del div.
+    grid-template-areas:
+      "a"
+      "divFormulario";
+
+    a {
+      grid-area: a;
+      img {
+        // Esto es para que se vea bien la imagen.
+        right: unset;
+      }
+    }
+
+    .divFormulario {
+      grid-area: divFormulario;
+      max-width: 100%;
+      margin: 10px;
+
+      .divIniciarSesionCon {
+        display: grid;
+        justify-content: unset; // Elimino el justify para que se vean alineados en forma de columna.
+
+        div {
+          width: 100%;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 396px) {
+  .gridRegister {
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+      "a"
+      "divFormulario";
+
+    a {
+      grid-area: a;
+      img {
+        right: unset;
+      }
+    }
+
+    .divFormulario {
+      grid-area: divFormulario;
+      margin: 10px; // Aquí lo pongo porque si no peta el css, justo al contrario que el el Login.scss xd.
+      max-width: 100%;
+      .divIniciarSesionCon {
+        display: grid;
+        justify-content: unset;
+
+        div {
+          width: 100%;
+          align-items: center;
         }
       }
     }
