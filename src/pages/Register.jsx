@@ -10,7 +10,7 @@ const Register = () => {
   const imagenDeFondo =
     numeroAleatorio < 0.5
       ? "/src/assets/saturno_tierra.jpg"
-      : "/src/assets/saturno_tierra.jpg";
+      : "/src/assets/pintura.jpg";
 
   return (
     <Fragment>
