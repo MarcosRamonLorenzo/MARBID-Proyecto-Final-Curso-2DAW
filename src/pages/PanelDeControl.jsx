@@ -1,6 +1,10 @@
 import React from "react";
 import Cabecera from "../components/estructura/Cabecera";
 import Nav from "react-bootstrap/Nav";
+
+import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+
 import "./PanelDeControl.scss";
 
 const PanelDeControl = () => {
@@ -14,15 +18,26 @@ const PanelDeControl = () => {
         id="nav-panel-control"
       >
         <Nav.Item>
-          <Nav.Link href="#">Ofertas Creadas</Nav.Link>
+
+          <Nav.Link>
+            {" "}
+            <Link to={"Favoritos"}>Ofertas creadas </Link>
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="#">Ofertas Aplicadas </Nav.Link>
+          <Nav.Link>
+            {" "}
+            <Link to={"Favoritos"}>Ofertas Aplicadas</Link>{" "}
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="#">Favoritos</Nav.Link>
+          <Nav.Link>
+            <Link to={"Favoritos"}>Favoritos</Link>
+          </Nav.Link>
         </Nav.Item>
       </Nav>
+      <Outlet />
+
     </div>
   );
 };

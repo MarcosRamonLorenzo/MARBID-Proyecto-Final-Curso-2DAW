@@ -1,14 +1,20 @@
+@import "../../App.scss";
+
 .grid-tarjetas-dibujos {
-  margin-top: 1%;
+
+  margin-top: 10%;
+
 
   h2 {
     text-align: center;
     margin-bottom: 20px;
-  }
+
+   
 
   .row div {
-    //Para que se separen las tarjetas
+    // Para que se separen las tarjetas
     margin-top: 2%;
+    overflow: hidden;
   }
 
   img {
@@ -32,8 +38,65 @@
     }
   }
 
-  //Animación Tarejetas
+  // Animación Tarjetas
 
-  .diseño-grafico-card img:hover::before {
+  .row div {
+    position: relative;
+  }
+
+  .row div::before {
+    content: "";
+    position: absolute;
+    background-color: rgba(23, 22, 22, 0.341);
+    color: $text-color;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    font-weight: bold;
+    font-size: xx-large;
+    border-radius: 20px;
+    object-fit: cover;
+    width: 0;
+    height: 100%;
+  }
+
+  .diseño-grafico-card:hover::before {
+    content: "Diseño Gráfico";
+    width: 96.3%;
+  }
+
+  .wordpress-card:hover::before {
+    content: "Wordpress";
+  }
+
+  .money-card:hover::before {
+    display: flex;
+    text-align: center;
+    content: "Asistencia Financiera";
+  }
+
+  .arte-card:hover::before {
+    content: "Arte";
+  }
+
+  .cine-card:hover::before {
+    content: "Dirección de Cine";
+  }
+
+  .videojuegos-card:hover::before {
+    content: "Diseño de Videojuegos";
+    width: 96.3%;
+  }
+
+  .wordpress-card:hover::before,
+  .cine-card:hover::before,
+  .arte-card:hover::before,
+  .money-card:hover::before {
+    width: 92.8%;
+
   }
 }
