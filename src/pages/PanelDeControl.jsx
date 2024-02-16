@@ -1,8 +1,10 @@
 import React from "react";
 import Cabecera from "../components/estructura/Cabecera";
 import Nav from "react-bootstrap/Nav";
+
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+
 import "./PanelDeControl.scss";
 
 const PanelDeControl = () => {
@@ -16,6 +18,7 @@ const PanelDeControl = () => {
         id="nav-panel-control"
       >
         <Nav.Item>
+
           <Nav.Link>
             {" "}
             <Link to={"Favoritos"}>Ofertas creadas </Link>
@@ -34,6 +37,7 @@ const PanelDeControl = () => {
         </Nav.Item>
       </Nav>
       <Outlet />
+
     </div>
   );
 };
