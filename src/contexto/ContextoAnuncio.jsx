@@ -1,4 +1,4 @@
-import React, { createContext, useEffect } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { supabase } from "./../config/supabase.js";
 
 const AnuncioContexto = createContext();
@@ -8,11 +8,30 @@ const DatosContextoAnuncio = ({ children }) => {
   const valorInicalNull = null;
   const valorInicialFalse = false;
   const valorInicialVacio = "";
+  const [anuncios, setAnuncios] = useState(valorInicalNull);
+  const [errorAnuncio, setErrorAnuncio] = useState(valorInicialFalse);
 
-  const obtenerAnuncios = () => {};
+  const obtenerAnuncios = async () => {
+    try {
+      const { data, error } = await supabase.from("anuncios").select("*");
 
-  useEffect(() => {}, []);
-  const datosExportar = {};
+      if (error) {
+        setErrorAnuncio(error.message);
+      } else {
+        setAnuncios(data);
+      }
+    } catch (error) {
+      setErrorAnuncio(error.message);
+    }
+  };
+
+  useEffect(() => {
+    obtenerAnuncios();
+  }, []);
+  const datosExportar = {
+    anuncios,
+    errorAnuncio,
+  };
 
   return (
     <UsuariosContexto.Provider value={datosExportar}>
