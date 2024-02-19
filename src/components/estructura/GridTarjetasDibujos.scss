@@ -1,15 +1,12 @@
 @import "../../App.scss";
 
 .grid-tarjetas-dibujos {
-
   margin-top: 10%;
-
 
   h2 {
     text-align: center;
     margin-bottom: 20px;
-
-   
+  }
 
   .row div {
     // Para que se separen las tarjetas
@@ -97,6 +94,5 @@
   .arte-card:hover::before,
   .money-card:hover::before {
     width: 92.8%;
-
   }
 }
