@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { supabase } from "./../config/supabase.js";
+import { supabaseConexion } from "./../config/supabase.js";
 
 const AnuncioContexto = createContext();
 
@@ -13,7 +13,9 @@ const DatosContextoAnuncio = ({ children }) => {
 
   const obtenerAnuncios = async () => {
     try {
-      const { data, error } = await supabase.from("anuncios").select("*");
+      const { data, error } = await supabaseConexion
+        .from("ANUNCIO")
+        .select("*");
 
       if (error) {
         setErrorAnuncio(error.message);
@@ -28,15 +30,16 @@ const DatosContextoAnuncio = ({ children }) => {
   useEffect(() => {
     obtenerAnuncios();
   }, []);
+
   const datosExportar = {
     anuncios,
     errorAnuncio,
   };
 
   return (
-    <UsuariosContexto.Provider value={datosExportar}>
+    <AnuncioContexto.Provider value={datosExportar}>
       {children}
-    </UsuariosContexto.Provider>
+    </AnuncioContexto.Provider>
   );
 };
 
