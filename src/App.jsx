@@ -4,10 +4,9 @@ import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Explora from "./pages/Explora.jsx";
-import PanelDeControl from "./pages/PanelDeControl.jsx";n
+import PanelDeControl from "./pages/PanelDeControl.jsx";
 
 import Favoritos from "./pages/Favoritos";
-
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
             <Route path="OfertasCreadas" element={<Explora />} />
             <Route path="OfertasAplicadas" element={<Explora />} />
           </Route>
-
         </Routes>
       </div>
     </>
