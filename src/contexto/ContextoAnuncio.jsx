@@ -3,7 +3,7 @@ import { supabaseConexion } from "./../config/supabase.js";
 
 const AnuncioContexto = createContext();
 
-const DatosContextoAnuncio = ({ children }) => {
+const ContextoAnuncio = ({ children }) => {
   // Valor inical del anuncio.
   const valorInicalNull = null;
   const valorInicialFalse = false;
@@ -43,6 +43,5 @@ const DatosContextoAnuncio = ({ children }) => {
   );
 };
 
-export default DatosContextoAnuncio;
-
+export default ContextoAnuncio;
 export { AnuncioContexto };
