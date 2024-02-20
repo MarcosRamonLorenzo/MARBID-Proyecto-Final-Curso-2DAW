@@ -1,0 +1,20 @@
+.explora {
+  .contenedor-anuncios {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .buscador-y-select {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+    margin: 2% 10%;
+
+    .css-b62m3t-container {
+      width: 50%;
+    }
+  }
+}
