@@ -1,16 +1,11 @@
 .ui-like {
   --icon-size: 24px;
-  --icon-secondary-color: rgb(255, 255, 255);
+  --icon-secondary-color: rgb(78, 62, 62);
   --icon-hover-color: rgb(211, 205, 205);
   --icon-primary-color: rgb(230, 26, 26);
   --icon-circle-border: 1px solid var(--icon-primary-color);
   --icon-circle-size: 35px;
   --icon-anmt-duration: 0.3s;
-}
-.ui-like {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .ui-like input {

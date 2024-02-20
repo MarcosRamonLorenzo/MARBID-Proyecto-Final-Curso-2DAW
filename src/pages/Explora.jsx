@@ -1,17 +1,15 @@
 import React from "react";
 import Cabecera from "../components/estructura/Cabecera.jsx";
-import Buscador from "../components/estructura/Buscador.jsx";
-import Insignias from "../components/estructura/Insignias.jsx";
-import Servicios from "../components/estructura/Servicios.jsx";
 import Anuncios from "../components/estructura/Anuncios.jsx";
+import "./Explora.scss";
 
 const Explora = () => {
   return (
-    <div>
+    <div className="explora">
       <Cabecera />
-      <Buscador />
-      <Anuncios />
-      <Servicios />
+      <div className="contenedor-anuncios">
+        <Anuncios />
+      </div>
     </div>
   );
 };
