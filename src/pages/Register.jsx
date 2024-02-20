@@ -1,32 +1,16 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import "./Register.scss";
 import { Link } from "react-router-dom";
-import useDatosUsuarios from "../hooks/useDatosUsuarios.js";
-import ModalErrores from "../components/modales/ModalErrores.jsx";
 
 const Register = () => {
-  const {
-    manejarEstadoRegistro,
-    estadoRegistro,
-    erroresRegistro,
-    contrasenyaAuxiliar,
-    manejarEstadoContrasenyaAuxiliar,
-    manejarRegistro,
-  } = useDatosUsuarios();
+  // Genera un número aleatorio entre 0 y 1 para seleccionar una imagen de forma aleatoria.
+  const numeroAleatorio = Math.random();
 
-  // Valor para mostrar el modal.
-  const valorInicialModal = false;
-  const valorInicialVacio = "";
-  // Estado para el modal.
-  const [mostrar, setMostrar] = useState(valorInicialModal);
-  const [error, setError] = useState(valorInicialVacio);
-
-  // Selecciona la imagen de fondo según un número aleatorio.
-  const [imagenDeFondo] = useState(
-    Math.random() < 0.5
+  // Selecciona la imagen de fondo según el número aleatorio.
+  const imagenDeFondo =
+    numeroAleatorio < 0.5
       ? "/src/assets/saturno_tierra.jpg"
-      : "/src/assets/pintura.jpg"
-  );
+      : "/src/assets/pintura.jpg";
 
   return (
     <Fragment>
@@ -44,56 +28,24 @@ const Register = () => {
           </p>
           <hr className="hrNormal" />
           <div className="inputFormulario">
-            <input
-              required
-              type="text"
-              className="input"
-              name="email"
-              value={estadoRegistro.email}
-              onChange={manejarEstadoRegistro}
-            />
+            <input required type="text" className="input" />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Email</label>
           </div>
           <div className="inputFormulario">
-            <input
-              required
-              type="password"
-              className="input"
-              name="password"
-              value={estadoRegistro.password}
-              onChange={manejarEstadoRegistro}
-            />
+            <input required type="password" className="input" />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Contraseña</label>
           </div>
           <div className="inputFormulario">
-            <input
-              required
-              type="password"
-              className="input"
-              name="password"
-              value={contrasenyaAuxiliar}
-              onChange={manejarEstadoContrasenyaAuxiliar}
-            />
+            <input required type="password" className="input" />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Repite la contraseña</label>
           </div>
-          <button
-            onClick={() => {
-              if (contrasenyaAuxiliar == estadoRegistro.password) {
-                manejarRegistro();
-              } else {
-                setError("Las contraseñas no coinciden.");
-                setMostrar(true);
-              }
-            }}
-          >
-            Registrarse
-          </button>
+          <button>Registrarse</button>
           <div className="hrOContainer">
             <hr />
             <span>O</span>
@@ -228,13 +180,6 @@ const Register = () => {
         <Link to="/">
           <img src="\src\assets\marbidSVG.svg" alt="" />
         </Link>
-        {mostrar && (
-          <ModalErrores
-            mostrar={mostrar}
-            setMostrar={setMostrar}
-            mensajeError={error}
-          />
-        )}
       </div>
     </Fragment>
   );

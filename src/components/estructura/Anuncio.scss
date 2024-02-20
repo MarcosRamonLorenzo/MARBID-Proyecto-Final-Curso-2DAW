@@ -1,0 +1,49 @@
+@import "../../App.scss";
+
+.anuncio {
+  background-color: #eee;
+  border-radius: 5px;
+  width: 30em;
+  display: grid;
+  grid-gap: 0 0;
+  grid-template-areas:
+    "img"
+    "usuario"
+    "nombre"
+    "descrip"
+    "precio-likes";
+
+  .anuncio-img {
+    object-fit: cover;
+    grid-area: img;
+    width: 100%;
+  }
+  .anuncio-usuario {
+    margin: 1%;
+    grid-area: usuario;
+  }
+  .anuncio-nombre {
+    margin: 1%;
+    grid-area: nombre;
+  }
+  .anuncio-descripcion {
+    margin: 1%;
+    grid-area: descrip;
+  }
+
+  .anuncio-precio-likes {
+    grid-area: precio-likes;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2%;
+    margin-right: 5%;
+    margin-bottom: 2%;
+
+    h3 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
