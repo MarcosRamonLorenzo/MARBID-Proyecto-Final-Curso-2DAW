@@ -11,9 +11,9 @@ const Anuncio = ({ anuncio }) => {
         src={anuncio.imagen ? anuncio.imagen : "No hay una imagen disponible"}
       />
       <p className="anuncio-usuario">Usuario</p>
-      <h2 className="anuncio-nombre">
+      <h3 className="anuncio-nombre">
         {anuncio.nombre ? anuncio.nombre : "No hay nombre disponible"}
-      </h2>
+      </h3>
       <p className="anuncio-descripcion">
         {anuncio.descripcion
           ? anuncio.descripcion
