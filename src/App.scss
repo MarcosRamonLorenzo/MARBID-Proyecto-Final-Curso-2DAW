@@ -1,5 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anta&display=swap");
+
+@font-face {
+  font-family: "Canaro";
+  src: local("Canaro Book"), local("Canaro-Book"),
+    url("/Canaro-Book.woff2") format("woff2"),
+    url("/Canaro-Book.woff") format("woff"),
+    url("/Canaro-Book.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 $primary-color: #5271ff;
 $secundary-color: #f26d3d;
@@ -11,3 +22,4 @@ $text-color-black: #1f1c1c;
 
 $fuente-roboto: "Roboto", sans-serif;
 $fuente-enfasis-palabra: "EB Garamond", sans-serif;
+$fuente-logo: "Anta", sans-serif;
