@@ -1,7 +1,6 @@
 import React from "react";
 import Cabecera from "../components/estructura/Cabecera.jsx";
-import Anuncios from "../components/estructura/Anuncios.jsx";
-import Buscador from "../components/estructura/Buscador.jsx";
+import Anuncios from "../components/estructura/estructura_explora/Anuncios.jsx";
 import "./Explora.scss";
 import Select from "react-select";
 
@@ -20,7 +19,13 @@ const Explora = () => {
       <Cabecera />
       <div className="buscador-y-select">
         <h5>Cateogrias:</h5>
-        <Select options={options} />
+        {/* Aquí haremos los filtros */}
+        <Select
+          onChange={(e) => {
+            console.log(e.value);
+          }}
+          options={options}
+        />
       </div>
 
       <div className="contenedor-anuncios">

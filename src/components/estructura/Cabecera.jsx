@@ -1,7 +1,7 @@
 import React from "react";
 import "./Cabecera.scss";
 import { Link } from "react-router-dom";
-import MenuHamburguesa from "./MenuHamburguesa";
+import MenuHamburguesa from "./estructura_home/MenuHamburguesa.jsx";
 import useDatosUsuarios from "../../hooks/useDatosUsuarios.js";
 
 const Cabecera = () => {
