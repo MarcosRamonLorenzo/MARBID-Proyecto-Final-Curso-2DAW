@@ -8,6 +8,7 @@ import PanelDeControl from "./pages/PanelDeControl.jsx";
 import Favoritos from "./pages/Favoritos";
 import ContextoAnuncio from "./contexto/ContextoAnuncio.jsx";
 import ContextoUsuarios from "./contexto/ContextoUsuarios.jsx";
+import CreacionProducto from "./pages/CreacionProducto.jsx";
 
 function App() {
   return (
@@ -19,8 +20,9 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/IniciarSesion" element={<Login />} />
               <Route path="/Registro" element={<Register />} />
-
               <Route path="/Explora" element={<Explora />} />
+              <Route path="/CreacionProducto" element={<CreacionProducto />} />
+
               <Route path="/PanelDeControl" element={<PanelDeControl />}>
                 <Route path="Favoritos" element={<Favoritos />} />
                 <Route path="OfertasCreadas" element={<Explora />} />
