@@ -19,7 +19,31 @@ const Cabecera = () => {
           <li>Explora</li>
         </Link>
         {sesionIniciada ? (
-          <li onClick={logoutUsuario}>Salir</li>
+          <>
+            <Link to="/PanelDeControl">
+              <li>Panel De Control</li>
+            </Link>
+            <button
+              onClick={logoutUsuario}
+              className="boton-unirse"
+              id="logout"
+            >
+              Cerrar Sesión
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 256 256"
+                width="20"
+                height="20"
+                style={{ fill: "#FFFFFF" }}
+              >
+                <g fill="#ffffff" fillRule="nonzero">
+                  <g transform="scale(5.33333,5.33333)">
+                    <path d="M24,4c-11.046,0 -20,8.954 -20,20c0,11.046 8.954,20 20,20c11.046,0 20,-8.954 20,-20c0,-11.046 -8.954,-20 -20,-20zM31.561,29.439c0.586,0.586 0.586,1.535 0,2.121c-0.293,0.294 -0.677,0.44 -1.061,0.44c-0.384,0 -0.768,-0.146 -1.061,-0.439l-5.439,-5.44l-5.439,5.439c-0.293,0.294 -0.677,0.44 -1.061,0.44c-0.384,0 -0.768,-0.146 -1.061,-0.439c-0.586,-0.586 -0.586,-1.535 0,-2.121l5.44,-5.44l-5.439,-5.439c-0.586,-0.586 -0.586,-1.535 0,-2.121c0.586,-0.586 1.535,-0.586 2.121,0l5.439,5.439l5.439,-5.439c0.586,-0.586 1.535,-0.586 2.121,0c0.586,0.586 0.586,1.535 0,2.121l-5.439,5.439z"></path>
+                  </g>
+                </g>
+              </svg>
+            </button>
+          </>
         ) : (
           <>
             <Link to="/IniciarSesion">
