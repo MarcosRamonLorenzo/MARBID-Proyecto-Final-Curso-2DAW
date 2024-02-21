@@ -16,18 +16,17 @@ const ContextoUsuarios = ({ children }) => {
     password: "",
   };
   const valorInicialVacio = "";
-  const estadoInicialErrores = [];
 
   // Estados.
   const [contrasenyaAuxiliar, setContrasenyaAuxiliar] =
     useState(valorInicialVacio);
   const [estadoRegistro, setEstadoRegistro] = useState(estadoInicialFormulario);
-  const [erroresRegistro, setErroresRegistro] = useState(estadoInicialErrores);
+  const [erroresRegistro, setErroresRegistro] = useState(valorInicialVacio);
   const [estadoInicioSesion, setEstadoInicioSesion] = useState(
     estadoInicialFormulario
   );
   const [erroresInicioSesion, setErroresInicioSesion] =
-    useState(estadoInicialErrores);
+    useState(valorInicialVacio);
 
   const [sesionIniciada, setSesionIniciada] = useState(valorInicialFalse);
   const [estadoUsuario, setEstadoUsuario] = useState(valorInicialNull);
@@ -35,6 +34,16 @@ const ContextoUsuarios = ({ children }) => {
     useState(valorInicialVacio);
   const [mostrarErrorGeneralUsuario, setMostrarErrorGeneralUsuario] =
     useState(valorInicialFalse);
+
+  const [cargandoUsuario, setCargandoUsuario] = useState(valorInicialFalse);
+
+  const manejarEstadoErrorRegister = () => {
+    setErroresRegistro(valorInicialVacio);
+  };
+
+  const manejarEstadoErrorLogin = () => {
+    setErroresInicioSesion(valorInicialVacio);
+  };
 
   const manejarEstadoRegistro = (evento) => {
     // Recojo el campo que se está modificando (email o password) y lo voy actualizando.
@@ -69,6 +78,7 @@ const ContextoUsuarios = ({ children }) => {
 
   const registroUsuario = async () => {
     try {
+      setCargandoUsuario(true);
       const { data, error } = await supabaseConexion.auth.signUp({
         email: estadoRegistro.email,
         password: estadoRegistro.password,
@@ -77,6 +87,7 @@ const ContextoUsuarios = ({ children }) => {
       if (error) {
         setErroresRegistro(error.message);
       } else {
+        setCargandoUsuario(valorInicialFalse);
         navegar("/");
       }
     } catch (error) {
@@ -86,6 +97,7 @@ const ContextoUsuarios = ({ children }) => {
 
   const loginUsuario = async () => {
     try {
+      setCargandoUsuario(true);
       const { data, error } = await supabaseConexion.auth.signInWithPassword({
         email: estadoInicioSesion.email,
         password: estadoInicioSesion.password,
@@ -94,6 +106,7 @@ const ContextoUsuarios = ({ children }) => {
       if (error) {
         setErroresInicioSesion(error.message);
       } else {
+        setCargandoUsuario(valorInicialFalse);
         navegar("/");
         setSesionIniciada(true);
       }
@@ -161,6 +174,9 @@ const ContextoUsuarios = ({ children }) => {
     logoutUsuario,
     manejarRegistro,
     logInGoogle,
+    manejarEstadoErrorLogin,
+    manejarEstadoErrorRegister,
+    cargandoUsuario,
   };
 
   return (
