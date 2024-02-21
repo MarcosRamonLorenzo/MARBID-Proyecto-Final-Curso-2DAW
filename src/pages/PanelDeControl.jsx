@@ -18,11 +18,9 @@ const PanelDeControl = () => {
         id="nav-panel-control"
       >
         <Nav.Item>
-
-          <Nav.Link>
-            {" "}
-            <Link to={"Favoritos"}>Ofertas creadas </Link>
-          </Nav.Link>
+          <Link to={"Favoritos"}>
+            <Nav.Link> Ofertas creadas</Nav.Link>
+          </Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link>
@@ -37,7 +35,6 @@ const PanelDeControl = () => {
         </Nav.Item>
       </Nav>
       <Outlet />
-
     </div>
   );
 };

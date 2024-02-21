@@ -1,6 +1,6 @@
 import React from "react";
 import "./Anuncios.scss";
-import useDatosAnuncios from "../../hooks/useDatosAnuncio.js";
+import useDatosAnuncios from "../../../hooks/useDatosAnuncio.js";
 import Anuncio from "./Anuncio";
 
 const Anuncios = () => {
