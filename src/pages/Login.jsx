@@ -1,23 +1,24 @@
 import React, { Fragment, useState } from "react";
 import "./Login.scss";
 import { Link } from "react-router-dom";
-import ModalNecesitarDatos from "../components/modales/ModalNecesitarDatos";
+import ModalErrores from "../components/modales/ModalErrores.jsx";
+import useDatosUsuarios from "../hooks/useDatosUsuarios.js";
 
 const Login = () => {
-  // Valor para mostrar el modal.
-  const valorInicialModal = false;
-  // Genera un número aleatorio entre 0 y 1 para seleccionar una imagen de forma aleatoria.
-  const numeroAleatorio = Math.random();
-  // Estado para el modal.
-  const [mostrar, setMostrar] = useState(valorInicialModal);
-  // Estado para el fondo de pantalla. Esto lo he hecho para que al saltar el modal no actualice la imagen de fondo.
-  const [numeroDeFondoDePantalla] = useState(numeroAleatorio);
+  const {
+    manejarEstadoInicioSesion,
+    estadoInicioSesion,
+    erroresInicioSesion,
+    manejarInicioSesion,
+    logInGoogle,
+  } = useDatosUsuarios();
 
-  // Selecciona la imagen de fondo según el número aleatorio que haya en el estado.
-  const imagenDeFondo =
-    numeroDeFondoDePantalla < 0.5
+  // Selecciona la imagen de fondo según un número aleatorio.
+  const [imagenDeFondo] = useState(
+    Math.random() < 0.5
       ? "/src/assets/Tierra_HD.jpg"
-      : "/src/assets/bosque_HD.jpg";
+      : "/src/assets/bosque_HD.jpg"
+  );
 
   return (
     <Fragment>
@@ -38,20 +39,34 @@ const Login = () => {
           </p>
           <hr className="hrNormal" />
           <div className="inputFormulario">
-            <input required type="text" className="input" />
+            <input
+              required
+              type="text"
+              className="input"
+              name="email"
+              value={estadoInicioSesion.email}
+              onChange={manejarEstadoInicioSesion}
+            />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Email</label>
           </div>
           <div className="inputFormulario">
-            <input required type="password" className="input" />
+            <input
+              required
+              type="password"
+              className="input"
+              name="password"
+              value={estadoInicioSesion.password}
+              onChange={manejarEstadoInicioSesion}
+            />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Contraseña</label>
           </div>
           <button
             onClick={() => {
-              setMostrar(true);
+              manejarInicioSesion();
             }}
           >
             Entrar
@@ -88,7 +103,14 @@ const Login = () => {
                   d="M43.611,20.083L43.595,20L42,20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571	c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
                 ></path>
               </svg>
-              <p>Continuar con Google</p>
+              <p
+                onClick={() => {
+                  logInGoogle();
+                  console.log("hola");
+                }}
+              >
+                Continuar con Google
+              </p>
             </div>
             {/* Imagen Meta. */}
             <div>
@@ -191,9 +213,6 @@ const Login = () => {
           </p>
         </div>
       </div>
-      {mostrar && (
-        <ModalNecesitarDatos mostrar={mostrar} setMostrar={setMostrar} />
-      )}
     </Fragment>
   );
 };
