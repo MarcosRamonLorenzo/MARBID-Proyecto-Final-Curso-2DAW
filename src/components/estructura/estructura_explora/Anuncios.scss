@@ -10,16 +10,16 @@
     grid-column-gap: 10%;
   }
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 800px) {
     /* En móvil, cambia a una columna */
     grid-row-gap: 1%;
     grid-template-columns: 1fr;
 
-    @media only screen and (max-width: 700px) {
+    /*  @media only screen and (max-width: 700px) {
       .anuncio {
         width: 20em;
         height: 30em;
       }
-    }
+    } */
   }
 }

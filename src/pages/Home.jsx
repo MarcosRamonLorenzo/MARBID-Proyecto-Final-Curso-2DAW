@@ -1,11 +1,11 @@
 import React from "react";
-import Cabecera from "../components/estructura/Cabecera";
-import HeroSection from "../components/estructura/HeroSection";
-import Buscador from "../components/estructura/Buscador";
-import Insignias from "../components/estructura/Insignias";
-import Categorias from "../components/estructura/Categorias";
-import GridTarjetasDibujos from "../components/estructura/GridTarjetasDibujos";
-import Footer from "../components/estructura/Footer";
+import Cabecera from "../components/estructura/Cabecera.jsx";
+import HeroSection from "../components/estructura/estructura_home/HeroSection.jsx";
+import Buscador from "../components/estructura/estructura_home/Buscador.jsx";
+import Insignias from "../components/estructura/estructura_home/Insignias.jsx";
+import Categorias from "../components/estructura/estructura_home/Categorias.jsx";
+import GridTarjetasDibujos from "../components/estructura/estructura_home/GridTarjetasDibujos.jsx";
+import Footer from "../components/estructura/Footer.jsx";
 
 const Home = () => {
   return (
