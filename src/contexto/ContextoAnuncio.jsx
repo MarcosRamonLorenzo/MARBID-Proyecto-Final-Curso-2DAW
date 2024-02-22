@@ -17,6 +17,7 @@ const DatosContextoAnuncio = ({ children }) => {
     categoria: "",
   };
 
+  // Estados del anuncio.
   const [anuncios, setAnuncios] = useState(valorInicalNull);
   const [errorAnuncio, setErrorAnuncio] = useState(valorInicialFalse);
   const [formularioCreacionOferta, setFormularioCreacionOferta] = useState(
@@ -75,11 +76,9 @@ const DatosContextoAnuncio = ({ children }) => {
         .from("ANUNCIO")
         .select("*");
 
-      if (error) {
-        setErrorAnuncio(error.message);
-      } else {
-        setAnuncios(data);
-      }
+      if (error) throw error;
+
+      setAnuncios(data);
     } catch (error) {
       setErrorAnuncio(error.message);
     }
