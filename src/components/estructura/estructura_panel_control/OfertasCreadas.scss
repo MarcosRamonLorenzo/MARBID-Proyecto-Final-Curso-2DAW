@@ -1,0 +1,14 @@
+@import "../../../App.scss";
+
+.crearOferta {
+  background-color: $third-color;
+  color: white;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $third-color-variable;
+  }
+}

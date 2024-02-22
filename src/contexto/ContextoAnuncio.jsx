@@ -14,6 +14,7 @@ const DatosContextoAnuncio = ({ children }) => {
     descripcion: "",
     imagen: "",
     precio: "",
+    categoria: "",
   };
 
   const [anuncios, setAnuncios] = useState(valorInicalNull);
@@ -37,7 +38,7 @@ const DatosContextoAnuncio = ({ children }) => {
   };
 
   const insertarAnuncio = async () => {
-    //Creamos el anuncio a insertar y cogemos la cateogria por separado ya que están en talbas distintas.
+    //Creamos el anuncio a insertar y cogemos la cateogria por separado ya que están en tablas distintas.
     const anuncioAInsertar = {
       nombre: formularioCreacionOferta.nombre,
       descripcion: formularioCreacionOferta.descripcion,
@@ -46,7 +47,7 @@ const DatosContextoAnuncio = ({ children }) => {
       id_usuario: null,
     };
 
-    const cateogria = formularioCreacionOferta.cateogria;
+    const categoria = formularioCreacionOferta.categoria;
 
     try {
       const { data, error } = await supabaseConexion
@@ -61,7 +62,7 @@ const DatosContextoAnuncio = ({ children }) => {
     //Como cogemos el id del anuncio si se genera en suapabase.
     /*   try {
       const { data, error } = await supabaseConexion
-      .from("CATEOGRIAS_EN_ANUNCIO")
+      .from("CATEGORIAS_EN_ANUNCIO")
       .insert();
     } catch (error) {
       
@@ -88,9 +89,7 @@ const DatosContextoAnuncio = ({ children }) => {
     obtenerAnuncios();
   }, []);
 
-  useEffect(() => {
-    console.log(formularioCreacionOferta);
-  }, [formularioCreacionOferta]);
+  useEffect(() => {}, [formularioCreacionOferta]);
 
   const datosExportar = {
     anuncios,

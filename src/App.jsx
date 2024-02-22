@@ -5,7 +5,6 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Explora from "./pages/Explora.jsx";
 import PanelDeControl from "./pages/PanelDeControl.jsx";
-import Favoritos from "./pages/Favoritos";
 import ContextoAnuncio from "./contexto/ContextoAnuncio.jsx";
 import ContextoUsuarios from "./contexto/ContextoUsuarios.jsx";
 import CreacionProducto from "./pages/CreacionProducto.jsx";
@@ -23,11 +22,7 @@ function App() {
               <Route path="/Explora" element={<Explora />} />
               <Route path="/CreacionProducto" element={<CreacionProducto />} />
 
-              <Route path="/PanelDeControl" element={<PanelDeControl />}>
-                <Route path="Favoritos" element={<Favoritos />} />
-                <Route path="OfertasCreadas" element={<Explora />} />
-                <Route path="OfertasAplicadas" element={<Explora />} />
-              </Route>
+              <Route path="/PanelDeControl" element={<PanelDeControl />} />
             </Routes>
           </ContextoAnuncio>
         </div>
