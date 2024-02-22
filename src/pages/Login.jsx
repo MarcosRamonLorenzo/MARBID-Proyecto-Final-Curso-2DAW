@@ -1,8 +1,10 @@
 import React, { Fragment, useState } from "react";
 import "./Login.scss";
 import { Link } from "react-router-dom";
-import ModalErrores from "../components/modales/ModalErrores.jsx";
 import useDatosUsuarios from "../hooks/useDatosUsuarios.js";
+import AlertError from "../components/estructura/alerts/AlertError.jsx";
+import ModalErrores from "../components/modales/ModalErrores.jsx";
+import Loading from "../components/estructura/Loading.jsx";
 
 const Login = () => {
   const {
@@ -11,8 +13,19 @@ const Login = () => {
     erroresInicioSesion,
     manejarInicioSesion,
     logInGoogle,
+    manejarEstadoErrorLogin,
+    cargandoUsuario,
   } = useDatosUsuarios();
 
+  // Valor para mostrar el modal.
+  const valorInicialModal = false;
+  const valorInicialVacio = "";
+  // Estado para el modal.
+  const [mostrar, setMostrar] = useState(valorInicialModal);
+  const [error, setError] = useState(valorInicialVacio);
+
+  // Verifica si el email es válido o no lo es.
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   // Selecciona la imagen de fondo según un número aleatorio.
   const [imagenDeFondo] = useState(
     Math.random() < 0.5
@@ -26,6 +39,13 @@ const Login = () => {
         className="gridLogin"
         style={{ backgroundImage: `url("${imagenDeFondo}")` }}
       >
+        {cargandoUsuario && <Loading />}
+        {erroresInicioSesion && (
+          <AlertError
+            mensajeError={erroresInicioSesion}
+            estadoError={manejarEstadoErrorLogin}
+          />
+        )}
         <Link to="/">
           <img src="\src\assets\marbidSVG.svg" alt="" />
         </Link>
@@ -66,7 +86,16 @@ const Login = () => {
           </div>
           <button
             onClick={() => {
-              manejarInicioSesion();
+              // Compruebo si todos los campos están bien metidos.
+              if (!emailRegex.test(estadoInicioSesion.email)) {
+                setError("Por favor, introduce un correo electrónico válido.");
+                setMostrar(true);
+              } else if (!estadoInicioSesion.password) {
+                setError("Por favor, introduce una contraseña.");
+                setMostrar(true);
+              } else {
+                manejarInicioSesion();
+              }
             }}
           >
             Entrar
@@ -212,6 +241,9 @@ const Login = () => {
             ¿Has olvidado la contraseña? <strong>Recupérala aquí.</strong>
           </p>
         </div>
+        {mostrar && (
+          <ModalErrores setMostrar={setMostrar} mensajeError={error} />
+        )}
       </div>
     </Fragment>
   );

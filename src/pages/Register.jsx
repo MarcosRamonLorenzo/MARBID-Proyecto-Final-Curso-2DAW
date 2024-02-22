@@ -3,6 +3,7 @@ import "./Register.scss";
 import { Link } from "react-router-dom";
 import useDatosUsuarios from "../hooks/useDatosUsuarios.js";
 import ModalErrores from "../components/modales/ModalErrores.jsx";
+import AlertError from "../components/estructura/alerts/AlertError.jsx";
 
 const Register = () => {
   const {
@@ -12,6 +13,7 @@ const Register = () => {
     contrasenyaAuxiliar,
     manejarEstadoContrasenyaAuxiliar,
     manejarRegistro,
+    manejarEstadoErrorRegister,
   } = useDatosUsuarios();
 
   // Valor para mostrar el modal.
@@ -21,6 +23,8 @@ const Register = () => {
   const [mostrar, setMostrar] = useState(valorInicialModal);
   const [error, setError] = useState(valorInicialVacio);
 
+  // Verifica si el email es válido o no lo es.
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   // Selecciona la imagen de fondo según un número aleatorio.
   const [imagenDeFondo] = useState(
     Math.random() < 0.5
@@ -34,6 +38,12 @@ const Register = () => {
         className="gridRegister"
         style={{ backgroundImage: `url("${imagenDeFondo}")` }}
       >
+        {erroresRegistro && (
+          <AlertError
+            mensajeError={erroresRegistro}
+            estadoError={manejarEstadoErrorRegister}
+          />
+        )}
         <div className="divFormulario">
           <h1>Registro</h1>
           <p>
@@ -84,11 +94,18 @@ const Register = () => {
           </div>
           <button
             onClick={() => {
-              if (contrasenyaAuxiliar == estadoRegistro.password) {
-                manejarRegistro();
-              } else {
+              // Compruebo si todos los campos están bien metidos.
+              if (!emailRegex.test(estadoRegistro.email)) {
+                setError("Por favor, introduce un correo electrónico válido.");
+                setMostrar(true);
+              } else if (!estadoRegistro.password) {
+                setError("Por favor, introduce una contraseña.");
+                setMostrar(true);
+              } else if (contrasenyaAuxiliar !== estadoRegistro.password) {
                 setError("Las contraseñas no coinciden.");
                 setMostrar(true);
+              } else {
+                manejarRegistro();
               }
             }}
           >
@@ -229,11 +246,7 @@ const Register = () => {
           <img src="\src\assets\marbidSVG.svg" alt="" />
         </Link>
         {mostrar && (
-          <ModalErrores
-            mostrar={mostrar}
-            setMostrar={setMostrar}
-            mensajeError={error}
-          />
+          <ModalErrores setMostrar={setMostrar} mensajeError={error} />
         )}
       </div>
     </Fragment>
