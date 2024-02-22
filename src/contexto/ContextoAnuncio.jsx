@@ -37,15 +37,35 @@ const DatosContextoAnuncio = ({ children }) => {
   };
 
   const insertarAnuncio = async () => {
+    //Creamos el anuncio a insertar y cogemos la cateogria por separado ya que están en talbas distintas.
+    const anuncioAInsertar = {
+      nombre: formularioCreacionOferta.nombre,
+      descripcion: formularioCreacionOferta.descripcion,
+      imagen: formularioCreacionOferta.imagen,
+      precio: formularioCreacionOferta.precio,
+      id_usuario: null,
+    };
+
+    const cateogria = formularioCreacionOferta.cateogria;
+
     try {
       const { data, error } = await supabaseConexion
         .from("ANUNCIO")
-        .insert(formularioCreacionOferta);
+        .insert(anuncioAInsertar);
 
       if (error) throw error;
     } catch (error) {
       console.log(error);
     }
+
+    //Como cogemos el id del anuncio si se genera en suapabase.
+    /*   try {
+      const { data, error } = await supabaseConexion
+      .from("CATEOGRIAS_EN_ANUNCIO")
+      .insert();
+    } catch (error) {
+      
+    } */
   };
 
   const obtenerAnuncios = async () => {
