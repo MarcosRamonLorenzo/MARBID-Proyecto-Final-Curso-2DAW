@@ -84,14 +84,14 @@ const ContextoUsuarios = ({ children }) => {
         password: estadoRegistro.password,
       });
 
-      if (error) {
-        setErroresRegistro(error.message);
-      } else {
-        setCargandoUsuario(valorInicialFalse);
-        navegar("/");
-      }
+      if (error) throw error;
+
+      setErroresRegistro(error.message);
+      setCargandoUsuario(valorInicialFalse);
+      navegar("/");
     } catch (error) {
       setErroresRegistro(error.message);
+      setCargandoUsuario(valorInicialFalse);
     }
   };
 
@@ -103,14 +103,13 @@ const ContextoUsuarios = ({ children }) => {
         password: estadoInicioSesion.password,
       });
 
-      if (error) {
-        setErroresInicioSesion(error.message);
-      } else {
-        setCargandoUsuario(valorInicialFalse);
-        navegar("/");
-        setSesionIniciada(true);
-      }
+      if (error) throw error;
+
+      setCargandoUsuario(valorInicialFalse);
+      navegar("/");
+      setSesionIniciada(true);
     } catch (error) {
+      setCargandoUsuario(valorInicialFalse);
       setErroresInicioSesion(error.message);
     }
   };
@@ -119,13 +118,13 @@ const ContextoUsuarios = ({ children }) => {
     try {
       const { error } = await supabaseConexion.auth.signOut();
 
-      if (error) {
-        setErrorGeneralUsuario(error.message);
-        setMostrarErrorGeneralUsuario(true);
-      } else {
-        setSesionIniciada(valorInicialFalse);
-        setUsuario(valorInicialNull);
-      }
+      if (error) throw error;
+
+      setErrorGeneralUsuario(error.message);
+      setMostrarErrorGeneralUsuario(true);
+      navegar("/");
+      setSesionIniciada(valorInicialFalse);
+      setUsuario(valorInicialNull);
     } catch (error) {
       setErrorGeneralUsuario(error.message);
       setMostrarErrorGeneralUsuario(true);
@@ -149,7 +148,6 @@ const ContextoUsuarios = ({ children }) => {
           setEstadoUsuario(session.user);
           setSesionIniciada(true);
         } else {
-          navegar("/");
           setSesionIniciada(valorInicialNull);
           setEstadoUsuario(valorInicialNull);
         }

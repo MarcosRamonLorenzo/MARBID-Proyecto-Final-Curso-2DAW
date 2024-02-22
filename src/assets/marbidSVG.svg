@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   viewBox="0 0 500 500"
+   viewBox="0 0 472 170"
    version="1.1"
    id="svg4"
-   sodipodi:docname="LOGOAPLIconnombre.svg"
-   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
-   width="100%"
-   height="100%"
+   sodipodi:docname="marbidSVG.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   width="472"
+   height="170"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -21,54 +21,77 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="0.83100002"
-     inkscape:cx="298.43561"
-     inkscape:cy="321.90132"
-     inkscape:window-width="1920"
-     inkscape:window-height="1009"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:cx="118.53189"
+     inkscape:cy="187.12394"
+     inkscape:window-width="1600"
+     inkscape:window-height="831"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg4" />
+     inkscape:current-layer="svg4"
+     inkscape:pageshadow="2"
+     showgrid="false"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:object-paths="true"
+     inkscape:snap-intersection-paths="true"
+     inkscape:snap-smooth-nodes="true"
+     inkscape:snap-midpoints="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-center="true"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-text-baseline="true"
+     width="499px" />
   <defs
      id="defs1">
     <rect
        x="275.57159"
        y="128.76053"
-       width="796.01671"
-       height="279.15791"
+       width="796.01672"
+       height="279.1579"
        id="rect1" />
     <style
        id="style1">.cls-1{fill:#fff;}.cls-2{fill:#035b8c;}.cls-3{fill:#f26d3d;}.cls-4{fill:#5271ff;}.cls-5{fill:#f25ea3;}</style>
   </defs>
-  <path
-     class="cls-5"
-     d="m 70.638897,236.76546 c -1.531375,-2.02918 -4.448287,-1.59292 -5.885901,0.51743 -10.355029,15.30007 -8.771563,31.66547 -4.583711,44.01307 a 59.056978,57.517309 0 0 1 -26.439696,-47.98012 58.463179,56.938991 0 0 1 0.86466,-9.82128 c 21.762218,-14.07241 35.763374,12.43893 36.044648,13.2709 z"
-     id="path4"
-     style="stroke-width:1.02808"
-     inkscape:export-filename="path4.svg"
-     inkscape:export-xdpi="96"
-     inkscape:export-ydpi="96" />
   <g
-     id="g2"
-     transform="matrix(0.67442132,0,0,0.67442132,33.729552,73.37584)">
+     id="g17"
+     transform="translate(-13.591541,-131.29707)">
     <path
-       class="cls-3"
-       d="m 116.03422,242.28246 c 2.26401,-3.00805 6.57643,-2.36132 8.68642,0.76704 15.40142,22.6807 12.9834,46.94062 6.79203,65.24461 a 87.572502,85.51887 0 0 0 37.8259,-85.72944 c -32.17358,-20.81571 -52.87312,18.48449 -53.30435,19.71779 z"
-       id="path2"
-       style="stroke-width:1.52198" />
-    <path
-       class="cls-4"
-       d="m 169.38338,222.60979 c -31.44917,-20.87587 -51.64824,18.43937 -52.05433,19.67267 v 0 l -27.97486,38.87905 a 4.9632831,4.9632831 0 0 1 -8.061575,0 L 53.317747,242.28246 v 0 C 52.91166,241.04916 32.697562,201.67378 1.2634369,222.60979 a 85.172946,85.172946 0 0 1 28.5764771,-50.2194 v 0 c 18.920637,0 43.376086,35.44988 52.159593,49.21171 a 3.9555862,3.9555862 0 0 0 6.662832,0 c 8.783507,-13.76183 33.254001,-49.21171 52.159601,-49.21171 v 0 a 85.127825,85.127825 0 0 1 28.56144,50.2194 z"
-       id="path3"
-       style="stroke-width:1.50403" />
+       class="cls-5"
+       d="m 66.394419,226.15829 c -1.531375,-2.02918 -4.448287,-1.59292 -5.885901,0.51743 -10.355029,15.30007 -8.771563,31.66547 -4.583711,44.01307 a 59.056978,57.517309 0 0 1 -26.439696,-47.98012 58.463179,56.938991 0 0 1 0.86466,-9.82128 c 21.762218,-14.07241 35.763374,12.43893 36.044648,13.2709 z"
+       id="path4"
+       style="stroke-width:1.02808"
+       inkscape:export-filename="path4.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       id="g2"
+       transform="matrix(0.67442132,0,0,0.67442132,29.485074,62.76867)">
+      <path
+         class="cls-3"
+         d="m 116.03422,242.28246 c 2.26401,-3.00805 6.57643,-2.36132 8.68642,0.76704 15.40142,22.6807 12.9834,46.94062 6.79203,65.24461 a 87.572502,85.51887 0 0 0 37.8259,-85.72944 c -32.17358,-20.81571 -52.87312,18.48449 -53.30435,19.71779 z"
+         id="path2"
+         style="stroke-width:1.52198" />
+      <path
+         class="cls-4"
+         d="m 169.38338,222.60979 c -31.44917,-20.87587 -51.64824,18.43937 -52.05433,19.67267 v 0 l -27.97486,38.87905 a 4.9632831,4.9632831 0 0 1 -8.061575,0 L 53.317747,242.28246 v 0 C 52.91166,241.04916 32.697562,201.67378 1.2634369,222.60979 a 85.172946,85.172946 0 0 1 28.5764771,-50.2194 v 0 c 18.920637,0 43.376086,35.44988 52.159593,49.21171 a 3.9555862,3.9555862 0 0 0 6.662832,0 c 8.783507,-13.76183 33.254001,-49.21171 52.159601,-49.21171 v 0 a 85.127825,85.127825 0 0 1 28.56144,50.2194 z"
+         id="path3"
+         style="stroke-width:1.50403" />
+    </g>
   </g>
   <text
      xml:space="preserve"
      id="text1"
      style="font-size:96px;font-family:Canaro;-inkscape-font-specification:Canaro;white-space:pre;shape-inside:url(#rect1);display:inline;fill:#241c1c;stroke-width:60"
-     transform="translate(-100.37497,47.807713)"><tspan
+     transform="translate(-127.49379,-88.091479)"><tspan
        x="275.57227"
-       y="212.56777"
-       id="tspan1">marbid
-</tspan></text>
+       y="218.27902"
+       id="tspan61139"><tspan
+         style="font-weight:500;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu Medium'"
+         id="tspan61137">marbid
+</tspan></tspan></text>
 </svg>
