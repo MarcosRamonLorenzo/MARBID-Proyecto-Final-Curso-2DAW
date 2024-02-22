@@ -125,7 +125,6 @@ const ContextoUsuarios = ({ children }) => {
       } else {
         setSesionIniciada(valorInicialFalse);
         setUsuario(valorInicialNull);
-        navegar("/");
       }
     } catch (error) {
       setErrorGeneralUsuario(error.message);
@@ -150,6 +149,7 @@ const ContextoUsuarios = ({ children }) => {
           setEstadoUsuario(session.user);
           setSesionIniciada(true);
         } else {
+          navegar("/");
           setSesionIniciada(valorInicialNull);
           setEstadoUsuario(valorInicialNull);
         }
