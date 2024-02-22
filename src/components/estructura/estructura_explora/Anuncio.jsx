@@ -2,7 +2,6 @@ import React from "react";
 import "./Anuncio.scss";
 import BotonMeGusta from "../BotonMeGusta";
 import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
 
 const Anuncio = ({ anuncio }) => {
   // Poner en base a la id_usuario, el nombre del usuario del anuncio.

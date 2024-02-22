@@ -2,14 +2,14 @@
 
 .form-creacion-oferta {
   background-color: #fff;
-  padding: 20px;
+  padding: 0 20px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center; // Centrar horizontalmente
   justify-content: center; // Centrar verticalmente
-  margin: 10% auto; // Ajustar margen superior e inferior
-  max-width: 800px;
+  max-width: 1000px;
+  width: 40em;
 
   .left-column,
   .right-column {
@@ -25,6 +25,11 @@
     margin-top: 10px;
     border-radius: 4px;
     box-sizing: border-box;
+  }
+
+  textarea {
+    min-height: 3em;
+    max-height: 9em;
   }
 
   label {
