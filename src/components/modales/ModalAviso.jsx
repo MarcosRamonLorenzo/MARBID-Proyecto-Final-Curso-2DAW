@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Modal, Button } from "react-bootstrap";
 // No uso scss porque recoge el del jsx donde se muestre.
 
-const ModalAviso = ({ setMostrar, mensajeAviso, aceptarCancelar }) => {
+const ModalAviso = ({ setMostrar, mensajeAviso, insertar }) => {
   return (
     <Fragment>
       {/* Centro el modal, si mostrar es true se muestra y para esconderlo se usa esa función flecha. */}
@@ -12,14 +12,16 @@ const ModalAviso = ({ setMostrar, mensajeAviso, aceptarCancelar }) => {
         </Modal.Header>
         <Modal.Body>
           <p>
-            {mensajeAviso ? mensajeAviso : "Algo hubo mal en la operación."}
+            {mensajeAviso
+              ? `${mensajeAviso} faltan por rellenar. ¿Deseas continuar?`
+              : "Algo hubo mal en la operación."}
           </p>
         </Modal.Body>
         <Modal.Footer>
           <Button
             variant="danger"
             onClick={() => {
-              aceptarCancelar(true);
+              insertar();
               setMostrar(false);
             }}
           >
@@ -28,7 +30,6 @@ const ModalAviso = ({ setMostrar, mensajeAviso, aceptarCancelar }) => {
           <Button
             variant="danger"
             onClick={() => {
-              aceptarCancelar(false);
               setMostrar(false);
             }}
           >

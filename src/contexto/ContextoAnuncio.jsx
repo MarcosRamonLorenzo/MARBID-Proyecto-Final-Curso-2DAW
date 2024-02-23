@@ -7,7 +7,6 @@ const DatosContextoAnuncio = ({ children }) => {
   // Valor inical del anuncio.
   const valorInicalNull = null;
   const valorInicialFalse = false;
-  const valorInicialVacio = "";
   const valorInicialCreacionOferta = {
     id_usuario: "",
     nombre: "",
@@ -23,6 +22,7 @@ const DatosContextoAnuncio = ({ children }) => {
   const [formularioCreacionOferta, setFormularioCreacionOferta] = useState(
     valorInicialCreacionOferta
   );
+  const [cargandoAnuncio, setCargandoAnuncio] = useState(valorInicialFalse);
 
   const actualizarDatoFormulario = (evento) => {
     const { name, value } = evento.target;
@@ -39,6 +39,7 @@ const DatosContextoAnuncio = ({ children }) => {
   };
 
   const insertarAnuncio = async () => {
+    setCargandoAnuncio(true);
     //Creamos el anuncio a insertar y cogemos la cateogria por separado ya que están en tablas distintas.
     const anuncioAInsertar = {
       nombre: formularioCreacionOferta.nombre,
@@ -56,6 +57,9 @@ const DatosContextoAnuncio = ({ children }) => {
         .insert(anuncioAInsertar);
 
       if (error) throw error;
+
+      setFormularioCreacionOferta(valorInicialCreacionOferta);
+      setCargandoAnuncio(valorInicialFalse);
     } catch (error) {
       console.log(error);
     }
@@ -97,6 +101,7 @@ const DatosContextoAnuncio = ({ children }) => {
     actualizarDatoFormulario,
     actualizarCateogriaFormulario,
     insertarAnuncio,
+    cargandoAnuncio,
   };
 
   return (
