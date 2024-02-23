@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Select from "react-select";
 import "./FormCreacionOferta.scss";
 import useDatosAnuncio from "../../../hooks/useDatosAnuncio.js";
+import ModalErrores from "../../modales/ModalErrores.jsx";
+import ModalAviso from "../../modales/ModalAviso.jsx";
 
 const FormCreacionOferta = () => {
   const options = [
@@ -13,11 +15,62 @@ const FormCreacionOferta = () => {
     { value: "ProgamacionTecnologia", label: "Programación y Tecnología" },
   ];
 
+  // Valor para mostrar el modal.
+  const valorInicialModal = false;
+  const valorInicialVacio = "";
+  /* Estado para los modales. 
+    Lo que hago es diferenciar entre aviso (puedes dejar el campo en null) y errores (no puedes dejar el campo en null). */
+  const [mostrarError, setMostrarError] = useState(valorInicialModal);
+  const [mostrarAviso, setMostrarAviso] = useState(valorInicialModal);
+  const [error, setError] = useState(valorInicialVacio);
+  const [aviso, setAviso] = useState(valorInicialVacio);
+
   const {
     actualizarDatoFormulario,
     actualizarCateogriaFormulario,
     insertarAnuncio,
+    formularioCreacionOferta,
   } = useDatosAnuncio();
+
+  const manejarInsertOferta = () => {
+    if (!formularioCreacionOferta.nombre) {
+      setError("No has introducido un nombre para la oferta, introduzca uno.");
+      setMostrarError(true);
+    } else if (!formularioCreacionOferta.precio) {
+      setError("No has introducido un precio para la oferta introduzca uno.");
+      setMostrarError(true);
+    } else {
+      if (!formularioCreacionOferta.categoria) {
+        setAviso(
+          "No has seleccionado una categoría para la oferta ¿Deseas continuar?."
+        );
+        setMostrarAviso(true);
+        esperarAConfirmacion();
+      }
+
+      if (!formularioCreacionOferta.imagen) {
+        setAviso(
+          "No has introducido una imagen para la oferta ¿Deseas continuar?."
+        );
+        setMostrarAviso(true);
+        esperarAConfirmacion();
+      }
+
+      if (!formularioCreacionOferta.descripcion) {
+        setAviso(
+          "No has introducido una descripción para la oferta ¿Deseas continuar?."
+        );
+        setMostrarAviso(true);
+        esperarAConfirmacion();
+      }
+
+      insertarAnuncio();
+    }
+  };
+
+  const esperarAConfirmacion = async (decision) => {
+    return await decision;
+  };
 
   return (
     <div className="form-creacion-oferta">
@@ -92,13 +145,23 @@ const FormCreacionOferta = () => {
         </div>
         <button
           onClick={() => {
-            insertarAnuncio();
+            manejarInsertOferta();
           }}
           className="boton-oferta"
         >
           Crear Oferta
         </button>
       </div>
+      {mostrarError && (
+        <ModalErrores setMostrar={setMostrarError} mensajeError={error} />
+      )}
+      {mostrarAviso && (
+        <ModalAviso
+          setMostrar={setMostrarAviso}
+          mensajeAviso={aviso}
+          aceptarCancelar={esperarAConfirmacion}
+        />
+      )}
     </div>
   );
 };
