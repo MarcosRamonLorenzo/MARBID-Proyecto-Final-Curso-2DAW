@@ -7,7 +7,7 @@ const PrevisualzacionOferta = () => {
 
   return (
     <div className="previsulazacion-oferta">
-      <p>Previsulazacion Oferta</p>
+      <p>Previsualización Oferta</p>
       <Card>
         <Card.Img
           variant="top"
