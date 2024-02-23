@@ -34,7 +34,6 @@ const ContextoUsuarios = ({ children }) => {
     useState(valorInicialVacio);
   const [mostrarErrorGeneralUsuario, setMostrarErrorGeneralUsuario] =
     useState(valorInicialFalse);
-
   const [cargandoUsuario, setCargandoUsuario] = useState(valorInicialFalse);
 
   const manejarEstadoErrorRegister = () => {
@@ -120,9 +119,9 @@ const ContextoUsuarios = ({ children }) => {
 
       if (error) throw error;
 
+      navegar("/");
       setErrorGeneralUsuario(error.message);
       setMostrarErrorGeneralUsuario(true);
-      navegar("/");
       setSesionIniciada(valorInicialFalse);
       setUsuario(valorInicialNull);
     } catch (error) {

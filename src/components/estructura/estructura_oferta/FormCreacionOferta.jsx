@@ -18,6 +18,7 @@ const FormCreacionOferta = () => {
   // Valor para mostrar el modal.
   const valorInicialModal = false;
   const valorInicialVacio = "";
+  const valorInicialAviso = "Los campos de:";
   /* Estado para los modales. 
     Lo que hago es diferenciar entre aviso (puedes dejar el campo en null) y errores (no puedes dejar el campo en null). */
   const [mostrarError, setMostrarError] = useState(valorInicialModal);
@@ -33,43 +34,42 @@ const FormCreacionOferta = () => {
   } = useDatosAnuncio();
 
   const manejarInsertOferta = () => {
+    // Dos errores principales que si faltan no puedes insertar.
     if (!formularioCreacionOferta.nombre) {
       setError("No has introducido un nombre para la oferta, introduzca uno.");
       setMostrarError(true);
     } else if (!formularioCreacionOferta.precio) {
       setError("No has introducido un precio para la oferta introduzca uno.");
       setMostrarError(true);
-    } else {
+    } else if (
+      // Campos opcionales.
+      !formularioCreacionOferta.descripcion ||
+      !formularioCreacionOferta.imagen ||
+      !formularioCreacionOferta.categoria
+    ) {
+      // Si no lo hago así queda muy raro puesto que si repites el formulario con errores sale bugeado.
+      setAviso(valorInicialAviso);
       if (!formularioCreacionOferta.categoria) {
-        setAviso(
-          "No has seleccionado una categoría para la oferta ¿Deseas continuar?."
-        );
-        setMostrarAviso(true);
-        esperarAConfirmacion();
+        setAviso((prevAviso) => prevAviso + " categoria,");
       }
 
       if (!formularioCreacionOferta.imagen) {
-        setAviso(
-          "No has introducido una imagen para la oferta ¿Deseas continuar?."
-        );
-        setMostrarAviso(true);
-        esperarAConfirmacion();
+        setAviso((prevAviso) => prevAviso + " imagen,");
       }
 
       if (!formularioCreacionOferta.descripcion) {
-        setAviso(
-          "No has introducido una descripción para la oferta ¿Deseas continuar?."
-        );
-        setMostrarAviso(true);
-        esperarAConfirmacion();
+        setAviso((prevAviso) => prevAviso + " descripción,");
       }
 
+      setMostrarAviso(true);
+    } else {
       insertarAnuncio();
     }
   };
 
-  const esperarAConfirmacion = async (decision) => {
-    return await decision;
+  // Función para que en el modal no de errores como insertar dos veces.
+  const manejoInsertModal = () => {
+    insertarAnuncio();
   };
 
   return (
@@ -84,6 +84,7 @@ const FormCreacionOferta = () => {
             id="nombreOferta"
             name="nombre"
             placeholder="Example Oferta"
+            value={formularioCreacionOferta.nombre}
             onChange={(e) => {
               actualizarDatoFormulario(e);
             }}
@@ -97,6 +98,7 @@ const FormCreacionOferta = () => {
             id="descripcionOferta"
             name="descripcion"
             placeholder="Example Descripción"
+            value={formularioCreacionOferta.descripcion}
             onChange={(e) => {
               actualizarDatoFormulario(e);
             }}
@@ -112,6 +114,7 @@ const FormCreacionOferta = () => {
             name="precio"
             min="1"
             step="0.1"
+            value={formularioCreacionOferta.precio}
             onChange={(e) => {
               actualizarDatoFormulario(e);
             }}
@@ -123,8 +126,12 @@ const FormCreacionOferta = () => {
           <label htmlFor="categoriaOferta">Selecciona una Categoría:</label>
           <Select
             id="categoriaOferta"
+            value={{
+              // Para que se vea la categoría seleccionada (label) y que si se manda el formulario tenga ese valor (value).
+              value: formularioCreacionOferta.categoria,
+              label: formularioCreacionOferta.categoria,
+            }}
             onChange={(e) => {
-              console.log(e);
               actualizarCateogriaFormulario(e);
             }}
             options={options}
@@ -137,6 +144,7 @@ const FormCreacionOferta = () => {
             id="imagenOferta"
             name="imagen"
             placeholder="Example URL"
+            value={formularioCreacionOferta.imagen}
             onChange={(e) => {
               actualizarDatoFormulario(e);
             }}
@@ -159,7 +167,7 @@ const FormCreacionOferta = () => {
         <ModalAviso
           setMostrar={setMostrarAviso}
           mensajeAviso={aviso}
-          aceptarCancelar={esperarAConfirmacion}
+          insertar={manejoInsertModal}
         />
       )}
     </div>

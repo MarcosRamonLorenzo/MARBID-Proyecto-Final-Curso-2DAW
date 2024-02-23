@@ -13,19 +13,17 @@ function App() {
   return (
     <>
       <ContextoUsuarios>
-        <div className="contenedor-principal">
-          <ContextoAnuncio>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/IniciarSesion" element={<Login />} />
-              <Route path="/Registro" element={<Register />} />
-              <Route path="/Explora" element={<Explora />} />
-              <Route path="/CreacionProducto" element={<CreacionProducto />} />
+        <ContextoAnuncio>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/IniciarSesion" element={<Login />} />
+            <Route path="/Registro" element={<Register />} />
+            <Route path="/Explora" element={<Explora />} />
+            <Route path="/CreacionProducto" element={<CreacionProducto />} />
 
-              <Route path="/PanelDeControl" element={<PanelDeControl />} />
-            </Routes>
-          </ContextoAnuncio>
-        </div>
+            <Route path="/PanelDeControl" element={<PanelDeControl />} />
+          </Routes>
+        </ContextoAnuncio>
       </ContextoUsuarios>
     </>
   );
