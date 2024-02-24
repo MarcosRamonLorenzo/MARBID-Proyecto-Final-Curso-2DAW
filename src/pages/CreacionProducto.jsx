@@ -17,7 +17,7 @@ const CreacionProducto = () => {
       {cargandoAnuncio && <Loading />}
       {sesionIniciada ? (
         <div className="CreacionProducto">
-          <Cabecera />
+          <h2>Creación de una oferta</h2>
           <div className="contenedor-form-prev">
             <FormCreacionOferta />
             <PrevisualzacionOferta />
@@ -25,7 +25,7 @@ const CreacionProducto = () => {
         </div>
       ) : (
         <>
-          <Cabecera />
+          <h2>Creación de una oferta</h2>
           <AlertNoHaySesion />
         </>
       )}

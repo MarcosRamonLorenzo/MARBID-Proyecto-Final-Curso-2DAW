@@ -149,6 +149,7 @@ const ContextoUsuarios = ({ children }) => {
         } else {
           setSesionIniciada(valorInicialNull);
           setEstadoUsuario(valorInicialNull);
+          navegar("/");
         }
       }
     );

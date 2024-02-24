@@ -1,8 +1,8 @@
 @import "../App.scss";
 
 .panel-control {
-  margin: 0 2%;
   height: 100vh;
+  display: flex;
 }
 
 .nav-item:hover {
@@ -20,7 +20,6 @@
 }
 
 #nav-panel-control a:not(:focus) {
-
   border-width: 1px;
   border-bottom-color: rgb(38, 34, 34);
   border-top: 0px;

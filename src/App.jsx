@@ -19,9 +19,13 @@ function App() {
             <Route path="/IniciarSesion" element={<Login />} />
             <Route path="/Registro" element={<Register />} />
             <Route path="/Explora" element={<Explora />} />
-            <Route path="/CreacionProducto" element={<CreacionProducto />} />
 
-            <Route path="/PanelDeControl" element={<PanelDeControl />} />
+            <Route path="/PanelDeControl" element={<PanelDeControl />}>
+              <Route path="CreacionProducto" element={<CreacionProducto />} />
+              <Route path="Favoritos" element={<Explora />} />
+              <Route path="OfertasCreadas" element={<Explora />} />
+              <Route path="OfertasAplicadas" element={<Explora />} />
+            </Route>
           </Routes>
         </ContextoAnuncio>
       </ContextoUsuarios>
