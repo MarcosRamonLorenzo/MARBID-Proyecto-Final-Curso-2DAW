@@ -8,6 +8,9 @@ import PanelDeControl from "./pages/PanelDeControl.jsx";
 import ContextoAnuncio from "./contexto/ContextoAnuncio.jsx";
 import ContextoUsuarios from "./contexto/ContextoUsuarios.jsx";
 import CreacionProducto from "./pages/CreacionProducto.jsx";
+import OfertasCreadas from "./pages/OfertasCreadas.jsx";
+import OfertasAplicadas from "./components/estructura/estructura_panel_control/OfertasAplicadas.jsx";
+import OfertasFavoritas from "./pages/OfertasFavoritas.jsx";
 
 function App() {
   return (
@@ -22,9 +25,9 @@ function App() {
 
             <Route path="/PanelDeControl" element={<PanelDeControl />}>
               <Route path="CreacionProducto" element={<CreacionProducto />} />
-              <Route path="Favoritos" element={<Explora />} />
-              <Route path="OfertasCreadas" element={<Explora />} />
-              <Route path="OfertasAplicadas" element={<Explora />} />
+              <Route path="Favoritos" element={<OfertasFavoritas />} />
+              <Route path="OfertasCreadas" element={<OfertasCreadas />} />
+              <Route path="OfertasAplicadas" element={<OfertasAplicadas />} />
             </Route>
           </Routes>
         </ContextoAnuncio>
