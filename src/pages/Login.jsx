@@ -46,7 +46,7 @@ const Login = () => {
       ) : (
         <>
           <div
-            className="gridLogin"
+            className="container-login"
             style={{ backgroundImage: `url("${imagenDeFondo}")` }}
           >
             {cargandoUsuario && <Loading />}

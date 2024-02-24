@@ -1,0 +1,49 @@
+@import "../../../App.scss";
+
+.menu-lateral {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0%;
+  padding: 4% 0%;
+  background-color: rgb(237, 241, 245);
+  width: 15em;
+
+  .menu-lateral-logo {
+    padding-left: 15%;
+    width: 5em;
+    height: 5em;
+  }
+
+  .icono-lista {
+    width: 1em;
+    height: 1em;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .menu-lateral-enlaces {
+    width: 100%;
+    > div {
+      margin-top: 3%;
+    }
+  }
+
+  .contenedor-enlace {
+    padding-left: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4%;
+    width: 100%;
+    height: 2.5em;
+
+    &:hover {
+      background-color: lighten($secundary-color, 20%);
+    }
+  }
+}

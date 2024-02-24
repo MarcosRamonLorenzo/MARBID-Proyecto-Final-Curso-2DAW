@@ -29,11 +29,11 @@ const Register = () => {
   // Verifica si el email es válido o no lo es.
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   // Selecciona la imagen de fondo según un número aleatorio.
-  const [imagenDeFondo] = useState(
+  /* const [imagenDeFondo] = useState(
     Math.random() < 0.5
       ? "/src/assets/saturno_tierra.jpg"
       : "/src/assets/pintura.jpg"
-  );
+  ); */
 
   return (
     <Fragment>
@@ -46,7 +46,9 @@ const Register = () => {
         <>
           <div
             className="gridRegister"
-            style={{ backgroundImage: `url("${imagenDeFondo}")` }}
+            style={{
+              backgroundImage: /* `url("${imagenDeFondo}") `*/ `url(https://picsum.photos/2048/1297.webp?random=1)`,
+            }}
           >
             {erroresRegistro && (
               <AlertError
