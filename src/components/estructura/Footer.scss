@@ -1,12 +1,16 @@
+@import "../../App.scss";
+
 footer {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   gap: 7%;
+  background-color: rgb(32, 35, 52);
+  color: $text-color;
 
   margin-top: 6%;
-  margin-bottom: 5%;
-
+  padding-top: 2%;
+  padding-bottom: 5%;
 
   img {
     height: 3em;
@@ -25,7 +29,25 @@ footer {
   }
 
   .redes {
-    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10%;
+    img {
+      height: 2em;
+      width: 2em;
+    }
+  }
+  a {
+    text-decoration: none;
+    color: $text-color;
+
+    &:hover {
+      color: $third-color;
+    }
+  }
+
+  h3 {
+    border-bottom: 1px solid $third-color;
   }
 }
 

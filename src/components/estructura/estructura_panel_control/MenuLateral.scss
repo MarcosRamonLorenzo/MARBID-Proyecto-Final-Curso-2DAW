@@ -26,10 +26,14 @@
     color: black;
   }
 
+  .clicado {
+    background-color: lighten($secundary-color, 10%);
+  }
+
   .menu-lateral-enlaces {
     width: 100%;
     > div {
-      margin-top: 3%;
+      padding: 3% 0 3% 15%;
     }
   }
 
@@ -43,7 +47,7 @@
     height: 2.5em;
 
     &:hover {
-      background-color: lighten($secundary-color, 20%);
+      background-color: lighten($secundary-color, 10%);
     }
   }
 }

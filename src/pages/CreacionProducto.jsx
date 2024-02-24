@@ -16,7 +16,7 @@ const CreacionProducto = () => {
     <Fragment>
       {cargandoAnuncio && <Loading />}
       {sesionIniciada ? (
-        <div className="CreacionProducto">
+        <div className="creacion-producto">
           <h2>Creación de una oferta</h2>
           <div className="contenedor-form-prev">
             <FormCreacionOferta />
