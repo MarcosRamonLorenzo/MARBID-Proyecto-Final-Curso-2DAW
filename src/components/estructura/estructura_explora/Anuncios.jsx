@@ -3,10 +3,16 @@ import "./Anuncios.scss";
 import useDatosAnuncios from "../../../hooks/useDatosAnuncio.js";
 import Anuncio from "./Anuncio";
 import useDatosUsuarios from "../../../hooks/useDatosUsuarios.js";
+import AlertError from "../alerts/AlertError.jsx";
 
 const Anuncios = () => {
-  const { anuncios, errorAnuncio, seleccionarAnuncio, navegar } =
-    useDatosAnuncios();
+  const {
+    anuncios,
+    errorAnuncio,
+    seleccionarAnuncio,
+    navegar,
+    manejarEstadoErrorAnuncio,
+  } = useDatosAnuncios();
   const { sesionIniciada, estadoUsuario } = useDatosUsuarios();
   return (
     <div
@@ -31,7 +37,12 @@ const Anuncios = () => {
         <p>No hay anuncios actualmente.</p>
       )}
 
-      {errorAnuncio ? errorAnuncio : ""}
+      {errorAnuncio && (
+        <AlertError
+          mensajeError={errorAnuncio}
+          estadoError={manejarEstadoErrorAnuncio}
+        />
+      )}
     </div>
   );
 };

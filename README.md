@@ -1,44 +1,83 @@
 # Proyecto Marbid
 
-## Descripción
-Marbid es un proyecto desarrollado utilizando las siguientes tecnologías:
+Creadores :
 
-- **React:** Biblioteca de JavaScript para construir interfaces de usuario.
-- **Supabase:** Plataforma de base de datos y autenticación.
-- **SCSS:** Preprocesador de CSS para una estilización más eficiente.
-- **React Bootstrap:** Implementación de Bootstrap para React.
+<aside>
+👨🏻‍💻 **Marcos Ramón Lorenzo**
 
-## Tecnologías Utilizadas
+</aside>
+
+<aside>
+🧑🏻‍💻 David Casañez Sanz
+
+</aside>
+
+# Descripción del proyecto
+
+---
+
+Marbid es una aplicación web en la cual freelancers y empresas pueden ofertar anuncios de empleos los cuales ellos necesitan por dinero. 
+
+# Enlace al proyecto
+
+---
+
+[https://github.com/MarcosRamonLorenzo/MARBID-Proyecto-Final-Curso-2DAW](https://github.com/MarcosRamonLorenzo/MARBID-Proyecto-Final-Curso-2DAW)
+
+# Tecnologías Utilizadas
+
+---
+
+## Frontend
+
+---
 
 ### React
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" alt="React Logo" width="50"/>
 
-React es una biblioteca de JavaScript para construir interfaces de usuario interactivas y de una sola página.
+[React](https://es.react.dev/)
+
+Hemos utilizado React como framework de JavaScript para construir toda la interfaz de cliente de la web . Las principales ventajas de usar esta librería es su capacidad de descomponer en componentes , su DOM virtual y su gran comunidad que nos brinda bibliotecas también utilizadas en la aplicación como [React-Router](https://www.notion.so/React-Router-710431c9ebb7426390111a500b0ea7b5?pvs=21) 
+
+### SASS
+
+[Sass: Syntactically Awesome Style Sheets](https://sass-lang.com/)
+
+Para estilar la aplicación hemos usado el framework de CSS llamado SASS pero en su opción con llaves y putos y comas . La razón por la que hemos utilizado SASS es por su capacidad de anidación, interpolación , definición de variables y funciones de colores . Sabemos la mayoría de estas funciones ya están integradas en CSS nativo pero nos hemos decantado por SASS por su capacidad de importación de archivos y en la forma en la cual tenemos la pagina principal ya que tenemos una serie de variables que nos permiten cambiarlas y cambiar muchas partes de diseño de la pagina lo que puede resultar beneficioso para el futuro en su mantenimiento 
+
+### React Boostrap
+
+[React Bootstrap | React Bootstrap](https://react-bootstrap.netlify.app/)
+
+Hay una gran cantidad de componentes los cuales hacerlos de cero sería muy costoso y no quedarían tan bien. Por esta razón, para componentes difíciles de realizar, hemos decidido utilizar React Bootstrap para implementar gran cantidad de componentes.
+
+## Backend
+
+---
 
 ### Supabase
-<img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/001/299/square_480/supabase-logo-icon_1.png" alt="Supabase Logo" width="50"/>
 
-Supabase es una plataforma de base de datos y autenticación que facilita el desarrollo de aplicaciones web y móviles.
+[Supabase | The Open Source Firebase Alternative](https://supabase.com/)
 
-### SCSS
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/2560px-Sass_Logo_Color.svg.png" alt="SCSS Logo" width="50"/>
+Supabase es un BASS (BACKEND AS A SERVICE ) lo que nos proporciona una serie de servicios que solo se pueden en el servidor con un lenguaje enfocado a esta parte como pueden ser PHP o Java. Los servicios utilizados han sido los de base de datos , auth (autentificación de usuarios) y storage(almacenamiento de archivos multimedia en ese caso vídeos imágenes e iconos).
 
-SCSS es un preprocesador de CSS que agrega funcionalidades y eficiencia a la escritura de estilos.
+# Bibliotecas externas utilizadas
 
-### React Bootstrap
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXx0VNg594g4xa5O6dXkXm9NLesXlGl-oSqDrOrNWFUQ&s" width="50"/>
+---
 
-React Bootstrap es una implementación de Bootstrap optimizada para React, proporcionando componentes listos para usar.
+### React-Router
 
+[Home v6.22.1](https://reactrouter.com/en/main)
 
->[!NOTE]
->
->Las notas proporcionan información adicional y destacan puntos clave en la documentación..
+La biblioteca React Router facilita la navegación y el enrutamiento en aplicaciones web construidas con React, permitiendo la creación de rutas dinámicas y la gestión de la interfaz de usuario en respuesta a cambios de URL sin recargar la página completa.
 
-### Instalación
-Asegúrate de tener Node.js y npm instalados en tu máquina. Luego, puedes clonar el repositorio e instalar las dependencias:
+### React Select
 
-```bash
-git clone https://github.com/tu-usuario/marbid.git
-cd marbid
-npm install
+[React-Select](https://react-select.com/home)
+
+Componentes de selección hechos para react utilizados para filtrar y clasificar.
+
+### Uiverse
+
+[Explore 3000+ Free UI Elements: CSS & Tailwind](https://uiverse.io/)
+
+No es una biblioteca como tal que se tenga que instalar pero es la hemos utilizado para botones , inputs , logos …
