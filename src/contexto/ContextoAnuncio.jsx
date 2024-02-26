@@ -32,6 +32,8 @@ const ContextoAnuncio = ({ children }) => {
   const [anuncioSeleccionado, setAnuncioSeleccionado] =
     useState(valorInicalNull);
   const [anunciosCreados, setAnunciosCreados] = useState(valorInicalNull);
+  const [errorCategoria, setErrorCategoria] = useState(valorInicialVacio);
+  const [categorias, setCategorias] = useState(valorInicalNull);
 
   //Funciones.
 
@@ -53,6 +55,11 @@ const ContextoAnuncio = ({ children }) => {
       ...formularioCreacionOferta,
       categoria: value,
     });
+  };
+
+  const filtrarPorCategoria = (categoria) => {
+    // Aquí irán los anuncios filtrados.
+    const anunciosFiltrados = [];
   };
 
   const insertarAnuncio = async () => {
@@ -106,6 +113,20 @@ const ContextoAnuncio = ({ children }) => {
       setAnuncios(data);
     } catch (error) {
       setErrorAnuncio(error.message);
+    }
+  };
+
+  const obtenerCategorias = async () => {
+    try {
+      const { data, error } = await supabaseConexion
+        .from("CATEGORIAS")
+        .select("*");
+
+      if (error) throw error;
+
+      setCategorias(data);
+    } catch (error) {
+      setErrorCategoria(error.message);
     }
   };
 
@@ -173,8 +194,10 @@ const ContextoAnuncio = ({ children }) => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     obtenerAnuncios();
+    obtenerCategorias();
   }, []);
 
   useEffect(() => {
@@ -198,6 +221,9 @@ const ContextoAnuncio = ({ children }) => {
     seleccionarAnuncio,
     navegar,
     manejarEstadoErrorAnuncio,
+    errorCategoria,
+    categorias,
+    filtrarPorCategoria,
   };
 
   return (
