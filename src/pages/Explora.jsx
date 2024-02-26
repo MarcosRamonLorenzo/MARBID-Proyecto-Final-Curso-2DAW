@@ -15,7 +15,7 @@ const Explora = () => {
     { value: "MarketingDigital", label: "Markting Digital" },
     { value: "EscrituraTraduccion", label: "Escritura y Traducción" },
     { value: "VideoAnimación", label: "Video y Animación" },
-    { value: "MusicaAudio", label: "MusicaAudio" },
+    { value: "MusicaAudio", label: "Musica y Audio" },
     { value: "ProgamacionTecnologia", label: "Progamación y Tecnologia" },
   ];
 
@@ -24,13 +24,12 @@ const Explora = () => {
       {cargandoAnuncio && <Loading />}
       <Cabecera />
       <div className="buscador-y-select">
-        <h5>Cateogrias:</h5>
-        {/* Aquí haremos los filtros */}
         <Select
           onChange={(e) => {
             console.log(e.value);
           }}
           options={options}
+          placeholder="Filtrar por categorias"
         />
       </div>
 
