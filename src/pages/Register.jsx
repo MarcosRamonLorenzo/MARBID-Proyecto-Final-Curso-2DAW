@@ -6,6 +6,7 @@ import ModalErrores from "../components/modales/ModalErrores.jsx";
 import AlertError from "../components/estructura/alerts/AlertError.jsx";
 import Cabecera from "../components/estructura/Cabecera.jsx";
 import AlertHaySesion from "../components/estructura/alerts/AlertHaySesion.jsx";
+import { getImagenRandom } from "../biblioteca/funciones.js";
 
 const Register = () => {
   const {
@@ -29,11 +30,7 @@ const Register = () => {
   // Verifica si el email es válido o no lo es.
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   // Selecciona la imagen de fondo según un número aleatorio.
-  /* const [imagenDeFondo] = useState(
-    Math.random() < 0.5
-      ? "/src/assets/saturno_tierra.jpg"
-      : "/src/assets/pintura.jpg"
-  ); */
+  const [imagenDeFondo] = useState(getImagenRandom());
 
   return (
     <Fragment>
@@ -46,9 +43,7 @@ const Register = () => {
         <>
           <div
             className="gridRegister"
-            style={{
-              backgroundImage: /* `url("${imagenDeFondo}") `*/ `url(https://picsum.photos/2048/1297.webp?random=1)`,
-            }}
+            style={{ backgroundImage: `url("${imagenDeFondo}")` }}
           >
             {erroresRegistro && (
               <AlertError
