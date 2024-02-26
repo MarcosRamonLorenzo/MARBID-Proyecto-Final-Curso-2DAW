@@ -1,28 +1,29 @@
 @import "../../../App.scss";
 
-.anuncios {
+.anuncios-panel {
   display: grid;
-  grid-gap: 4%;
-  grid-template-columns: repeat(3, 1fr);
+  margin-left: 7%;
+  grid-gap: 5% 2%;
+  grid-template-columns: repeat(4, 1fr);
   justify-content: center; /* Centra el grid en el eje horizontal */
-  @include card_size(27em);
+  @include card_size(22em);
 
   @media only screen and (max-width: 1500px) {
     /* En tablet, cambia a dos columnas */
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 10%;
-    @include card_size(24em);
+    @include card_size(18em);
   }
 
   @media only screen and (max-width: 900px) {
     /* En móvil, cambia a una columna */
-    @include card_size(20em);
+    @include card_size(16em);
   }
 
   @media only screen and (max-width: 700px) {
     /* En móvil, cambia a una columna */
     grid-template-columns: 1fr;
     grid-gap: 1%;
-    @include card_size(20em);
+    @include card_size(12em);
   }
 }

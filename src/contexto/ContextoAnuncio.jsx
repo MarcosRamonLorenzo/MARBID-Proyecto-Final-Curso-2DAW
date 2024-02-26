@@ -5,7 +5,7 @@ import useDatosUsuarios from "../hooks/useDatosUsuarios.js";
 
 const AnuncioContexto = createContext();
 
-const DatosContextoAnuncio = ({ children }) => {
+const ContextoAnuncio = ({ children }) => {
   const { estadoUsuario } = useDatosUsuarios();
 
   // Valor inical del anuncio.
@@ -135,13 +135,13 @@ const DatosContextoAnuncio = ({ children }) => {
     const categoria = formularioCreacionOferta.categoria;
 
     try {
-      const { data, error } = await supabaseConexion
+      const { error } = await supabaseConexion
         .from("ANUNCIO")
-        .insert(anuncioAInsertar);
+        .insert([anuncioAInsertar]);
 
-      console.log(data);
       if (error) throw error;
 
+      getAnunciosCreadosDeUsuario();
       setFormularioCreacionOferta(valorInicialCreacionOferta);
       setCargandoAnuncio(valorInicialFalse);
       //Actualizo los datos de web.
@@ -243,7 +243,12 @@ const DatosContextoAnuncio = ({ children }) => {
       const { error, data } = await supabaseConexion
         .from("ANUNCIO")
         .select("*")
-        .eq("id_usuario", estadoUsuario);
+        .eq("id_usuario", estadoUsuario.id);
+
+      console.log(data);
+      setAnunciosCreados(data);
+
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -253,6 +258,12 @@ const DatosContextoAnuncio = ({ children }) => {
     obtenerAnuncios();
     obtenerCategorias();
   }, []);
+
+  useEffect(() => {
+    if (estadoUsuario) {
+      getAnunciosCreadosDeUsuario();
+    }
+  }, [estadoUsuario]);
 
   useEffect(() => {}, [formularioCreacionOferta]);
 
@@ -283,6 +294,6 @@ const DatosContextoAnuncio = ({ children }) => {
   );
 };
 
-export default DatosContextoAnuncio;
+export default ContextoAnuncio;
 
 export { AnuncioContexto };
