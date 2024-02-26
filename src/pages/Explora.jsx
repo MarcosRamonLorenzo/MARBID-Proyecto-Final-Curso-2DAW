@@ -3,8 +3,13 @@ import Cabecera from "../components/estructura/Cabecera.jsx";
 import Anuncios from "../components/estructura/estructura_explora/Anuncios.jsx";
 import "./Explora.scss";
 import Select from "react-select";
+import useDatosAnuncios from "../hooks/useDatosAnuncio.js";
+import Loading from "../components/estructura/Loading.jsx";
 
 const Explora = () => {
+  // Por si se selecciona un anuncio.
+  const { cargandoAnuncio } = useDatosAnuncios();
+
   const options = [
     { value: "ArtesGraficas", label: "Artes Gráficas" },
     { value: "MarketingDigital", label: "Markting Digital" },
@@ -16,6 +21,7 @@ const Explora = () => {
 
   return (
     <div className="explora">
+      {cargandoAnuncio && <Loading />}
       <Cabecera />
       <div className="buscador-y-select">
         <h5>Cateogrias:</h5>

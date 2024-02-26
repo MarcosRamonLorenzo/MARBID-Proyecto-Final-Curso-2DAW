@@ -1,12 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "./Anuncio.scss";
-import BotonMeGusta from "../BotonMeGusta";
+import BotonMeGusta from "../BotonMeGusta.jsx";
 import Card from "react-bootstrap/Card";
 
 const Anuncio = ({ anuncio }) => {
   // Poner en base a la id_usuario, el nombre del usuario del anuncio.
   return (
-    <>
+    <Fragment>
       <Card id={anuncio.id}>
         <Card.Img
           variant="top"
@@ -34,7 +34,7 @@ const Anuncio = ({ anuncio }) => {
           </div>
         </Card.Body>
       </Card>
-    </>
+    </Fragment>
   );
 };
 
