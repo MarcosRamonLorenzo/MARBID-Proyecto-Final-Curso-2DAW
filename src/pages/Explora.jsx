@@ -1,42 +1,71 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Cabecera from "../components/estructura/Cabecera.jsx";
 import Anuncios from "../components/estructura/estructura_explora/Anuncios.jsx";
 import "./Explora.scss";
 import Select from "react-select";
 import useDatosAnuncios from "../hooks/useDatosAnuncio.js";
 import Loading from "../components/estructura/Loading.jsx";
+import AlertError from "../components/estructura/alerts/AlertError.jsx";
 
 const Explora = () => {
   // Por si se selecciona un anuncio.
-  const { cargandoAnuncio } = useDatosAnuncios();
+  const {
+    cargandoAnuncio,
+    filtrarPorCategoria,
+    categorias,
+    errorCategoria,
+    errorFiltrado,
+    manejarEstadoErrorCategoria,
+    manejarEstadoErrorFiltrado,
+  } = useDatosAnuncios();
 
-  const options = [
-    { value: "ArtesGraficas", label: "Artes Gráficas" },
-    { value: "MarketingDigital", label: "Markting Digital" },
-    { value: "EscrituraTraduccion", label: "Escritura y Traducción" },
-    { value: "VideoAnimación", label: "Video y Animación" },
-    { value: "MusicaAudio", label: "Musica y Audio" },
-    { value: "ProgamacionTecnologia", label: "Progamación y Tecnologia" },
-  ];
+  const options = categorias
+    ? [
+        // Coloco aquí el por defecto porque si no hay categorias, ya está por defecto en esa opción.
+        { value: "", label: "Por defecto" },
+        ...categorias.map((categoria) => ({
+          value: categoria.nombre
+            ? categoria.nombre
+            : "No hay valor disponible",
+          label: categoria.nombre
+            ? categoria.nombre
+            : "No hay valor disponible",
+        })),
+      ]
+    : "No hay categorías disponibles";
 
   return (
-    <div className="explora">
-      {cargandoAnuncio && <Loading />}
-      <Cabecera />
-      <div className="buscador-y-select">
-        <Select
-          onChange={(e) => {
-            console.log(e.value);
-          }}
-          options={options}
-          placeholder="Filtrar por categorias"
-        />
-      </div>
+    <Fragment>
+      <div className="explora">
+        {cargandoAnuncio && <Loading />}
+        <Cabecera />
+        <div className="buscador-y-select">
+          <Select
+            onChange={(e) => {
+              filtrarPorCategoria(e.value);
+            }}
+            options={options}
+            placeholder="Filtrar por categorias"
+          />
+        </div>
 
-      <div className="contenedor-anuncios">
-        <Anuncios />
+        <div className="contenedor-anuncios">
+          <Anuncios />
+        </div>
       </div>
-    </div>
+      {errorFiltrado && (
+        <AlertError
+          mensajeError={errorFiltrado}
+          estadoError={manejarEstadoErrorFiltrado}
+        />
+      )}
+      {errorCategoria && (
+        <AlertError
+          mensajeError={errorCategoria}
+          estadoError={manejarEstadoErrorCategoria}
+        />
+      )}
+    </Fragment>
   );
 };
 

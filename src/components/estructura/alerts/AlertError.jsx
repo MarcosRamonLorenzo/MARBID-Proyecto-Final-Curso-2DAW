@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Alert } from "react-bootstrap";
 import "./AlertError.scss";
 
 const AlertError = ({ mensajeError, estadoError }) => {
+  useEffect(() => {
+    // Creo un contador de 5 segundos para limpiar el estado.
+    const contador = setTimeout(() => {
+      estadoError("");
+    }, 5000);
+
+    // Limpiar el temporizador al desmontar el componente
+    return () => clearTimeout(contador);
+  }, [mensajeError]);
+
   return (
     <div className="alerta-error">
       <Alert
