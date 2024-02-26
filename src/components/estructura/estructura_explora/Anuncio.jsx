@@ -7,7 +7,7 @@ const Anuncio = ({ anuncio }) => {
   // Poner en base a la id_usuario, el nombre del usuario del anuncio.
   return (
     <>
-      <Card>
+      <Card id={anuncio.id}>
         <Card.Img
           variant="top"
           src={anuncio.imagen ? anuncio.imagen : "No hay una imagen disponible"}
