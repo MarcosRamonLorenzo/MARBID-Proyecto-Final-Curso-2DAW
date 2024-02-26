@@ -7,6 +7,7 @@ import ModalErrores from "../components/modales/ModalErrores.jsx";
 import Loading from "../components/estructura/Loading.jsx";
 import Cabecera from "../components/estructura/Cabecera.jsx";
 import AlertHaySesion from "../components/estructura/alerts/AlertHaySesion.jsx";
+import { getImagenRandom } from "../biblioteca/funciones.js";
 
 const Login = () => {
   const {
@@ -30,11 +31,7 @@ const Login = () => {
   // Verifica si el email es válido o no lo es.
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   // Selecciona la imagen de fondo según un número aleatorio.
-  const [imagenDeFondo] = useState(
-    Math.random() < 0.5
-      ? "/src/assets/Tierra_HD.jpg"
-      : "/src/assets/bosque_HD.jpg"
-  );
+  const [imagenDeFondo] = useState(getImagenRandom());
 
   return (
     <Fragment>
@@ -46,7 +43,7 @@ const Login = () => {
       ) : (
         <>
           <div
-            className="gridLogin"
+            className="container-login"
             style={{ backgroundImage: `url("${imagenDeFondo}")` }}
           >
             {cargandoUsuario && <Loading />}

@@ -149,6 +149,7 @@ const ContextoUsuarios = ({ children }) => {
         } else {
           setSesionIniciada(valorInicialNull);
           setEstadoUsuario(valorInicialNull);
+          navegar("/");
         }
       }
     );
@@ -161,19 +162,19 @@ const ContextoUsuarios = ({ children }) => {
     erroresInicioSesion,
     sesionIniciada,
     estadoUsuario,
-    manejarEstadoRegistro,
+    errorGeneralUsuario,
+    mostrarErrorGeneralUsuario,
     contrasenyaAuxiliar,
+    cargandoUsuario,
+    manejarEstadoRegistro,
     manejarEstadoContrasenyaAuxiliar,
     manejarEstadoInicioSesion,
     manejarInicioSesion,
-    errorGeneralUsuario,
-    mostrarErrorGeneralUsuario,
     logoutUsuario,
     manejarRegistro,
     logInGoogle,
     manejarEstadoErrorLogin,
     manejarEstadoErrorRegister,
-    cargandoUsuario,
   };
 
   return (

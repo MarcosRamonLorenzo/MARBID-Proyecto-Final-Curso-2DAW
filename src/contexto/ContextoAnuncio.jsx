@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { supabaseConexion } from "./../config/supabase.js";
+import { useNavigate } from "react-router-dom";
 
 const AnuncioContexto = createContext();
 
@@ -23,6 +24,13 @@ const DatosContextoAnuncio = ({ children }) => {
     valorInicialCreacionOferta
   );
   const [cargandoAnuncio, setCargandoAnuncio] = useState(valorInicialFalse);
+  //Estado que alamacena el anuncio seleccionado que se visualizará en la pagina de anuuncio indvidual.
+  const [anuncioSeleccionado, setAnuncioSeleccionado] =
+    useState(valorInicalNull);
+
+  //Funciones.
+
+  const navegar = useNavigate();
 
   const actualizarDatoFormulario = (evento) => {
     const { name, value } = evento.target;
@@ -54,12 +62,15 @@ const DatosContextoAnuncio = ({ children }) => {
     try {
       const { data, error } = await supabaseConexion
         .from("ANUNCIO")
-        .insert(anuncioAInsertar);
+        .insert(anuncioAInsertar, { returning: minimal });
 
+      console.log(data);
       if (error) throw error;
 
       setFormularioCreacionOferta(valorInicialCreacionOferta);
       setCargandoAnuncio(valorInicialFalse);
+      //Actualizo los datos de web.
+      obtenerAnuncios();
     } catch (error) {
       console.log(error);
     }
@@ -88,6 +99,52 @@ const DatosContextoAnuncio = ({ children }) => {
     }
   };
 
+  const seleccionarAnuncio = async (idAnuncio) => {
+    try {
+      const { data, error } = await supabaseConexion
+        .from("ANUNCIO")
+        .select("*")
+        .eq("id", idAnuncio);
+
+      if (error) throw error;
+
+      const anuncioSeleccionado = data[0];
+      //Formateamos la fecha antes de agregarla al estado.
+      anuncioSeleccionado.fecha_creacion = formatearFechaHora(
+        anuncioSeleccionado.fecha_creacion
+      );
+      setAnuncioSeleccionado(anuncioSeleccionado);
+      //Navegamos a la pagina de anuncio individual.
+      //Lo hao aqui ya que así nos esperamos a que el anuncio seleccionado se actualice.
+      navegar(`/Anuncio`);
+    } catch (error) {
+      console.log(error);
+      //Si da un error pongo el anuncio a null.
+      setErrorAnuncio(valorInicalNull);
+    }
+  };
+
+  //Funcion para formatear la fecha y hora de los anuncios
+  const formatearFechaHora = (cadenaFecha) => {
+    const fecha = new Date(cadenaFecha);
+
+    // Formatear la fecha en formato DD/MM/AAAA
+    const fechaFormateada = fecha.toLocaleDateString("es-ES", {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+    });
+
+    // Formatear la hora en formato HH:MM:SS
+    const horaFormateada = fecha.toLocaleTimeString("es-ES", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+
+    return `${fechaFormateada} ${horaFormateada}`;
+  };
+
   useEffect(() => {
     obtenerAnuncios();
   }, []);
@@ -98,10 +155,13 @@ const DatosContextoAnuncio = ({ children }) => {
     anuncios,
     errorAnuncio,
     formularioCreacionOferta,
+    anuncioSeleccionado,
+    cargandoAnuncio,
     actualizarDatoFormulario,
     actualizarCateogriaFormulario,
     insertarAnuncio,
-    cargandoAnuncio,
+    seleccionarAnuncio,
+    navegar,
   };
 
   return (
