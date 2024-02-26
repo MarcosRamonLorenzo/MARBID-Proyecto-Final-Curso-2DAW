@@ -5,7 +5,7 @@ import useDatosUsuarios from "../hooks/useDatosUsuarios.js";
 
 const AnuncioContexto = createContext();
 
-const DatosContextoAnuncio = ({ children }) => {
+const ContextoAnuncio = ({ children }) => {
   const { estadoUsuario } = useDatosUsuarios();
 
   // Valor inical del anuncio.
@@ -207,6 +207,6 @@ const DatosContextoAnuncio = ({ children }) => {
   );
 };
 
-export default DatosContextoAnuncio;
+export default ContextoAnuncio;
 
 export { AnuncioContexto };
