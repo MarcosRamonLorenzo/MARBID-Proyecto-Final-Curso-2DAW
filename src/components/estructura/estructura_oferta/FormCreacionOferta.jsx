@@ -11,7 +11,7 @@ const FormCreacionOferta = () => {
     { value: "MarketingDigital", label: "Marketing Digital" },
     { value: "EscrituraTraduccion", label: "Escritura y Traducción" },
     { value: "VideoAnimación", label: "Video y Animación" },
-    { value: "MusicaAudio", label: "Música y Audio" },
+    { value: "Musica y Audio", label: "Música y Audio" },
     { value: "ProgamacionTecnologia", label: "Programación y Tecnología" },
   ];
 

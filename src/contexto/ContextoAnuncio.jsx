@@ -1,10 +1,13 @@
 import React, { createContext, useEffect, useState } from "react";
 import { supabaseConexion } from "./../config/supabase.js";
 import { useNavigate } from "react-router-dom";
+import useDatosUsuarios from "../hooks/useDatosUsuarios.js";
 
 const AnuncioContexto = createContext();
 
 const DatosContextoAnuncio = ({ children }) => {
+  const { estadoUsuario } = useDatosUsuarios();
+
   // Valor inical del anuncio.
   const valorInicalNull = null;
   const valorInicialFalse = false;
@@ -27,6 +30,7 @@ const DatosContextoAnuncio = ({ children }) => {
   //Estado que alamacena el anuncio seleccionado que se visualizará en la pagina de anuuncio indvidual.
   const [anuncioSeleccionado, setAnuncioSeleccionado] =
     useState(valorInicalNull);
+  const [anunciosCreados, setAnunciosCreados] = useState(valorInicalNull);
 
   //Funciones.
 
@@ -54,7 +58,7 @@ const DatosContextoAnuncio = ({ children }) => {
       descripcion: formularioCreacionOferta.descripcion,
       imagen: formularioCreacionOferta.imagen,
       precio: formularioCreacionOferta.precio,
-      id_usuario: null,
+      id_usuario: estadoUsuario.id,
     };
 
     const categoria = formularioCreacionOferta.categoria;
@@ -62,7 +66,7 @@ const DatosContextoAnuncio = ({ children }) => {
     try {
       const { data, error } = await supabaseConexion
         .from("ANUNCIO")
-        .insert(anuncioAInsertar, { returning: minimal });
+        .insert(anuncioAInsertar);
 
       console.log(data);
       if (error) throw error;
@@ -145,6 +149,16 @@ const DatosContextoAnuncio = ({ children }) => {
     return `${fechaFormateada} ${horaFormateada}`;
   };
 
+  const getAnunciosCreadosDeUsuario = async () => {
+    try {
+      const { error, data } = await supabaseConexion
+        .from("ANUNCIO")
+        .select("*")
+        .eq("id_usuario", estadoUsuario);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     obtenerAnuncios();
   }, []);
@@ -157,6 +171,7 @@ const DatosContextoAnuncio = ({ children }) => {
     formularioCreacionOferta,
     anuncioSeleccionado,
     cargandoAnuncio,
+    anunciosCreados,
     actualizarDatoFormulario,
     actualizarCateogriaFormulario,
     insertarAnuncio,
