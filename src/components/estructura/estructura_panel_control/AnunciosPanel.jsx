@@ -1,9 +1,10 @@
 import React from "react";
 import Anuncio from "../estructura_explora/Anuncio";
 import useDatosAnuncios from "../../../hooks/useDatosAnuncio";
+import "./AnuncioPanel.scss";
 
 const AnunciosPanel = ({ ofertasCreadas }) => {
-  const anuncios = [];
+  let anuncios = [];
   const { anunciosCreados } = useDatosAnuncios();
 
   if (ofertasCreadas) {
@@ -11,9 +12,9 @@ const AnunciosPanel = ({ ofertasCreadas }) => {
   }
 
   return (
-    <div className="anuncios">
-      {anuncios && anuncios.length > 0 ? (
-        anuncios.map((valor, index) => {
+    <div className="anuncios-panel">
+      {anunciosCreados && anunciosCreados.length > 0 ? (
+        anunciosCreados.map((valor, index) => {
           return <Anuncio key={index} anuncio={valor} />;
         })
       ) : (
