@@ -11,6 +11,7 @@ import CreacionProducto from "./pages/CreacionProducto.jsx";
 import OfertasCreadas from "./pages/OfertasCreadas.jsx";
 import OfertasAplicadas from "./components/estructura/estructura_panel_control/OfertasAplicadas.jsx";
 import OfertasFavoritas from "./pages/OfertasFavoritas.jsx";
+import AnuncioIndividual from "./pages/AnuncioIndividual.jsx";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/IniciarSesion" element={<Login />} />
             <Route path="/Registro" element={<Register />} />
             <Route path="/Explora" element={<Explora />} />
+            <Route path="/Anuncio" element={<AnuncioIndividual />} />
 
             <Route path="/PanelDeControl" element={<PanelDeControl />}>
               <Route path="CreacionProducto" element={<CreacionProducto />} />
