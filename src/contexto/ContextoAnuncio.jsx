@@ -11,6 +11,7 @@ const DatosContextoAnuncio = ({ children }) => {
   // Valor inical del anuncio.
   const valorInicalNull = null;
   const valorInicialFalse = false;
+  const valorInicialVacio = "";
   const valorInicialCreacionOferta = {
     id_usuario: "",
     nombre: "",
@@ -22,7 +23,7 @@ const DatosContextoAnuncio = ({ children }) => {
 
   // Estados del anuncio.
   const [anuncios, setAnuncios] = useState(valorInicalNull);
-  const [errorAnuncio, setErrorAnuncio] = useState(valorInicialFalse);
+  const [errorAnuncio, setErrorAnuncio] = useState(valorInicialVacio);
   const [formularioCreacionOferta, setFormularioCreacionOferta] = useState(
     valorInicialCreacionOferta
   );
@@ -35,6 +36,10 @@ const DatosContextoAnuncio = ({ children }) => {
   //Funciones.
 
   const navegar = useNavigate();
+
+  const manejarEstadoErrorAnuncio = () => {
+    setErrorAnuncio(valorInicialVacio);
+  };
 
   const actualizarDatoFormulario = (evento) => {
     const { name, value } = evento.target;
@@ -64,19 +69,20 @@ const DatosContextoAnuncio = ({ children }) => {
     const categoria = formularioCreacionOferta.categoria;
 
     try {
-      const { data, error } = await supabaseConexion
+      const { error } = await supabaseConexion
         .from("ANUNCIO")
-        .insert(anuncioAInsertar);
+        .insert([anuncioAInsertar]);
 
-      console.log(data);
       if (error) throw error;
 
+      getAnunciosCreadosDeUsuario();
       setFormularioCreacionOferta(valorInicialCreacionOferta);
       setCargandoAnuncio(valorInicialFalse);
       //Actualizo los datos de web.
       obtenerAnuncios();
     } catch (error) {
-      console.log(error);
+      setErrorAnuncio(error.message);
+      setCargandoAnuncio(valorInicialFalse);
     }
 
     //Como cogemos el id del anuncio si se genera en suapabase.
@@ -105,6 +111,7 @@ const DatosContextoAnuncio = ({ children }) => {
 
   const seleccionarAnuncio = async (idAnuncio) => {
     try {
+      setCargandoAnuncio(true);
       const { data, error } = await supabaseConexion
         .from("ANUNCIO")
         .select("*")
@@ -121,10 +128,12 @@ const DatosContextoAnuncio = ({ children }) => {
       //Navegamos a la pagina de anuncio individual.
       //Lo hao aqui ya que así nos esperamos a que el anuncio seleccionado se actualice.
       navegar(`/Anuncio`);
+      setCargandoAnuncio(valorInicialFalse);
     } catch (error) {
+      setCargandoAnuncio(valorInicialFalse);
       console.log(error);
       //Si da un error pongo el anuncio a null.
-      setErrorAnuncio(valorInicalNull);
+      setErrorAnuncio(error.message);
     }
   };
 
@@ -154,7 +163,12 @@ const DatosContextoAnuncio = ({ children }) => {
       const { error, data } = await supabaseConexion
         .from("ANUNCIO")
         .select("*")
-        .eq("id_usuario", estadoUsuario);
+        .eq("id_usuario", estadoUsuario.id);
+
+      console.log(data);
+      setAnunciosCreados(data);
+
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -162,6 +176,12 @@ const DatosContextoAnuncio = ({ children }) => {
   useEffect(() => {
     obtenerAnuncios();
   }, []);
+
+  useEffect(() => {
+    if (estadoUsuario) {
+      getAnunciosCreadosDeUsuario();
+    }
+  }, [estadoUsuario]);
 
   useEffect(() => {}, [formularioCreacionOferta]);
 
@@ -177,6 +197,7 @@ const DatosContextoAnuncio = ({ children }) => {
     insertarAnuncio,
     seleccionarAnuncio,
     navegar,
+    manejarEstadoErrorAnuncio,
   };
 
   return (

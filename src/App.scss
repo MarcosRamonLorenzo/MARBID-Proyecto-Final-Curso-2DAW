@@ -23,3 +23,9 @@ $text-color-black: #1f1c1c;
 $fuente-roboto: "Roboto", sans-serif;
 $fuente-enfasis-palabra: "EB Garamond", sans-serif;
 $fuente-logo: "Anta", sans-serif;
+
+@mixin card_size($size) {
+  .card {
+    width: $size;
+  }
+}
