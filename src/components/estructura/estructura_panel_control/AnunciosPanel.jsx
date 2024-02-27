@@ -1,7 +1,7 @@
 import React from "react";
 import Anuncio from "../estructura_explora/Anuncio";
 import useDatosAnuncios from "../../../hooks/useDatosAnuncio";
-import "./AnuncioPanel.scss";
+import "./AnunciosPanel.scss";
 
 const AnunciosPanel = ({ ofertasCreadas }) => {
   let anuncios = [];
