@@ -28,7 +28,10 @@ const Footer = () => {
               alt=""
             />
           </a>
-          <a href="#">
+          <a
+            href="https://github.com/MarcosRamonLorenzo/MARBID-Proyecto-Final-Curso-2DAW"
+            target="_blank"
+          >
             <img
               src="https://hpagogvjlwigezymiejy.supabase.co/storage/v1/object/sign/IconosSVG/github.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJY29ub3NTVkcvZ2l0aHViLnN2ZyIsImlhdCI6MTcwODk4OTE2OCwiZXhwIjoxNzQwNTI1MTY4fQ.lf-s1WZj3-1HYRJm_RJ2WlcglaD0mY_y64gv9p8_g7o&t=2024-02-26T23%3A12%3A47.410Z"
               alt=""

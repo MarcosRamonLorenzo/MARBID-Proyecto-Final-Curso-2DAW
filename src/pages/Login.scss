@@ -231,46 +231,20 @@
   }
 }
 
-@media screen and (max-width: 1000px) and (min-width: 397px) {
-  .gridLogin {
-    // Cada elemento del grid se pone por separado en columnas.
+@media screen and (max-width: 1000px) {
+  .container-login {
     grid-template-columns: 1fr;
+
     a {
       img {
-        // Esto es para que se vea bien la imagen.
-        margin-left: 0px;
+        margin-left: 0;
       }
     }
 
     .divFormulario {
       max-width: 100%;
-      margin: 10px;
+      margin: 2% 10%;
 
-      .divIniciarSesionCon {
-        display: grid;
-        justify-content: unset; // Elimino el justify para que se vean alineados en forma de columna.
-
-        div {
-          width: 100%;
-          align-items: center;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 396px) {
-  .gridLogin {
-    grid-template-columns: 1fr;
-    a {
-      img {
-        margin-left: 0px;
-      }
-    }
-
-    .divFormulario {
-      // Aquí no pongo el margin porque si no peta el css.
-      max-width: 100%;
       .divIniciarSesionCon {
         display: grid;
         justify-content: unset;
