@@ -1,97 +1,36 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   viewBox="0 0 472 170"
-   version="1.1"
-   id="svg4"
-   sodipodi:docname="marbidSVG.svg"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
-   width="472"
-   height="170"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview4"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="0.83100002"
-     inkscape:cx="118.53189"
-     inkscape:cy="187.12394"
-     inkscape:window-width="1600"
-     inkscape:window-height="831"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg4"
-     inkscape:pageshadow="2"
-     showgrid="false"
-     inkscape:snap-bbox="true"
-     inkscape:bbox-paths="true"
-     inkscape:bbox-nodes="true"
-     inkscape:snap-bbox-edge-midpoints="true"
-     inkscape:snap-bbox-midpoints="true"
-     inkscape:object-paths="true"
-     inkscape:snap-intersection-paths="true"
-     inkscape:snap-smooth-nodes="true"
-     inkscape:snap-midpoints="true"
-     inkscape:snap-object-midpoints="true"
-     inkscape:snap-center="true"
-     showguides="true"
-     inkscape:guide-bbox="true"
-     inkscape:snap-text-baseline="true"
-     width="499px" />
-  <defs
-     id="defs1">
-    <rect
-       x="275.57159"
-       y="128.76053"
-       width="796.01672"
-       height="279.1579"
-       id="rect1" />
-    <style
-       id="style1">.cls-1{fill:#fff;}.cls-2{fill:#035b8c;}.cls-3{fill:#f26d3d;}.cls-4{fill:#5271ff;}.cls-5{fill:#f25ea3;}</style>
-  </defs>
-  <g
-     id="g17"
-     transform="translate(-13.591541,-131.29707)">
-    <path
-       class="cls-5"
-       d="m 66.394419,226.15829 c -1.531375,-2.02918 -4.448287,-1.59292 -5.885901,0.51743 -10.355029,15.30007 -8.771563,31.66547 -4.583711,44.01307 a 59.056978,57.517309 0 0 1 -26.439696,-47.98012 58.463179,56.938991 0 0 1 0.86466,-9.82128 c 21.762218,-14.07241 35.763374,12.43893 36.044648,13.2709 z"
-       id="path4"
-       style="stroke-width:1.02808"
-       inkscape:export-filename="path4.svg"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <g
-       id="g2"
-       transform="matrix(0.67442132,0,0,0.67442132,29.485074,62.76867)">
-      <path
-         class="cls-3"
-         d="m 116.03422,242.28246 c 2.26401,-3.00805 6.57643,-2.36132 8.68642,0.76704 15.40142,22.6807 12.9834,46.94062 6.79203,65.24461 a 87.572502,85.51887 0 0 0 37.8259,-85.72944 c -32.17358,-20.81571 -52.87312,18.48449 -53.30435,19.71779 z"
-         id="path2"
-         style="stroke-width:1.52198" />
-      <path
-         class="cls-4"
-         d="m 169.38338,222.60979 c -31.44917,-20.87587 -51.64824,18.43937 -52.05433,19.67267 v 0 l -27.97486,38.87905 a 4.9632831,4.9632831 0 0 1 -8.061575,0 L 53.317747,242.28246 v 0 C 52.91166,241.04916 32.697562,201.67378 1.2634369,222.60979 a 85.172946,85.172946 0 0 1 28.5764771,-50.2194 v 0 c 18.920637,0 43.376086,35.44988 52.159593,49.21171 a 3.9555862,3.9555862 0 0 0 6.662832,0 c 8.783507,-13.76183 33.254001,-49.21171 52.159601,-49.21171 v 0 a 85.127825,85.127825 0 0 1 28.56144,50.2194 z"
-         id="path3"
-         style="stroke-width:1.50403" />
-    </g>
-  </g>
-  <text
-     xml:space="preserve"
-     id="text1"
-     style="font-size:96px;font-family:Canaro;-inkscape-font-specification:Canaro;white-space:pre;shape-inside:url(#rect1);display:inline;fill:#241c1c;stroke-width:60"
-     transform="translate(-127.49379,-88.091479)"><tspan
-       x="275.57227"
-       y="218.27902"
-       id="tspan61139"><tspan
-         style="font-weight:500;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu Medium'"
-         id="tspan61137">marbid
-</tspan></tspan></text>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="svg4" inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 472 170"
+	 style="enable-background:new 0 0 472 170;" xml:space="preserve">
+<style type="text/css">
+	<![CDATA[
+		/* Pegar el código de la fuente Rubik aquí */
+		@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+		
+		.st0{fill:#F25EA3;}
+		.st1{fill:#F26D3D;}
+		.st2{fill:#5271FF;}
+		.st3{fill:#241C1C;}
+		.st4{font-family:'FranklinGothic-Medium';}
+		.st5{font-family:'Rubik', sans-serif; font-size:96px;}
+	]]>
+</style>
+<sodipodi:namedview bordercolor="#000000" borderopacity="0.25" id="namedview4" inkscape:bbox-nodes="true" inkscape:bbox-paths="true" inkscape:current-layer="svg4" inkscape:cx="118.53189" inkscape:cy="187.12394" inkscape:deskcolor="#d1d1d1" inkscape:guide-bbox="true" inkscape:object-paths="true" inkscape:pagecheckerboard="0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:showpageshadow="2" inkscape:snap-bbox="true" inkscape:snap-bbox-edge-midpoints="true" inkscape:snap-bbox-midpoints="true" inkscape:snap-center="true" inkscape:snap-intersection-paths="true" inkscape:snap-midpoints="true" inkscape:snap-object-midpoints="true" inkscape:snap-smooth-nodes="true" inkscape:snap-text-baseline="true" inkscape:window-height="831" inkscape:window-maximized="1" inkscape:window-width="1600" inkscape:window-x="0" inkscape:window-y="0" inkscape:zoom="0.83100002" pagecolor="#ffffff" showgrid="false" showguides="true" width="499px">
+</sodipodi:namedview>
+<g id="g17" transform="translate(-13.591541,-131.29707)">
+	<path id="path4" inkscape:export-filename="path4.svg" inkscape:export-xdpi="96" inkscape:export-ydpi="96" class="st0" d="
+		M59.2,228c-1.5-2-4.4-1.6-5.9,0.5c-10.4,15.3-8.8,31.7-4.6,44c-16.5-10.7-26.5-28.7-26.4-48c0-3.3,0.3-6.6,0.9-9.8
+		C44.9,200.6,58.9,227.1,59.2,228z"/>
+	<g id="g2" transform="matrix(0.67442132,0,0,0.67442132,29.485074,62.76867)">
+		<path id="path2" class="st1" d="M105.3,245c2.3-3,6.6-2.4,8.7,0.8c15.4,22.7,13,46.9,6.8,65.2c28.9-18.7,43.7-52.4,37.8-85.7
+			C126.5,204.4,105.8,243.7,105.3,245L105.3,245z"/>
+		<path id="path3" class="st2" d="M158.7,225.3c-31.4-20.9-51.6,18.4-52.1,19.7l0,0l-28,38.9c-1.6,2.2-4.7,2.7-6.9,1.1
+			c-0.4-0.3-0.8-0.7-1.1-1.1l-28-38.9l0,0c-0.4-1.2-20.6-40.6-52.1-19.7C-6,205.7,4.1,188,19.2,175.1l0,0
+			c18.9,0,43.4,35.4,52.2,49.2c1.2,1.8,3.6,2.4,5.5,1.2c0.5-0.3,0.9-0.7,1.2-1.2c8.8-13.8,33.3-49.2,52.2-49.2l0,0
+			C145.2,188,155.3,205.7,158.7,225.3L158.7,225.3z"/>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 138.2372 124.1175)" class="st3 st4 st5">marbid </text>
 </svg>

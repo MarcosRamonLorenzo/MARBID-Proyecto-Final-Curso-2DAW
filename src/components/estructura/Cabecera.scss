@@ -4,7 +4,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: -2%;
 
   .menu-hamburguesa {
     display: none;
@@ -19,6 +18,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    margin-top: 1%;
     gap: 5em;
 
     a {
