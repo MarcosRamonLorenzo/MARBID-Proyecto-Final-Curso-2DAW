@@ -123,8 +123,12 @@ const ContextoAnuncio = ({ children }) => {
 
   const insertarAnuncio = async () => {
     setCargandoAnuncio(true);
+
+    const idAnuncio = self.crypto.randomUUID();
+
     //Creamos el anuncio a insertar y cogemos la cateogria por separado ya que están en tablas distintas.
     const anuncioAInsertar = {
+      id: idAnuncio,
       nombre: formularioCreacionOferta.nombre,
       descripcion: formularioCreacionOferta.descripcion,
       imagen: formularioCreacionOferta.imagen,
@@ -144,21 +148,30 @@ const ContextoAnuncio = ({ children }) => {
       getAnunciosCreadosDeUsuario();
       setFormularioCreacionOferta(valorInicialCreacionOferta);
       setCargandoAnuncio(valorInicialFalse);
-      //Actualizo los datos de web.
       obtenerAnuncios();
+
+      //Si se ha insertado corretamente añadimos la cateogria al anuncio.
+      if (categoria) {
+        const idCategoria = await getIDCategoria(categoria);
+        insertarCategoriaEnAnuncio(idAnuncio, idCategoria);
+      }
     } catch (error) {
       setErrorAnuncio(error.message);
       setCargandoAnuncio(valorInicialFalse);
     }
+  };
 
-    //Como cogemos el id del anuncio si se genera en suapabase.
-    /*   try {
+  const insertarCategoriaEnAnuncio = async (idAnuncio, idCategoria) => {
+    try {
       const { data, error } = await supabaseConexion
-      .from("CATEGORIAS_EN_ANUNCIO")
-      .insert();
+        .from("CATEGORIAS_EN_ANUNCIO")
+        .insert({ id_anuncio: idAnuncio, id_categoria: idCategoria });
+
+      if (error) throw error;
     } catch (error) {
-      
-    } */
+      setErrorAnuncio(error.message);
+      setCargandoAnuncio(valorInicialFalse);
+    }
   };
 
   const obtenerAnuncios = async () => {
@@ -184,6 +197,21 @@ const ContextoAnuncio = ({ children }) => {
       if (error) throw error;
 
       setCategorias(data);
+    } catch (error) {
+      setErrorCategoria(error.message);
+    }
+  };
+
+  const getIDCategoria = async (nombreCateogria) => {
+    try {
+      const { data, error } = await supabaseConexion
+        .from("CATEGORIA")
+        .select("id")
+        .eq("nombre", nombreCateogria);
+
+      if (error) throw error;
+
+      return data[0].id;
     } catch (error) {
       setErrorCategoria(error.message);
     }
@@ -245,10 +273,7 @@ const ContextoAnuncio = ({ children }) => {
         .select("*")
         .eq("id_usuario", estadoUsuario.id);
 
-      console.log(data);
       setAnunciosCreados(data);
-
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
