@@ -34,7 +34,7 @@ const ContextoUsuarios = ({ children }) => {
     useState(valorInicialVacio);
   const [mostrarErrorGeneralUsuario, setMostrarErrorGeneralUsuario] =
     useState(valorInicialFalse);
-  const [cargandoUsuario, setCargandoUsuario] = useState(true);
+  const [cargandoUsuario, setCargandoUsuario] = useState(valorInicialFalse);
 
   const manejarEstadoErrorRegister = () => {
     setErroresRegistro(valorInicialVacio);
