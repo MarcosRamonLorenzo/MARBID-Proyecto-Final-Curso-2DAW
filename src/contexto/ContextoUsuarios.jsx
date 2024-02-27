@@ -7,6 +7,8 @@ const UsuariosContexto = createContext();
 const ContextoUsuarios = ({ children }) => {
   // Creo la navegación al cerrar sesión o iniciarla.
   const navegar = useNavigate();
+  //Patrón para validar el email.
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   // Valores Iniciales;
   const valorInicialFalse = false;
@@ -21,12 +23,9 @@ const ContextoUsuarios = ({ children }) => {
   const [contrasenyaAuxiliar, setContrasenyaAuxiliar] =
     useState(valorInicialVacio);
   const [estadoRegistro, setEstadoRegistro] = useState(estadoInicialFormulario);
-  const [erroresRegistro, setErroresRegistro] = useState(valorInicialVacio);
   const [estadoInicioSesion, setEstadoInicioSesion] = useState(
     estadoInicialFormulario
   );
-  const [erroresInicioSesion, setErroresInicioSesion] =
-    useState(valorInicialVacio);
 
   const [sesionIniciada, setSesionIniciada] = useState(valorInicialFalse);
   const [estadoUsuario, setEstadoUsuario] = useState(valorInicialNull);
@@ -36,24 +35,53 @@ const ContextoUsuarios = ({ children }) => {
     useState(valorInicialFalse);
   const [cargandoUsuario, setCargandoUsuario] = useState(valorInicialFalse);
 
-  const manejarEstadoErrorRegister = () => {
-    setErroresRegistro(valorInicialVacio);
+  //Creamos un objeto con los valores iniciales para el modal de errror.
+  const valorInicialError = { error: false, mensaje: "" };
+  const valorInicialSuccess = { estado: false, mensaje: "" };
+
+  // Estado para el modal.
+  const [estadoErrorAlert, setEstadoErrorAlert] = useState(valorInicialError);
+
+  // Estado para el modal.
+  const [estadoErrorInicioSesion, setEstadoErrorInicioSesion] =
+    useState(valorInicialError);
+  const [estadoErrorRegistro, setEstadoErrorRegistro] =
+    useState(valorInicialError);
+
+  const [estadoSuccessAlert, setEstadoSuccessAlert] =
+    useState(valorInicialSuccess);
+
+  // Funciones.
+
+  //LogIn.
+
+  const logInGoogle = async () => {
+    try {
+      const { error } = await supabaseConexion.auth.signInWithOAuth({
+        provider: "google",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const manejarEstadoErrorLogin = () => {
-    setErroresInicioSesion(valorInicialVacio);
-  };
-
-  const manejarEstadoRegistro = (evento) => {
-    // Recojo el campo que se está modificando (email o password) y lo voy actualizando.
-    const { name, value } = evento.target;
-    setEstadoRegistro({ ...estadoRegistro, [name]: value });
-  };
-
-  const manejarEstadoContrasenyaAuxiliar = (evento) => {
-    // Recojo el valor de la contraseña auxiliar.
-    const { value } = evento.target;
-    setContrasenyaAuxiliar(value);
+  const comprobarFormularioLogIn = () => {
+    // Compruebo si todos los campos están bien metidos.
+    if (!emailRegex.test(estadoInicioSesion.email)) {
+      //Ponemos el error y lo mostramos.
+      setEstadoErrorInicioSesion({
+        error: true,
+        mensaje: "Por favor, introduce un correo electrónico válido.",
+      });
+    } else if (!estadoInicioSesion.password) {
+      //Ponemos el error y lo mostramos.
+      setEstadoErrorInicioSesion({
+        error: true,
+        mensaje: "Por favor, introduce una contraseña.",
+      });
+    } else {
+      return true;
+    }
   };
 
   const manejarEstadoInicioSesion = (evento) => {
@@ -63,41 +91,32 @@ const ContextoUsuarios = ({ children }) => {
   };
 
   const manejarInicioSesion = () => {
-    loginUsuario();
-
-    setEstadoInicioSesion(estadoInicialFormulario);
-  };
-
-  const manejarRegistro = () => {
-    registroUsuario();
-
-    setEstadoRegistro(estadoInicialFormulario);
-    setContrasenyaAuxiliar(valorInicialVacio);
-  };
-
-  const registroUsuario = async () => {
-    try {
-      setCargandoUsuario(true);
-      const { data, error } = await supabaseConexion.auth.signUp({
-        email: estadoRegistro.email,
-        password: estadoRegistro.password,
-      });
-
-      if (error) throw error;
-
-      setErroresRegistro(error.message);
-      setCargandoUsuario(valorInicialFalse);
-      navegar("/");
-    } catch (error) {
-      setErroresRegistro(error.message);
-      setCargandoUsuario(valorInicialFalse);
+    if (comprobarFormularioLogIn()) {
+      loginUsuario();
+      setEstadoInicioSesion(estadoInicialFormulario);
     }
+  };
+
+  const mostrarAlertaError = (nuevoEstado) => {
+    //Establezco el nuevo estado del error.
+    setEstadoErrorAlert(nuevoEstado);
+    setTimeout(() => {
+      setEstadoErrorAlert({ ...nuevoEstado, error: false });
+    }, 3000);
+  };
+
+  const mostrarAlertaSuccess = (nuevoEstado) => {
+    //Establezco el nuevo estado del error.
+    setEstadoSuccessAlert(nuevoEstado);
+    setTimeout(() => {
+      setEstadoSuccessAlert({ ...nuevoEstado, estado: false });
+    }, 3000);
   };
 
   const loginUsuario = async () => {
     try {
       setCargandoUsuario(true);
-      const { data, error } = await supabaseConexion.auth.signInWithPassword({
+      const { error } = await supabaseConexion.auth.signInWithPassword({
         email: estadoInicioSesion.email,
         password: estadoInicioSesion.password,
       });
@@ -107,11 +126,47 @@ const ContextoUsuarios = ({ children }) => {
       setCargandoUsuario(valorInicialFalse);
       navegar("/");
       setSesionIniciada(true);
+      //Muestro la alerta de éxito.
+      const nuevoEstado = {
+        estado: true,
+        mensaje: "Has iniciado sesión correctamente.",
+      };
+      mostrarAlertaSuccess(nuevoEstado);
     } catch (error) {
       setCargandoUsuario(valorInicialFalse);
-      setErroresInicioSesion(error.message);
+      //Comprobamos si el error es por credenciales incorrectas.
+      if (error.message === "Invalid login credentials") {
+        //Creamos un nuevo estado para el error.Hago esto ya que hacer el set directamente no me actualiza el error por asincronismo.
+        const nuevoEstado = {
+          ...estadoErrorAlert,
+          mensaje: "Usuario o contraseña incorrectos",
+          error: true,
+        };
+        mostrarAlertaError(nuevoEstado);
+      } else {
+        const nuevoEstado = {
+          error: true,
+          mensaje: error.message,
+        };
+        mostrarAlertaError(nuevoEstado);
+      }
     }
   };
+
+  //Funciones de Alerts o modeales para poder modificar el estado de los mismos.
+  const modificarEstadoErrorAlert = (estado) => {
+    setEstadoErrorAlert({ ...estadoErrorAlert, error: estado });
+  };
+
+  const modificarEstadoErrorInicioSesion = (estado) => {
+    setEstadoErrorInicioSesion({ ...estadoErrorInicioSesion, error: estado });
+  };
+
+  const modificarEstadoSuccesAlert = (estadoAlert) => {
+    setEstadoSuccessAlert({ ...estadoSuccessAlert, estado: estadoAlert });
+  };
+
+  //LogOut.
 
   const logoutUsuario = async () => {
     try {
@@ -130,14 +185,81 @@ const ContextoUsuarios = ({ children }) => {
     }
   };
 
-  const logInGoogle = async () => {
-    try {
-      const { error } = await supabaseConexion.auth.signInWithOAuth({
-        provider: "google",
+  //Registro.
+
+  const comprobarFormularioRegistro = () => {
+    // Compruebo si todos los campos están bien metidos.
+    if (!emailRegex.test(estadoRegistro.email)) {
+      setEstadoErrorRegistro({
+        error: true,
+        mensaje: "Por favor, introduce un correo electrónico válido.",
       });
-    } catch (error) {
-      console.log(error);
+    } else if (!estadoRegistro.password) {
+      setEstadoErrorRegistro({
+        error: true,
+        mensaje: "Por favor, introduce una contraseña.",
+      });
+    } else if (contrasenyaAuxiliar !== estadoRegistro.password) {
+      setEstadoErrorRegistro({
+        error: true,
+        mensaje: "Las contraseñas no coinciden.",
+      });
+    } else {
+      return true;
     }
+  };
+
+  const modificarEstadoErrorRegistro = (estado) => {
+    setEstadoErrorRegistro({ ...estadoErrorRegistro, error: estado });
+  };
+
+  const manejarRegistro = () => {
+    if (comprobarFormularioRegistro()) {
+      registroUsuario();
+    }
+  };
+
+  const registroUsuario = async () => {
+    try {
+      setCargandoUsuario(true);
+      const { error } = await supabaseConexion.auth.signUp({
+        email: estadoRegistro.email,
+        password: estadoRegistro.password,
+      });
+
+      if (error) throw error;
+
+      setCargandoUsuario(valorInicialFalse);
+      navegar("/");
+      const nuevoEstado = {
+        estado: true,
+        mensaje: "Revisa el correo y confirma tu cuenta.",
+      };
+      mostrarAlertaSuccess(nuevoEstado);
+      //Ponemos los valores iniciales de los campos.
+      setEstadoRegistro(estadoInicialFormulario);
+      setContrasenyaAuxiliar(valorInicialVacio);
+    } catch (error) {
+      const nuevoEstado = {
+        ...estadoErrorAlert,
+        mensaje: error.message,
+        error: true,
+      };
+      mostrarAlertaError(nuevoEstado);
+      setCargandoUsuario(valorInicialFalse);
+    }
+  };
+
+  const manejarEstadoRegistro = (evento) => {
+    // Recojo el campo que se está modificando (email o password) y lo voy actualizando.
+    const { name, value } = evento.target;
+    setEstadoRegistro({ ...estadoRegistro, [name]: value });
+  };
+
+  const manejarEstadoContrasenyaAuxiliar = (evento) => {
+    // Recojo el valor de la contraseña auxiliar.
+    const { value } = evento.target;
+    setContrasenyaAuxiliar(value);
   };
 
   useEffect(() => {
@@ -157,15 +279,17 @@ const ContextoUsuarios = ({ children }) => {
 
   const datosAExportar = {
     estadoRegistro,
-    erroresRegistro,
     estadoInicioSesion,
-    erroresInicioSesion,
     sesionIniciada,
     estadoUsuario,
     errorGeneralUsuario,
     mostrarErrorGeneralUsuario,
     contrasenyaAuxiliar,
     cargandoUsuario,
+    estadoErrorAlert,
+    estadoErrorInicioSesion,
+    estadoSuccessAlert,
+    estadoErrorRegistro,
     manejarEstadoRegistro,
     manejarEstadoContrasenyaAuxiliar,
     manejarEstadoInicioSesion,
@@ -173,8 +297,11 @@ const ContextoUsuarios = ({ children }) => {
     logoutUsuario,
     manejarRegistro,
     logInGoogle,
-    manejarEstadoErrorLogin,
-    manejarEstadoErrorRegister,
+    setEstadoErrorAlert,
+    modificarEstadoErrorAlert,
+    modificarEstadoErrorInicioSesion,
+    modificarEstadoSuccesAlert,
+    modificarEstadoErrorRegistro,
   };
 
   return (

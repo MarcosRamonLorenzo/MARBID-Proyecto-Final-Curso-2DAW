@@ -4,7 +4,7 @@ import "./FormCreacionOferta.scss";
 import useDatosAnuncio from "../../../hooks/useDatosAnuncio.js";
 import ModalErrores from "../../modales/ModalErrores.jsx";
 import ModalAviso from "../../modales/ModalAviso.jsx";
-import AlertError from "../alerts/AlertError.jsx";
+import AlertError from "../../alerts/AlertError.jsx";
 
 const FormCreacionOferta = () => {
   const options = [
