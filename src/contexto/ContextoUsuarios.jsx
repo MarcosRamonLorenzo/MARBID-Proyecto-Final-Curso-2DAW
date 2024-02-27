@@ -85,7 +85,6 @@ const ContextoUsuarios = ({ children }) => {
 
       if (error) throw error;
 
-      setErroresRegistro(error.message);
       setCargandoUsuario(valorInicialFalse);
       navegar("/");
     } catch (error) {
