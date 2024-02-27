@@ -5,6 +5,7 @@ import useDatosUsuarios from "../hooks/useDatosUsuarios.js";
 import ModalErrores from "../components/modales/ModalErrores.jsx";
 import AlertError from "../components/estructura/alerts/AlertError.jsx";
 import Cabecera from "../components/estructura/Cabecera.jsx";
+import Loading from "../components/estructura/Loading.jsx";
 import AlertHaySesion from "../components/estructura/alerts/AlertHaySesion.jsx";
 import { getImagenRandom } from "../biblioteca/funciones.js";
 
@@ -18,6 +19,7 @@ const Register = () => {
     manejarRegistro,
     manejarEstadoErrorRegister,
     sesionIniciada,
+    cargandoUsuario,
   } = useDatosUsuarios();
 
   // Valor para mostrar el modal.
@@ -45,6 +47,7 @@ const Register = () => {
             className="gridRegister"
             style={{ backgroundImage: `url("${imagenDeFondo}")` }}
           >
+            {cargandoUsuario && <Loading />}
             {erroresRegistro && (
               <AlertError
                 mensajeError={erroresRegistro}
