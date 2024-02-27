@@ -10,7 +10,11 @@ const Anuncio = ({ anuncio }) => {
       <Card id={anuncio.id}>
         <Card.Img
           variant="top"
-          src={anuncio.imagen ? anuncio.imagen : "No hay una imagen disponible"}
+          src={
+            anuncio.imagen
+              ? anuncio.imagen
+              : "https://img.freepik.com/vector-premium/vector-icono-imagen-predeterminado-pagina-imagen-faltante-diseno-sitio-web-o-aplicacion-movil-no-hay-foto-disponible_87543-11093.jpg"
+          }
         />
         <Card.Body>
           <Card.Text className="card-usuario">Usuario</Card.Text>

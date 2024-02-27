@@ -68,51 +68,24 @@ const ContextoAnuncio = ({ children }) => {
     if (categoria) {
       try {
         // Recojo la id de la categoría.
-        const { data: dataCategoria, errorCategoria } = await supabaseConexion
-          .from("CATEGORIA")
-          .select("id")
-          .eq("nombre", categoria);
+        const idCategoria = await getIDCategoria(categoria);
 
-        console.log(dataCategoria);
-
-        if (errorCategoria) throw errorCategoria;
-
-        if (!dataCategoria || dataCategoria.length === 0) {
+        if (!idCategoria || idCategoria.length === 0) {
           throw new Error("Categoría no encontrada.");
         }
 
-        // Recojo la id de la categoría en el anuncio.
-        const { data: dataCategoriaEnAnuncio, error: errorCategoriaEnAnuncio } =
-          await supabaseConexion
-            .from("CATEGORIAS_EN_ANUNCIO")
-            .select("id_anuncio")
-            .eq("id_categoria", dataCategoria[0].id);
+        const { data, error } = await supabaseConexion
+          .from("CATEGORIAS_EN_ANUNCIO")
+          .select("id_anuncio(*)")
+          .eq("id_categoria", idCategoria);
 
-        console.log(dataCategoriaEnAnuncio);
-
-        if (errorCategoriaEnAnuncio) throw errorCategoriaEnAnuncio;
-
-        // Si no se recoge dataCategoriaEnAnuncio, que salte un error.
-        if (!dataCategoriaEnAnuncio || dataCategoriaEnAnuncio.length === 0) {
-          throw new Error("Anuncio con esta categoría no encontrado.");
-        }
-
-        // Recojo los anuncios que esten el la relación de CATEGORIAS_EN_ANUNCIO.
-        const { data: dataAnuncios, error: errorAnuncios } =
-          await supabaseConexion
-            .from("ANUNCIO")
-            .select("*")
-            .eq("id", dataCategoriaEnAnuncio[0].id_anuncio);
-
-        console.log(dataAnuncios);
-
-        if (errorAnuncios) throw errorAnuncios;
+        //Cogemos los datos de la categoría de la consulta.
+        const datosAnucio = data.map((anuncio) => anuncio.id_anuncio);
 
         setCargandoAnuncio(valorInicialFalse);
-        setAnuncios(dataAnuncios);
+        setAnuncios(datosAnucio);
       } catch (error) {
         setCargandoAnuncio(valorInicialFalse);
-        console.log(error);
         setErrorFiltrado(error.message);
       }
     } else {
@@ -123,8 +96,12 @@ const ContextoAnuncio = ({ children }) => {
 
   const insertarAnuncio = async () => {
     setCargandoAnuncio(true);
+
+    const idAnuncio = self.crypto.randomUUID();
+
     //Creamos el anuncio a insertar y cogemos la cateogria por separado ya que están en tablas distintas.
     const anuncioAInsertar = {
+      id: idAnuncio,
       nombre: formularioCreacionOferta.nombre,
       descripcion: formularioCreacionOferta.descripcion,
       imagen: formularioCreacionOferta.imagen,
@@ -144,21 +121,31 @@ const ContextoAnuncio = ({ children }) => {
       getAnunciosCreadosDeUsuario();
       setFormularioCreacionOferta(valorInicialCreacionOferta);
       setCargandoAnuncio(valorInicialFalse);
-      //Actualizo los datos de web.
       obtenerAnuncios();
+
+      //Si se ha insertado corretamente añadimos la cateogria al anuncio.
+      //Si existre cxateogria y el id de la categoría se añade la categoría al anuncio.
+      const idCategoria = categoria ? await getIDCategoria(categoria) : null;
+      if (idCategoria) {
+        insertarCategoriaEnAnuncio(idAnuncio, idCategoria);
+      }
     } catch (error) {
       setErrorAnuncio(error.message);
       setCargandoAnuncio(valorInicialFalse);
     }
+  };
 
-    //Como cogemos el id del anuncio si se genera en suapabase.
-    /*   try {
+  const insertarCategoriaEnAnuncio = async (idAnuncio, idCategoria) => {
+    try {
       const { data, error } = await supabaseConexion
-      .from("CATEGORIAS_EN_ANUNCIO")
-      .insert();
+        .from("CATEGORIAS_EN_ANUNCIO")
+        .insert({ id_anuncio: idAnuncio, id_categoria: idCategoria });
+
+      if (error) throw error;
     } catch (error) {
-      
-    } */
+      setErrorAnuncio(error.message);
+      setCargandoAnuncio(valorInicialFalse);
+    }
   };
 
   const obtenerAnuncios = async () => {
@@ -189,6 +176,21 @@ const ContextoAnuncio = ({ children }) => {
     }
   };
 
+  const getIDCategoria = async (nombreCateogria) => {
+    try {
+      const { data, error } = await supabaseConexion
+        .from("CATEGORIA")
+        .select("id")
+        .eq("nombre", nombreCateogria);
+
+      if (error) throw error;
+
+      return data[0].id;
+    } catch (error) {
+      setErrorCategoria(error.message);
+    }
+  };
+
   const seleccionarAnuncio = async (idAnuncio) => {
     try {
       setCargandoAnuncio(true);
@@ -211,8 +213,6 @@ const ContextoAnuncio = ({ children }) => {
       setCargandoAnuncio(valorInicialFalse);
     } catch (error) {
       setCargandoAnuncio(valorInicialFalse);
-      console.log(error);
-      //Si da un error pongo el anuncio a null.
       setErrorAnuncio(error.message);
     }
   };
@@ -245,10 +245,7 @@ const ContextoAnuncio = ({ children }) => {
         .select("*")
         .eq("id_usuario", estadoUsuario.id);
 
-      console.log(data);
       setAnunciosCreados(data);
-
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -265,8 +262,6 @@ const ContextoAnuncio = ({ children }) => {
     }
   }, [estadoUsuario]);
 
-  useEffect(() => {}, [formularioCreacionOferta]);
-
   const datosExportar = {
     anuncios,
     errorAnuncio,
@@ -274,16 +269,16 @@ const ContextoAnuncio = ({ children }) => {
     anuncioSeleccionado,
     cargandoAnuncio,
     anunciosCreados,
+    errorCategoria,
+    categorias,
+    errorFiltrado,
     actualizarDatoFormulario,
     actualizarCateogriaFormulario,
     insertarAnuncio,
     seleccionarAnuncio,
     navegar,
     manejarEstadoErrorAnuncio,
-    errorCategoria,
-    categorias,
     filtrarPorCategoria,
-    errorFiltrado,
     manejarEstadoErrorFiltrado,
   };
 

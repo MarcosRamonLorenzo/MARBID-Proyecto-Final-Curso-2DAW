@@ -11,6 +11,8 @@
     /* En tablet, cambia a dos columnas */
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 10%;
+    grid-row-gap: 2%;
+
     @include card_size(24em);
   }
 

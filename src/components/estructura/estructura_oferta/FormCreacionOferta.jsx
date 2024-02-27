@@ -8,12 +8,12 @@ import AlertError from "../alerts/AlertError.jsx";
 
 const FormCreacionOferta = () => {
   const options = [
-    { value: "ArtesGraficas", label: "Artes Gráficas" },
-    { value: "MarketingDigital", label: "Marketing Digital" },
-    { value: "EscrituraTraduccion", label: "Escritura y Traducción" },
-    { value: "VideoAnimación", label: "Video y Animación" },
-    { value: "Musica y Audio", label: "Música y Audio" },
-    { value: "ProgamacionTecnologia", label: "Programación y Tecnología" },
+    { value: "Artes Gráficas", label: "Artes Gráficas" },
+    { value: "Marketing Digital", label: "Marketing Digital" },
+    { value: "Escritura y Traducción", label: "Escritura y Traducción" },
+    { value: "Video y Animación", label: "Video y Animación" },
+    { value: "Música y Audio", label: "Música y Audio" },
+    { value: "Programación y Tecnología", label: "Programación y Tecnología" },
   ];
 
   // Valor para mostrar el modal.

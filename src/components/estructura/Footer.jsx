@@ -28,21 +28,19 @@ const Footer = () => {
               alt=""
             />
           </a>
-          <a href="#">
+          <a
+            href="https://github.com/MarcosRamonLorenzo/MARBID-Proyecto-Final-Curso-2DAW"
+            target="_blank"
+          >
             <img
-              src="https://hpagogvjlwigezymiejy.supabase.co/storage/v1/object/sign/IconosSVG/github-svgrepo-com.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJY29ub3NTVkcvZ2l0aHViLXN2Z3JlcG8tY29tLnN2ZyIsImlhdCI6MTcwODgwMDAxMiwiZXhwIjoxNzQwMzM2MDEyfQ.L5ZgvUYNkiUyCux-lOmK5nwCs02Dc88VsGS4ZdD2I1w&t=2024-02-24T18%3A40%3A11.816Z"
+              src="https://hpagogvjlwigezymiejy.supabase.co/storage/v1/object/sign/IconosSVG/github.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJY29ub3NTVkcvZ2l0aHViLnN2ZyIsImlhdCI6MTcwODk4OTE2OCwiZXhwIjoxNzQwNTI1MTY4fQ.lf-s1WZj3-1HYRJm_RJ2WlcglaD0mY_y64gv9p8_g7o&t=2024-02-26T23%3A12%3A47.410Z"
               alt=""
             />
           </a>
+
           <a href="#">
             <img
-              src="https://hpagogvjlwigezymiejy.supabase.co/storage/v1/object/sign/IconosSVG/instagram-1-svgrepo-com.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJY29ub3NTVkcvaW5zdGFncmFtLTEtc3ZncmVwby1jb20uc3ZnIiwiaWF0IjoxNzA4ODAwMDI5LCJleHAiOjE3NDAzMzYwMjl9.9KIh0aLpKJ4EAJazvnUE_gqYIe_T4fKyJ99YPghEWPo&t=2024-02-24T18%3A40%3A29.422Z"
-              alt=""
-            />
-          </a>
-          <a href="#">
-            <img
-              src="https://hpagogvjlwigezymiejy.supabase.co/storage/v1/object/sign/IconosSVG/linkedin-svgrepo-com.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJY29ub3NTVkcvbGlua2VkaW4tc3ZncmVwby1jb20uc3ZnIiwiaWF0IjoxNzA4ODAwMDUwLCJleHAiOjE3NDAzMzYwNTB9.DMGKFPKqeeRlCS802nnf9x7CAT1DV7o0_hCecqpu_4w&t=2024-02-24T18%3A40%3A49.598Z"
+              src="https://hpagogvjlwigezymiejy.supabase.co/storage/v1/object/sign/IconosSVG/lnkedin.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJY29ub3NTVkcvbG5rZWRpbi5zdmciLCJpYXQiOjE3MDg5ODkyMzgsImV4cCI6MTc0MDUyNTIzOH0.3gcREdsxK0OqW9um3MwJ_7RAdgbu2arlWdjXb2-bQo4&t=2024-02-26T23%3A13%3A57.445Z"
               alt=""
             />
           </a>

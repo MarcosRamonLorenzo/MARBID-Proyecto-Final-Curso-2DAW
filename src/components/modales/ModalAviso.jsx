@@ -19,7 +19,7 @@ const ModalAviso = ({ setMostrar, mensajeAviso, insertar }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            variant="danger"
+            variant="primary"
             onClick={() => {
               insertar();
               setMostrar(false);
