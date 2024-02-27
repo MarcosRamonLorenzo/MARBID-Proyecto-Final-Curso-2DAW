@@ -8,11 +8,17 @@
   justify-content: center; /* Centra el grid en el eje horizontal */
   @include card_size(22em);
 
-  @media only screen and (max-width: 1500px) {
+  @media only screen and (max-width: 1600px) {
+    /* En tablet, cambia a dos columnas */
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 5%;
+  }
+
+  @media only screen and (max-width: 1300px) {
     /* En tablet, cambia a dos columnas */
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 10%;
-    @include card_size(18em);
+    @include card_size(15em);
   }
 
   @media only screen and (max-width: 900px) {
