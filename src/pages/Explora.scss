@@ -9,12 +9,19 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 2%;
     margin: 2% 14%;
 
+    //Filter.
     .css-b62m3t-container {
       width: 40%;
+    }
+
+    @media only screen and (max-width: 900px) {
+      .css-b62m3t-container {
+        width: 90%;
+      }
     }
   }
 }

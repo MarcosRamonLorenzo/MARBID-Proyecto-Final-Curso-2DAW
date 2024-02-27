@@ -49,4 +49,9 @@
   .descripcion-anuncio {
     margin: 3% 0;
   }
+
+  @media only screen and (max-width: 1500px) {
+    flex-direction: column;
+    height: 70em;
+  }
 }
