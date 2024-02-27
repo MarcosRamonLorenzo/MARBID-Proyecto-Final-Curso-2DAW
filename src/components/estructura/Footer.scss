@@ -15,7 +15,7 @@ footer {
   img {
     height: 3em;
     width: 3em;
-    background-color: aliceblue;
+
     border: 2px solid rgb(32, 35, 52);
   }
 
@@ -56,6 +56,6 @@ footer {
 @media screen and (max-width: 600px) {
   footer {
     flex-direction: column;
-    margin: 4%;
+    padding: 4%;
   }
 }
