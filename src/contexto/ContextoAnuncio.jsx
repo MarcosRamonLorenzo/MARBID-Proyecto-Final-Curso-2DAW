@@ -34,10 +34,15 @@ const ContextoAnuncio = ({ children }) => {
   const [anunciosCreados, setAnunciosCreados] = useState(valorInicalNull);
   const [errorCategoria, setErrorCategoria] = useState(valorInicialVacio);
   const [categorias, setCategorias] = useState(valorInicalNull);
+  const [errorFiltrado, setErrorFiltrado] = useState(valorInicialVacio);
 
   //Funciones.
 
   const navegar = useNavigate();
+
+  const manejarEstadoErrorFiltrado = () => {
+    setErrorFiltrado(valorInicialVacio);
+  };
 
   const manejarEstadoErrorAnuncio = () => {
     setErrorAnuncio(valorInicialVacio);
@@ -57,9 +62,63 @@ const ContextoAnuncio = ({ children }) => {
     });
   };
 
-  const filtrarPorCategoria = (categoria) => {
-    // Aquí irán los anuncios filtrados.
-    const anunciosFiltrados = [];
+  const filtrarPorCategoria = async (categoria) => {
+    setCargandoAnuncio(true);
+    // Si existe categoría que filtre, si no, se ponen los valores por defecto.
+    if (categoria) {
+      try {
+        // Recojo la id de la categoría.
+        const { data: dataCategoria, errorCategoria } = await supabaseConexion
+          .from("CATEGORIA")
+          .select("id")
+          .eq("nombre", categoria);
+
+        console.log(dataCategoria);
+
+        if (errorCategoria) throw errorCategoria;
+
+        if (!dataCategoria || dataCategoria.length === 0) {
+          throw new Error("Categoría no encontrada.");
+        }
+
+        // Recojo la id de la categoría en el anuncio.
+        const { data: dataCategoriaEnAnuncio, error: errorCategoriaEnAnuncio } =
+          await supabaseConexion
+            .from("CATEGORIAS_EN_ANUNCIO")
+            .select("id_anuncio")
+            .eq("id_categoria", dataCategoria[0].id);
+
+        console.log(dataCategoriaEnAnuncio);
+
+        if (errorCategoriaEnAnuncio) throw errorCategoriaEnAnuncio;
+
+        // Si no se recoge dataCategoriaEnAnuncio, que salte un error.
+        if (!dataCategoriaEnAnuncio || dataCategoriaEnAnuncio.length === 0) {
+          throw new Error("Anuncio con esta categoría no encontrado.");
+        }
+
+        // Recojo los anuncios que esten el la relación de CATEGORIAS_EN_ANUNCIO.
+        const { data: dataAnuncios, error: errorAnuncios } =
+          await supabaseConexion
+            .from("ANUNCIO")
+            .select("*")
+            .eq("id", dataCategoriaEnAnuncio[0].id_anuncio);
+
+        console.log(dataAnuncios);
+
+        if (errorAnuncios) throw errorAnuncios;
+
+        setCargandoAnuncio(valorInicialFalse);
+        setAnuncios(dataAnuncios);
+      } catch (error) {
+        setCargandoAnuncio(valorInicialFalse);
+        console.log(error);
+        setErrorFiltrado(error.message);
+      }
+    } else {
+      obtenerAnuncios();
+      setCargandoAnuncio(valorInicialFalse);
+    }
   };
 
   const insertarAnuncio = async () => {
@@ -249,6 +308,8 @@ const ContextoAnuncio = ({ children }) => {
     errorCategoria,
     categorias,
     filtrarPorCategoria,
+    errorFiltrado,
+    manejarEstadoErrorFiltrado,
   };
 
   return (
