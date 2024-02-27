@@ -20,7 +20,7 @@ const Cabecera = () => {
         </Link>
         {sesionIniciada ? (
           <>
-            <Link to="/PanelDeControl">
+            <Link to="/PanelDeControl/OfertasCreadas">
               <li>Panel De Control</li>
             </Link>
             <button

@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import "./MenuLateral.scss";
 
 const MenuLateral = () => {
-  const [enlaceClicado, setEnlaceClicado] = useState(null);
+  //Valor inicial al entrar a el panel de control.
+  const valorInicialEnlace = "ofertas-creadas";
+
+  const [enlaceClicado, setEnlaceClicado] = useState(valorInicialEnlace);
 
   const handleClick = (enlace) => {
     setEnlaceClicado(enlace);
