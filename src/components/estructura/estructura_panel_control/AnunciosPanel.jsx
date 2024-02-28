@@ -28,7 +28,7 @@ const AnunciosPanel = ({ ofertasCreadas, modoDelPanel }) => {
           ))}
         </div>
       ) : (
-        <p>No hay anuncios actualmente.</p>
+        <p className="no-hay-anuncios">No hay anuncios actualmente.</p>
       )}
     </div>
   );
