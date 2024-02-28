@@ -1,11 +1,16 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import "./Anuncio.scss";
 import BotonMeGusta from "../BotonMeGusta.jsx";
 import { Card, Button } from "react-bootstrap";
 import useDatosAnuncios from "../../../hooks/useDatosAnuncio.js";
+import ModalConfirmacion from "../../modales/ModalConfirmacion.jsx";
 
 const Anuncio = ({ anuncio, modoEditar = false }) => {
   const { borrarAnuncio } = useDatosAnuncios();
+  // Valores iniciales.
+  const valorInicialFalse = false;
+  const [mostrarConfirmacion, setMostrarConfirmacion] =
+    useState(valorInicialFalse);
   // Poner en base a la id_usuario, el nombre del usuario del anuncio.
   return (
     <Fragment>
@@ -42,7 +47,7 @@ const Anuncio = ({ anuncio, modoEditar = false }) => {
                   <Button
                     variant="danger"
                     onClick={() => {
-                      borrarAnuncio(anuncio.id);
+                      setMostrarConfirmacion(true);
                     }}
                   >
                     Borrar
@@ -58,6 +63,14 @@ const Anuncio = ({ anuncio, modoEditar = false }) => {
           </div>
         </Card.Body>
       </Card>
+      {mostrarConfirmacion && (
+        <ModalConfirmacion
+          setMostrar={setMostrarConfirmacion}
+          funcion={borrarAnuncio}
+          objetivo={anuncio.id}
+          accion={"borrar"}
+        />
+      )}
     </Fragment>
   );
 };
