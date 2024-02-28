@@ -1,7 +1,7 @@
 import React from "react";
 
 const OfertasFavoritas = () => {
-  return <div>OfertasFavoritas</div>;
+  return <div>Esta parte de la web está siendo trabajada.</div>;
 };
 
 export default OfertasFavoritas;
