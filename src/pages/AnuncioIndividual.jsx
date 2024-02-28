@@ -18,12 +18,12 @@ const AnuncioIndividual = () => {
                 <h2>{anuncioSeleccionado.nombre}</h2>
                 <img src={anuncioSeleccionado.imagen} alt="" />
                 <div className="fecha-anuncio">
-                  <h5>Fecha Creación.</h5>
+                  <h5>Fecha de Creación.</h5>
                   {anuncioSeleccionado.fecha_creacion}
                 </div>
 
                 <div className="descripcion-anuncio">
-                  <h5>Descipción Anuncio.</h5>
+                  <h5>Descipción del Anuncio.</h5>
                   <p>{anuncioSeleccionado.descripcion}</p>
                 </div>
               </div>
