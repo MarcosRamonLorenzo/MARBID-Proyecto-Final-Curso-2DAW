@@ -6,6 +6,7 @@ import Select from "react-select";
 import useDatosAnuncios from "../hooks/useDatosAnuncio.js";
 import Loading from "../components/estructura/Loading.jsx";
 import AlertError from "../components/alerts/AlertError.jsx";
+import useDatosUsuarios from "../hooks/useDatosUsuarios.js";
 
 const Explora = () => {
   // Por si se selecciona un anuncio.
@@ -18,6 +19,8 @@ const Explora = () => {
     manejarEstadoErrorCategoria,
     manejarEstadoErrorFiltrado,
   } = useDatosAnuncios();
+
+  const { cargandoUsuario } = useDatosUsuarios();
 
   const options = categorias
     ? [
@@ -37,6 +40,7 @@ const Explora = () => {
   return (
     <Fragment>
       <div className="explora">
+        {cargandoUsuario && <Loading />}
         {cargandoAnuncio && <Loading />}
         <Cabecera />
         <div className="buscador-y-select">

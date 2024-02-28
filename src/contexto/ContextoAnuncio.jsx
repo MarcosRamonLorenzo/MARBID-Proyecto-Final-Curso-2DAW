@@ -96,7 +96,6 @@ const ContextoAnuncio = ({ children }) => {
 
   const borrarAnuncio = async (idAnuncio) => {
     try {
-      console.log(idAnuncio);
       setCargandoAnuncio(true);
       const { data, error } = await supabaseConexion
         .from("ANUNCIO")
