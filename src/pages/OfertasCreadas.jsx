@@ -50,7 +50,10 @@ const OfertasCreadas = () => {
           accion={"borrar"}
         />
       )}
-      {mostrarEditar && <ModalEditar setMostrar={setMostrarEditar} />}
+      {mostrarEditar && (
+        // Le mando el anuncio por parámetro.
+        <ModalEditar setMostrar={setMostrarEditar} anuncio={anuncio} />
+      )}
     </div>
   );
 };

@@ -8,7 +8,12 @@ import AlertError from "../../alerts/AlertError.jsx";
 import AlertaSucess from "../../alerts/AlertaSuccess.jsx";
 import useDatosAnuncios from "../../../hooks/useDatosAnuncio.js";
 
-const FormCreacionOferta = () => {
+const FormCreacionOferta = ({
+  modoEditar = false,
+  anuncioSeleccionadoEditar = null,
+}) => {
+  // Como da la id hay que recoger el anuncio seleccionado, de ahí sacamos sus valores y vamos trabajando con ellos.
+  console.log(anuncioSeleccionadoEditar);
   const { categorias, estadoAlertaSuccess, modificarEstadoSuccesAlert } =
     useDatosAnuncios();
 
@@ -104,7 +109,11 @@ const FormCreacionOferta = () => {
               id="nombreOferta"
               name="nombre"
               placeholder="Example Oferta"
-              value={formularioCreacionOferta.nombre}
+              value={
+                modoEditar
+                  ? anuncioSeleccionadoEditar.nombre
+                  : formularioCreacionOferta.nombre
+              }
               onChange={(e) => {
                 actualizarDatoFormulario(e);
               }}
@@ -118,7 +127,11 @@ const FormCreacionOferta = () => {
               id="descripcionOferta"
               name="descripcion"
               placeholder="Example Descripción"
-              value={formularioCreacionOferta.descripcion}
+              value={
+                modoEditar
+                  ? anuncioSeleccionadoEditar.descripcion
+                  : formularioCreacionOferta.descripcion
+              }
               onChange={(e) => {
                 actualizarDatoFormulario(e);
               }}
@@ -134,7 +147,11 @@ const FormCreacionOferta = () => {
               name="precio"
               min="1"
               step="0.1"
-              value={formularioCreacionOferta.precio}
+              value={
+                modoEditar
+                  ? anuncioSeleccionadoEditar.precio
+                  : formularioCreacionOferta.precio
+              }
               onChange={(e) => {
                 actualizarDatoFormulario(e);
               }}
@@ -146,11 +163,18 @@ const FormCreacionOferta = () => {
             <label htmlFor="categoriaOferta">Selecciona una Categoría:</label>
             <Select
               id="categoriaOferta"
-              value={{
-                // Para que se vea la categoría seleccionada (label) y que si se manda el formulario tenga ese valor (value).
-                value: formularioCreacionOferta.categoria,
-                label: formularioCreacionOferta.categoria,
-              }}
+              value={
+                modoEditar
+                  ? {
+                      value: anuncioSeleccionadoEditar.categoria,
+                      label: anuncioSeleccionadoEditar.categoria,
+                    }
+                  : {
+                      // Para que se vea la categoría seleccionada (label) y que si se manda el formulario tenga ese valor (value).
+                      value: formularioCreacionOferta.categoria,
+                      label: formularioCreacionOferta.categoria,
+                    }
+              }
               onChange={(e) => {
                 actualizarCateogriaFormulario(e);
               }}
@@ -164,7 +188,11 @@ const FormCreacionOferta = () => {
               id="imagenOferta"
               name="imagen"
               placeholder="Example URL"
-              value={formularioCreacionOferta.imagen}
+              value={
+                modoEditar
+                  ? anuncioSeleccionadoEditar.imagen
+                  : formularioCreacionOferta.imagen
+              }
               onChange={(e) => {
                 actualizarDatoFormulario(e);
               }}
