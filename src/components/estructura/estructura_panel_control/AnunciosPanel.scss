@@ -1,4 +1,5 @@
 @import "../../../App.scss";
+
 .contenedor-anuncios-panel {
   .anuncios-panel {
     display: grid;
@@ -8,7 +9,7 @@
     justify-content: center; /* Centra el grid en el eje horizontal */
     @include card_size(22em);
 
-    @media only screen and (max-width: 1600px) {
+    @media only screen and (max-width: 1780px) {
       /* En tablet, cambia a dos columnas */
       grid-template-columns: repeat(3, 1fr);
       grid-column-gap: 5%;
@@ -18,7 +19,7 @@
       /* En tablet, cambia a dos columnas */
       grid-template-columns: repeat(2, 1fr);
       grid-column-gap: 10%;
-      @include card_size(15em);
+      @include card_size(19em);
     }
 
     @media only screen and (max-width: 900px) {
@@ -26,16 +27,24 @@
       @include card_size(16em);
     }
 
-  @media only screen and (max-width: 900px) {
-    /* En móvil, cambia a una columna */
-    @include card_size(18em);
+    @media only screen and (max-width: 900px) {
+      /* En móvil, cambia a una columna */
+      @include card_size(18em);
+    }
+
+    @media only screen and (max-width: 700px) {
+      /* En móvil, cambia a una columna */
+      grid-template-columns: 1fr;
+      grid-gap: 1%;
+      @include card_size(20em);
+    }
   }
 
-  @media only screen and (max-width: 700px) {
-    /* En móvil, cambia a una columna */
-    grid-template-columns: 1fr;
-    grid-gap: 1%;
-    @include card_size(20em);
-
+  .no-hay-anuncios {
+    color: $secundary-color;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
   }
 }
