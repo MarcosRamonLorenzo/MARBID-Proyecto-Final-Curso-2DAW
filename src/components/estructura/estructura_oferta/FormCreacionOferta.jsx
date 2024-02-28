@@ -6,31 +6,36 @@ import ModalErrores from "../../modales/ModalErrores.jsx";
 import ModalAviso from "../../modales/ModalAviso.jsx";
 import AlertError from "../../alerts/AlertError.jsx";
 import AlertaSucess from "../../alerts/AlertaSuccess.jsx";
-import useDatosUsuarios from "../../../hooks/useDatosUsuarios.js";
+import useDatosAnuncios from "../../../hooks/useDatosAnuncio.js";
 
 const FormCreacionOferta = () => {
-  const options = [
-    { value: "Artes Gráficas", label: "Artes Gráficas" },
-    { value: "Marketing Digital", label: "Marketing Digital" },
-    { value: "Escritura y Traducción", label: "Escritura y Traducción" },
-    { value: "Video y Animación", label: "Video y Animación" },
-    { value: "Música y Audio", label: "Música y Audio" },
-    { value: "Programación y Tecnología", label: "Programación y Tecnología" },
-  ];
+  const { categorias, estadoAlertaSuccess, modificarEstadoSuccesAlert } =
+    useDatosAnuncios();
+
+  const options = categorias
+    ? [
+        ...categorias.map((categoria) => ({
+          value: categoria.nombre
+            ? categoria.nombre
+            : "No hay valor disponible",
+          label: categoria.nombre
+            ? categoria.nombre
+            : "No hay valor disponible",
+        })),
+      ]
+    : "No hay categorías disponibles";
 
   // Valor para mostrar el modal.
-  const valorInicialModal = false;
+
   const valorInicialVacio = "";
   const valorInicialAviso = "Los campos de:";
+  const valorInicialModal = false;
   /* Estado para los modales. 
     Lo que hago es diferenciar entre aviso (puedes dejar el campo en null) y errores (no puedes dejar el campo en null). */
   const [mostrarError, setMostrarError] = useState(valorInicialModal);
   const [mostrarAviso, setMostrarAviso] = useState(valorInicialModal);
   const [error, setError] = useState(valorInicialVacio);
   const [aviso, setAviso] = useState(valorInicialVacio);
-
-  const [estadoAlertaSuccess, setEstadoAlertaSuccess] =
-    useState(valorInicialModal);
 
   const {
     actualizarDatoFormulario,
@@ -75,16 +80,9 @@ const FormCreacionOferta = () => {
     }
   };
 
-  const mostrarAlertaSuccess = () => {
-    setEstadoAlertaSuccess(true);
-    setTimeout(() => {
-      setEstadoAlertaSuccess(false);
-    }, 3000);
-  };
   // Función para que en el modal no de errores como insertar dos veces.
   const manejoInsertModal = () => {
     insertarAnuncio();
-    mostrarAlertaSuccess();
   };
 
   return (
@@ -182,6 +180,7 @@ const FormCreacionOferta = () => {
             Crear Oferta
           </button>
         </div>
+
         {mostrarError && (
           <ModalErrores setMostrar={setMostrarError} mensajeError={error} />
         )}
@@ -193,10 +192,10 @@ const FormCreacionOferta = () => {
           />
         )}
 
-        {estadoAlertaSuccess && (
+        {estadoAlertaSuccess.estado && (
           <AlertaSucess
-            mensaje={"Oferta creada con éxito."}
-            funcionEstado={setEstadoAlertaSuccess}
+            mensaje={estadoAlertaSuccess.mensaje}
+            funcionEstado={modificarEstadoSuccesAlert}
           />
         )}
       </div>
