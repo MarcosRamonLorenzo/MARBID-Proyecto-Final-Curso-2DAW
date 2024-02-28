@@ -13,7 +13,7 @@ const Cabecera = () => {
       </Link>
       <ul className="navegation">
         <Link to="/">
-          <li>Home</li>
+          <li>Inicio</li>
         </Link>
         <Link to="/Explora">
           <li>Explora</li>
