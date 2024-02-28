@@ -16,6 +16,16 @@
     height: 7em;
   }
 
+  .botones-funciones {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    gap: 5%;
+  }
+
   .anuncio-precio-likes {
     display: flex;
     flex-direction: row;

@@ -38,17 +38,19 @@ const Anuncio = ({ anuncio, modoEditar = false }) => {
             )}
             {modoEditar ? (
               <>
-                <Button
-                  variant="danger"
-                  onClick={() => {
-                    borrarAnuncio(anuncio.id);
-                  }}
-                >
-                  Borrar
-                </Button>
-                <Button variant="primary" onClick={() => {}}>
-                  Editar
-                </Button>
+                <div className="botones-funciones">
+                  <Button
+                    variant="danger"
+                    onClick={() => {
+                      borrarAnuncio(anuncio.id);
+                    }}
+                  >
+                    Borrar
+                  </Button>
+                  <Button variant="primary" onClick={() => {}}>
+                    Editar
+                  </Button>
+                </div>
               </>
             ) : (
               <BotonMeGusta />

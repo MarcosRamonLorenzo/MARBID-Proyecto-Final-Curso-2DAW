@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./MenuHamburguesa.scss";
+import useDatosUsuarios from "../../../hooks/useDatosUsuarios.js";
 
 const MenuHamburguesa = () => {
+  // Initial state for the menu (closed by default)
   const estadoInicialMenu = false;
   const [estadoMenu, setEstadoMenu] = useState(estadoInicialMenu);
 
+  // Custom hook for handling user data (e.g., session state and logout)
+  const { sesionIniciada, logoutUsuario } = useDatosUsuarios();
+
   return (
-    /* Si esta falso sale el icon odel menú si no sale el link */
     <div className="contenedor-menu-hamburguesa">
+      {/* Icon for opening the menu */}
       {estadoMenu === false && (
         <svg
           onClick={() => {
@@ -38,6 +43,8 @@ const MenuHamburguesa = () => {
           />
         </svg>
       )}
+
+      {/* Menu content */}
       {estadoMenu && (
         <div className="manu-hambuerguesa-open">
           <div
@@ -48,11 +55,29 @@ const MenuHamburguesa = () => {
           >
             X
           </div>
+
+          {/* Navigation links */}
           <div className="elementos-menu">
-            <Link to="/">Home</Link>
+            <Link to="/">Inicio</Link>
             <Link to="/Explora">Explora</Link>
-            <Link to="/IniciarSesion">Iniciar Sesión</Link>
-            <Link to="/Registro">Registro</Link>
+            {sesionIniciada ? (
+              <>
+                <Link to="/PanelDeControl/OfertasCreadas">
+                  <li>Panel De Control</li>
+                </Link>
+                <Link
+                  onClick={logoutUsuario}
+                  to="/PanelDeControl/OfertasCreadas"
+                >
+                  <li>Cerrar Sesión</li>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/IniciarSesion">Iniciar Sesión</Link>
+                <Link to="/Registro">Registro</Link>
+              </>
+            )}
           </div>
         </div>
       )}
