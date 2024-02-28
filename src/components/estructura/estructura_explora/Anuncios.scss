@@ -28,3 +28,11 @@
     @include card_size(20em);
   }
 }
+
+.no-hay-anuncios {
+  color: $secundary-color;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+}
