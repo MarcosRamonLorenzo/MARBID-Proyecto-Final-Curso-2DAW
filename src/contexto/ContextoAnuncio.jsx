@@ -12,6 +12,8 @@ const ContextoAnuncio = ({ children }) => {
   const valorInicalNull = null;
   const valorInicialFalse = false;
   const valorInicialVacio = "";
+  const valorInicialSuccess = { estado: false, mensaje: "" };
+
   const valorInicialCreacionOferta = {
     id_usuario: "",
     nombre: "",
@@ -36,7 +38,24 @@ const ContextoAnuncio = ({ children }) => {
   const [categorias, setCategorias] = useState(valorInicalNull);
   const [errorFiltrado, setErrorFiltrado] = useState(valorInicialVacio);
 
+  const [estadoAlertaSuccess, setEstadoAlertaSuccess] =
+    useState(valorInicialSuccess);
+
   //Funciones.
+
+  //Alerts
+
+  const modificarEstadoSuccesAlert = (estadoAlert) => {
+    setEstadoAlertaSuccess({ ...estadoAlertaSuccess, estado: estadoAlert });
+  };
+
+  const mostrarAlertaSuccess = (nuevoEstado) => {
+    //Establezco el nuevo estado del error.
+    setEstadoAlertaSuccess(nuevoEstado);
+    setTimeout(() => {
+      setEstadoAlertaSuccess({ ...nuevoEstado, estado: false });
+    }, 3000);
+  };
 
   const navegar = useNavigate();
 
@@ -105,6 +124,10 @@ const ContextoAnuncio = ({ children }) => {
       if (error) throw error;
 
       setCargandoAnuncio(valorInicialFalse);
+      mostrarAlertaSuccess({
+        estado: true,
+        mensaje: "Anuncio eliminado con exito.",
+      });
       // Para que se actualicen los anuncios creados por el usuario.
       getAnunciosCreadosDeUsuario();
       // Debido a que no descargamos los anuncios, si se borra uno o varios no recargan y podría dar errores.
@@ -142,11 +165,16 @@ const ContextoAnuncio = ({ children }) => {
       getAnunciosCreadosDeUsuario();
       setFormularioCreacionOferta(valorInicialCreacionOferta);
       setCargandoAnuncio(valorInicialFalse);
+      mostrarAlertaSuccess({
+        estado: true,
+        mensaje: "Anuncio creado con exito.",
+      });
       obtenerAnuncios();
 
       //Si se ha insertado corretamente añadimos la cateogria al anuncio.
       //Si existre cxateogria y el id de la categoría se añade la categoría al anuncio.
       const idCategoria = categoria ? await getIDCategoria(categoria) : null;
+
       if (idCategoria) {
         insertarCategoriaEnAnuncio(idAnuncio, idCategoria);
       }
@@ -292,7 +320,10 @@ const ContextoAnuncio = ({ children }) => {
     anunciosCreados,
     errorCategoria,
     categorias,
+    estadoAlertaSuccess,
     errorFiltrado,
+    borrarAnuncio,
+    modificarEstadoSuccesAlert,
     actualizarDatoFormulario,
     actualizarCateogriaFormulario,
     insertarAnuncio,
@@ -301,7 +332,6 @@ const ContextoAnuncio = ({ children }) => {
     manejarEstadoErrorAnuncio,
     filtrarPorCategoria,
     manejarEstadoErrorFiltrado,
-    borrarAnuncio,
   };
 
   return (
