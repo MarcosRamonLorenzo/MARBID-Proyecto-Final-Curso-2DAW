@@ -5,6 +5,8 @@ import useDatosAnuncio from "../../../hooks/useDatosAnuncio.js";
 import ModalErrores from "../../modales/ModalErrores.jsx";
 import ModalAviso from "../../modales/ModalAviso.jsx";
 import AlertError from "../../alerts/AlertError.jsx";
+import AlertaSucess from "../../alerts/AlertaSuccess.jsx";
+import useDatosUsuarios from "../../../hooks/useDatosUsuarios.js";
 
 const FormCreacionOferta = () => {
   const options = [
@@ -26,6 +28,9 @@ const FormCreacionOferta = () => {
   const [mostrarAviso, setMostrarAviso] = useState(valorInicialModal);
   const [error, setError] = useState(valorInicialVacio);
   const [aviso, setAviso] = useState(valorInicialVacio);
+
+  const [estadoAlertaSuccess, setEstadoAlertaSuccess] =
+    useState(valorInicialModal);
 
   const {
     actualizarDatoFormulario,
@@ -70,9 +75,16 @@ const FormCreacionOferta = () => {
     }
   };
 
+  const mostrarAlertaSuccess = () => {
+    setEstadoAlertaSuccess(true);
+    setTimeout(() => {
+      setEstadoAlertaSuccess(false);
+    }, 3000);
+  };
   // Función para que en el modal no de errores como insertar dos veces.
   const manejoInsertModal = () => {
     insertarAnuncio();
+    mostrarAlertaSuccess();
   };
 
   return (
@@ -178,6 +190,13 @@ const FormCreacionOferta = () => {
             setMostrar={setMostrarAviso}
             mensajeAviso={aviso}
             insertar={manejoInsertModal}
+          />
+        )}
+
+        {estadoAlertaSuccess && (
+          <AlertaSucess
+            mensaje={"Oferta creada con éxito."}
+            funcionEstado={setEstadoAlertaSuccess}
           />
         )}
       </div>
