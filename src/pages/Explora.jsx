@@ -5,7 +5,7 @@ import "./Explora.scss";
 import Select from "react-select";
 import useDatosAnuncios from "../hooks/useDatosAnuncio.js";
 import Loading from "../components/estructura/Loading.jsx";
-import AlertError from "../components/estructura/alerts/AlertError.jsx";
+import AlertError from "../components/alerts/AlertError.jsx";
 
 const Explora = () => {
   // Por si se selecciona un anuncio.

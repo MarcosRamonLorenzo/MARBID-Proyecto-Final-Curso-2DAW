@@ -6,10 +6,14 @@ import Insignias from "../components/estructura/estructura_home/Insignias.jsx";
 import Categorias from "../components/estructura/estructura_home/Categorias.jsx";
 import GridTarjetasDibujos from "../components/estructura/estructura_home/GridTarjetasDibujos.jsx";
 import Footer from "../components/estructura/Footer.jsx";
+import useDatosUsuarios from "../hooks/useDatosUsuarios.js";
+import AlertaSuccess from "../components/alerts/AlertaSuccess.jsx";
 
 const Home = () => {
+  const { estadoSuccessAlert, modificarEstadoSuccesAlert } = useDatosUsuarios();
+
   return (
-    <div>
+    <div className="home">
       <Cabecera />
       <HeroSection />
       <Buscador />
@@ -17,6 +21,12 @@ const Home = () => {
       <Categorias />
       <GridTarjetasDibujos />
       <Footer />
+      {estadoSuccessAlert.estado && (
+        <AlertaSuccess
+          mensaje={estadoSuccessAlert.mensaje}
+          funcionEstado={modificarEstadoSuccesAlert}
+        />
+      )}
     </div>
   );
 };
