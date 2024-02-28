@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 import "./PanelDeControl.scss";
 import useDatosUsuarios from "../hooks/useDatosUsuarios.js";
-import AlertNoHaySesion from "../components/estructura/alerts/AlertNoHaySesion.jsx";
+import AlertNoHaySesion from "../components/alerts/AlertNoHaySesion.jsx";
 import MenuLateral from "../components/estructura/estructura_panel_control/MenuLateral.jsx";
 
 const PanelDeControl = () => {

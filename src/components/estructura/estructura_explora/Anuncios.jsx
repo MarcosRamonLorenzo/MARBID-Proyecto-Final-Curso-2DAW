@@ -3,7 +3,7 @@ import "./Anuncios.scss";
 import useDatosAnuncios from "../../../hooks/useDatosAnuncio.js";
 import Anuncio from "./Anuncio";
 import useDatosUsuarios from "../../../hooks/useDatosUsuarios.js";
-import AlertError from "../alerts/AlertError.jsx";
+import AlertError from "../../alerts/AlertError.jsx";
 
 const Anuncios = () => {
   const {
