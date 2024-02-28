@@ -9,7 +9,7 @@ import Loading from "../components/estructura/Loading.jsx";
 import AlertError from "../components/alerts/AlertError.jsx";
 
 const PanelDeControl = () => {
-  const { sesionIniciada } = useDatosUsuarios();
+  const { sesionIniciada, cargandoUsuario } = useDatosUsuarios();
   const { cargandoAnuncio, errorAnuncio, manejarEstadoErrorAnuncio } =
     useDatosAnuncios();
   return (
@@ -22,6 +22,7 @@ const PanelDeControl = () => {
               estadoError={manejarEstadoErrorAnuncio}
             />
           )}
+          {cargandoUsuario && <Loading />}
           {cargandoAnuncio && <Loading />}
           <div className="panel-control">
             <MenuLateral />
