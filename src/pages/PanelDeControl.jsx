@@ -6,14 +6,22 @@ import AlertNoHaySesion from "../components/alerts/AlertNoHaySesion.jsx";
 import MenuLateral from "../components/estructura/estructura_panel_control/MenuLateral.jsx";
 import useDatosAnuncios from "../hooks/useDatosAnuncio.js";
 import Loading from "../components/estructura/Loading.jsx";
+import AlertError from "../components/alerts/AlertError.jsx";
 
 const PanelDeControl = () => {
   const { sesionIniciada } = useDatosUsuarios();
-  const { cargandoAnuncio } = useDatosAnuncios();
+  const { cargandoAnuncio, errorAnuncio, manejarEstadoErrorAnuncio } =
+    useDatosAnuncios();
   return (
     <Fragment>
       {sesionIniciada ? (
         <>
+          {errorAnuncio && (
+            <AlertError
+              mensajeError={errorAnuncio}
+              estadoError={manejarEstadoErrorAnuncio}
+            />
+          )}
           {cargandoAnuncio && <Loading />}
           <div className="panel-control">
             <MenuLateral />

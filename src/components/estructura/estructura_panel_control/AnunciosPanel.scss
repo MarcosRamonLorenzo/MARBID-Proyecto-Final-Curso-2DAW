@@ -1,35 +1,42 @@
 @import "../../../App.scss";
+.contenedor-anuncios-panel {
+  .anuncios-panel {
+    display: grid;
+    margin-left: 7%;
+    grid-gap: 5% 2%;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center; /* Centra el grid en el eje horizontal */
+    @include card_size(22em);
 
-.anuncios-panel {
-  display: grid;
-  margin-left: 7%;
-  grid-gap: 5% 2%;
-  grid-template-columns: repeat(4, 1fr);
-  justify-content: center; /* Centra el grid en el eje horizontal */
-  @include card_size(22em);
+    @media only screen and (max-width: 1600px) {
+      /* En tablet, cambia a dos columnas */
+      grid-template-columns: repeat(3, 1fr);
+      grid-column-gap: 5%;
+    }
 
-  @media only screen and (max-width: 1600px) {
-    /* En tablet, cambia a dos columnas */
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 5%;
+    @media only screen and (max-width: 1300px) {
+      /* En tablet, cambia a dos columnas */
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 10%;
+      @include card_size(15em);
+    }
+
+    @media only screen and (max-width: 900px) {
+      /* En móvil, cambia a una columna */
+      @include card_size(16em);
+    }
+
+    @media only screen and (max-width: 700px) {
+      /* En móvil, cambia a una columna */
+      grid-template-columns: 1fr;
+      grid-gap: 1%;
+      @include card_size(12em);
+    }
   }
 
-  @media only screen and (max-width: 1300px) {
-    /* En tablet, cambia a dos columnas */
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 10%;
-    @include card_size(15em);
-  }
-
-  @media only screen and (max-width: 900px) {
-    /* En móvil, cambia a una columna */
-    @include card_size(16em);
-  }
-
-  @media only screen and (max-width: 700px) {
-    /* En móvil, cambia a una columna */
-    grid-template-columns: 1fr;
-    grid-gap: 1%;
-    @include card_size(12em);
+  p {
+    font-size: 28px;
+    color: $secundary-color;
+    margin-top: 20px;
   }
 }

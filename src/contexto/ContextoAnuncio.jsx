@@ -96,15 +96,20 @@ const ContextoAnuncio = ({ children }) => {
 
   const borrarAnuncio = async (idAnuncio) => {
     try {
+      console.log(idAnuncio);
       setCargandoAnuncio(true);
-      const { error } = await supabaseConexion
+      const { data, error } = await supabaseConexion
         .from("ANUNCIO")
         .delete()
-        .eq("id_anuncio", idAnuncio);
+        .eq("id", idAnuncio);
 
       if (error) throw error;
 
       setCargandoAnuncio(valorInicialFalse);
+      // Para que se actualicen los anuncios creados por el usuario.
+      getAnunciosCreadosDeUsuario();
+      // Debido a que no descargamos los anuncios, si se borra uno o varios no recargan y podría dar errores.
+      obtenerAnuncios();
     } catch (error) {
       setCargandoAnuncio(valorInicialFalse);
       setErrorAnuncio(error.message);

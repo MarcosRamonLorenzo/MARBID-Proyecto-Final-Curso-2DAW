@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Anuncio from "../estructura_explora/Anuncio";
 import useDatosAnuncios from "../../../hooks/useDatosAnuncio";
 import "./AnunciosPanel.scss";
 
-const AnunciosPanel = ({ ofertasCreadas }) => {
+// El modo del panel cambiara en dependencia de a que subruta entre el usuario.
+const AnunciosPanel = ({ ofertasCreadas, modoDelPanel }) => {
   let anuncios = [];
   const { anunciosCreados, seleccionarAnuncio } = useDatosAnuncios();
 
@@ -12,18 +13,20 @@ const AnunciosPanel = ({ ofertasCreadas }) => {
   }
 
   return (
-    <div
-      className="anuncios-panel"
-      onClick={(e) => {
-        if (e.target.tagName === "IMG") {
-          seleccionarAnuncio(e.target.parentNode.id);
-        }
-      }}
-    >
+    <div className="contenedor-anuncios-panel">
       {anunciosCreados && anunciosCreados.length > 0 ? (
-        anunciosCreados.map((valor, index) => {
-          return <Anuncio key={index} anuncio={valor} modoEditar={true} />;
-        })
+        <div
+          className="anuncios-panel"
+          onClick={(e) => {
+            if (e.target.tagName === "IMG") {
+              seleccionarAnuncio(e.target.parentNode.id);
+            }
+          }}
+        >
+          {anunciosCreados.map((valor, index) => (
+            <Anuncio key={index} anuncio={valor} modoEditar={true} />
+          ))}
+        </div>
       ) : (
         <p>No hay anuncios actualmente.</p>
       )}
