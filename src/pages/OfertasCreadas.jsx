@@ -7,8 +7,13 @@ import ModalConfirmacion from "../components/modales/ModalConfirmacion.jsx";
 import ModalEditar from "../components/modales/ModalEditar.jsx";
 
 const OfertasCreadas = () => {
-  const { estadoAlertaSuccess, modificarEstadoSuccesAlert, borrarAnuncio } =
-    useDatosAnuncios();
+  const {
+    estadoAlertaSuccess,
+    modificarEstadoSuccesAlert,
+    borrarAnuncio,
+    seleccionarAnuncio,
+    anuncioSeleccionado,
+  } = useDatosAnuncios();
 
   // Valores iniciales.
   const valorInicialFalse = false;
@@ -17,19 +22,26 @@ const OfertasCreadas = () => {
     useState(valorInicialFalse);
   const [mostrarEditar, setMostrarEditar] = useState(valorInicialFalse);
   const [anuncio, setAnuncio] = useState(valorInicialVacio);
+
   return (
     <div
       className="pagina-ofertas-creadas"
-      onClick={(e) => {
-        if (e.target.id === "boton-borrar-anuncio") {
-          setMostrarConfirmacionBorrar(true);
-          //Cojemos la id del padre que es la id del anuncio.
-          setAnuncio(e.target.parentNode.id);
+      onClick={async (e) => {
+        // Si selecciona la imagen del anuncio lo lleva a la oferta.
+        if (e.target.tagName === "IMG") {
+          seleccionarAnuncio(e.target.parentNode.id, true);
         }
-        if (e.target.id === "boton-editar-anuncio") {
-          setMostrarEditar(true);
+        // Si selecciona el boton de borrar le salta el modal de borrar.
+        if (e.target.id === "boton-borrar-anuncio") {
           //Cojemos la id del padre que es la id del anuncio.
           setAnuncio(e.target.parentNode.id);
+          setMostrarConfirmacionBorrar(true);
+        }
+        // Si selecciona el boton de editar le salta el modal de editar.
+        if (e.target.id === "boton-editar-anuncio") {
+          //Cojemos la id del padre que es la id del anuncio, la convertimos en un anuncio.
+          seleccionarAnuncio(e.target.parentNode.id);
+          setMostrarEditar(true);
         }
       }}
     >
@@ -51,8 +63,11 @@ const OfertasCreadas = () => {
         />
       )}
       {mostrarEditar && (
-        // Le mando el anuncio por parámetro.
-        <ModalEditar setMostrar={setMostrarEditar} anuncio={anuncio} />
+        // Le mando el anuncio por parámetro. Como "anuncio" es la id tengo que recoger el json entero.
+        <ModalEditar
+          setMostrar={setMostrarEditar}
+          anuncio={anuncioSeleccionado}
+        />
       )}
     </div>
   );

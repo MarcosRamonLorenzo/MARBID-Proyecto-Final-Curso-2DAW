@@ -12,8 +12,6 @@ const FormCreacionOferta = ({
   modoEditar = false,
   anuncioSeleccionadoEditar = null,
 }) => {
-  // Como da la id hay que recoger el anuncio seleccionado, de ahí sacamos sus valores y vamos trabajando con ellos.
-  console.log(anuncioSeleccionadoEditar);
   const { categorias, estadoAlertaSuccess, modificarEstadoSuccesAlert } =
     useDatosAnuncios();
 
@@ -49,6 +47,8 @@ const FormCreacionOferta = ({
     formularioCreacionOferta,
     errorAnuncio,
     manejarEstadoErrorAnuncio,
+    actualizarCateogriaFormularioSeleccionado,
+    actualizarDatoFormularioEditar,
   } = useDatosAnuncio();
 
   const manejarInsertOferta = () => {
@@ -111,14 +111,22 @@ const FormCreacionOferta = ({
               placeholder="Example Oferta"
               value={
                 modoEditar
-                  ? anuncioSeleccionadoEditar.nombre
+                  ? anuncioSeleccionadoEditar &&
+                    anuncioSeleccionadoEditar.nombre
+                    ? anuncioSeleccionadoEditar.nombre
+                    : "Esperando a que cargue anuncio..."
                   : formularioCreacionOferta.nombre
               }
               onChange={(e) => {
-                actualizarDatoFormulario(e);
+                if (modoEditar) {
+                  actualizarDatoFormularioEditar(e);
+                } else {
+                  actualizarDatoFormulario(e);
+                }
               }}
             />
           </div>
+
           <div className="descripcion-oferta">
             <label className="label" htmlFor="descripcionOferta">
               Descripción de la Oferta:
@@ -129,14 +137,22 @@ const FormCreacionOferta = ({
               placeholder="Example Descripción"
               value={
                 modoEditar
-                  ? anuncioSeleccionadoEditar.descripcion
+                  ? anuncioSeleccionadoEditar &&
+                    anuncioSeleccionadoEditar.descripcion
+                    ? anuncioSeleccionadoEditar.descripcion
+                    : ""
                   : formularioCreacionOferta.descripcion
               }
               onChange={(e) => {
-                actualizarDatoFormulario(e);
+                if (modoEditar) {
+                  actualizarDatoFormularioEditar(e);
+                } else {
+                  actualizarDatoFormulario(e);
+                }
               }}
             />
           </div>
+
           <div className="precio-oferta">
             <label className="label" htmlFor="precioOferta">
               Precio de la Oferta:
@@ -149,11 +165,18 @@ const FormCreacionOferta = ({
               step="0.1"
               value={
                 modoEditar
-                  ? anuncioSeleccionadoEditar.precio
+                  ? anuncioSeleccionadoEditar &&
+                    anuncioSeleccionadoEditar.precio
+                    ? anuncioSeleccionadoEditar.precio
+                    : ""
                   : formularioCreacionOferta.precio
               }
               onChange={(e) => {
-                actualizarDatoFormulario(e);
+                if (modoEditar) {
+                  actualizarDatoFormularioEditar(e);
+                } else {
+                  actualizarDatoFormulario(e);
+                }
               }}
             />
           </div>
@@ -165,10 +188,13 @@ const FormCreacionOferta = ({
               id="categoriaOferta"
               value={
                 modoEditar
-                  ? {
-                      value: anuncioSeleccionadoEditar.categoria,
-                      label: anuncioSeleccionadoEditar.categoria,
-                    }
+                  ? anuncioSeleccionadoEditar &&
+                    anuncioSeleccionadoEditar.categoria
+                    ? {
+                        value: anuncioSeleccionadoEditar.categoria,
+                        label: anuncioSeleccionadoEditar.categoria,
+                      }
+                    : { value: null, label: null }
                   : {
                       // Para que se vea la categoría seleccionada (label) y que si se manda el formulario tenga ese valor (value).
                       value: formularioCreacionOferta.categoria,
@@ -176,7 +202,11 @@ const FormCreacionOferta = ({
                     }
               }
               onChange={(e) => {
-                actualizarCateogriaFormulario(e);
+                if (modoEditar) {
+                  actualizarCateogriaFormularioSeleccionado(e);
+                } else {
+                  actualizarCateogriaFormulario(e);
+                }
               }}
               options={options}
             />
@@ -190,23 +220,41 @@ const FormCreacionOferta = ({
               placeholder="Example URL"
               value={
                 modoEditar
-                  ? anuncioSeleccionadoEditar.imagen
+                  ? anuncioSeleccionadoEditar &&
+                    anuncioSeleccionadoEditar.imagen
+                    ? anuncioSeleccionadoEditar.imagen
+                    : ""
                   : formularioCreacionOferta.imagen
               }
               onChange={(e) => {
-                actualizarDatoFormulario(e);
+                if (modoEditar) {
+                  actualizarCateogriaFormularioSeleccionado(e);
+                } else {
+                  actualizarDatoFormulario(e);
+                }
               }}
             />
             <img src="#" alt="" />
           </div>
-          <button
-            onClick={() => {
-              manejarInsertOferta();
-            }}
-            className="boton-oferta"
-          >
-            Crear Oferta
-          </button>
+          {modoEditar ? (
+            <button
+              onClick={() => {
+                manejarInsertOferta();
+              }}
+              className="boton-oferta"
+            >
+              Editar
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                manejarInsertOferta();
+              }}
+              className="boton-oferta"
+            >
+              Crear Oferta
+            </button>
+          )}
         </div>
 
         {mostrarError && (
