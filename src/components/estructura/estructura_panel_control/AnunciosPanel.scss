@@ -26,16 +26,16 @@
       @include card_size(16em);
     }
 
-  @media only screen and (max-width: 900px) {
-    /* En móvil, cambia a una columna */
-    @include card_size(18em);
-  }
+    @media only screen and (max-width: 900px) {
+      /* En móvil, cambia a una columna */
+      @include card_size(18em);
+    }
 
-  @media only screen and (max-width: 700px) {
-    /* En móvil, cambia a una columna */
-    grid-template-columns: 1fr;
-    grid-gap: 1%;
-    @include card_size(20em);
-
+    @media only screen and (max-width: 700px) {
+      /* En móvil, cambia a una columna */
+      grid-template-columns: 1fr;
+      grid-gap: 1%;
+      @include card_size(20em);
+    }
   }
 }
