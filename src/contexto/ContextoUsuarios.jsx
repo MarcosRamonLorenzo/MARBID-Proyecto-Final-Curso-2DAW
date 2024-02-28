@@ -137,19 +137,6 @@ const ContextoUsuarios = ({ children }) => {
     }
   };
 
-  //Funciones de Alerts o modeales para poder modificar el estado de los mismos.
-  const modificarEstadoErrorAlert = (estado) => {
-    setEstadoErrorAlert({ ...estadoErrorAlert, error: estado });
-  };
-
-  const modificarEstadoErrorInicioSesion = (estado) => {
-    setEstadoErrorInicioSesion({ ...estadoErrorInicioSesion, error: estado });
-  };
-
-  const modificarEstadoSuccesAlert = (estadoAlert) => {
-    setEstadoSuccessAlert({ ...estadoSuccessAlert, estado: estadoAlert });
-  };
-
   //LogOut.
 
   const logoutUsuario = async () => {
@@ -261,6 +248,19 @@ const ContextoUsuarios = ({ children }) => {
     setTimeout(() => {
       setEstadoSuccessAlert({ ...nuevoEstado, estado: false });
     }, 3000);
+  };
+
+  //Funciones de Alerts o modeales para poder modificar el estado de los mismos.
+  const modificarEstadoErrorAlert = (estado) => {
+    setEstadoErrorAlert({ ...estadoErrorAlert, error: estado });
+  };
+
+  const modificarEstadoErrorInicioSesion = (estado) => {
+    setEstadoErrorInicioSesion({ ...estadoErrorInicioSesion, error: estado });
+  };
+
+  const modificarEstadoSuccesAlert = (estadoAlert) => {
+    setEstadoSuccessAlert({ ...estadoSuccessAlert, estado: estadoAlert });
   };
 
   useEffect(() => {
