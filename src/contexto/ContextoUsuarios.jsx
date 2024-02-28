@@ -97,22 +97,6 @@ const ContextoUsuarios = ({ children }) => {
     }
   };
 
-  const mostrarAlertaError = (nuevoEstado) => {
-    //Establezco el nuevo estado del error.
-    setEstadoErrorAlert(nuevoEstado);
-    setTimeout(() => {
-      setEstadoErrorAlert({ ...nuevoEstado, error: false });
-    }, 3000);
-  };
-
-  const mostrarAlertaSuccess = (nuevoEstado) => {
-    //Establezco el nuevo estado del error.
-    setEstadoSuccessAlert(nuevoEstado);
-    setTimeout(() => {
-      setEstadoSuccessAlert({ ...nuevoEstado, estado: false });
-    }, 3000);
-  };
-
   const loginUsuario = async () => {
     try {
       setCargandoUsuario(true);
@@ -260,6 +244,23 @@ const ContextoUsuarios = ({ children }) => {
     // Recojo el valor de la contraseña auxiliar.
     const { value } = evento.target;
     setContrasenyaAuxiliar(value);
+  };
+
+  //Alerts
+  const mostrarAlertaError = (nuevoEstado) => {
+    //Establezco el nuevo estado del error.
+    setEstadoErrorAlert(nuevoEstado);
+    setTimeout(() => {
+      setEstadoErrorAlert({ ...nuevoEstado, error: false });
+    }, 3000);
+  };
+
+  const mostrarAlertaSuccess = (nuevoEstado) => {
+    //Establezco el nuevo estado del error.
+    setEstadoSuccessAlert(nuevoEstado);
+    setTimeout(() => {
+      setEstadoSuccessAlert({ ...nuevoEstado, estado: false });
+    }, 3000);
   };
 
   useEffect(() => {
