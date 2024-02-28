@@ -1,9 +1,11 @@
 import React, { Fragment } from "react";
 import "./Anuncio.scss";
 import BotonMeGusta from "../BotonMeGusta.jsx";
-import Card from "react-bootstrap/Card";
+import { Card, Button } from "react-bootstrap";
+import useDatosAnuncios from "../../../hooks/useDatosAnuncio.js";
 
-const Anuncio = ({ anuncio }) => {
+const Anuncio = ({ anuncio }, modoEditar = false) => {
+  const { borrarAnuncio } = useDatosAnuncios();
   // Poner en base a la id_usuario, el nombre del usuario del anuncio.
   return (
     <Fragment>
@@ -34,7 +36,23 @@ const Anuncio = ({ anuncio }) => {
             ) : (
               <p>No hay un precio disponible.</p>
             )}
-            <BotonMeGusta />
+            {modoEditar ? (
+              <>
+                <Button
+                  variant="danger"
+                  onClick={() => {
+                    borrarAnuncio(anuncio.id);
+                  }}
+                >
+                  Borrar
+                </Button>
+                <Button variant="primary" onClick={() => {}}>
+                  Editar
+                </Button>
+              </>
+            ) : (
+              <BotonMeGusta />
+            )}
           </div>
         </Card.Body>
       </Card>

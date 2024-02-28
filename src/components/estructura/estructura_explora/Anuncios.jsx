@@ -13,16 +13,15 @@ const Anuncios = () => {
     navegar,
     manejarEstadoErrorAnuncio,
   } = useDatosAnuncios();
-  const { sesionIniciada, estadoUsuario } = useDatosUsuarios();
+  const { sesionIniciada, estadoUsuario, borrarAnuncio } = useDatosUsuarios();
   return (
     <div
       className="anuncios"
       onClick={(e) => {
         if (e.target.tagName === "IMG") {
           if (sesionIniciada && estadoUsuario) {
-            //Cogo el id del padre el cual es la id del anuncio seleccionado.
+            //Cojo el id del padre el cual es la id del anuncio seleccionado.
             seleccionarAnuncio(e.target.parentNode.id);
-            //navegar("/Anuncio");
           } else {
             navegar("/IniciarSesion");
           }
