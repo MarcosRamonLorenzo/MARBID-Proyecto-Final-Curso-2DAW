@@ -141,16 +141,19 @@ const ContextoUsuarios = ({ children }) => {
 
   const logoutUsuario = async () => {
     try {
+      setCargandoUsuario(true);
       const { error } = await supabaseConexion.auth.signOut();
 
       if (error) throw error;
 
+      setCargandoUsuario(valorInicialFalse);
       navegar("/");
       setErrorGeneralUsuario(error.message);
       setMostrarErrorGeneralUsuario(true);
       setSesionIniciada(valorInicialFalse);
       setUsuario(valorInicialNull);
     } catch (error) {
+      setCargandoUsuario(valorInicialFalse);
       setErrorGeneralUsuario(error.message);
       setMostrarErrorGeneralUsuario(true);
     }

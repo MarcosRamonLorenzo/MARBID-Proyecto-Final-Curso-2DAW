@@ -8,12 +8,15 @@ import GridTarjetasDibujos from "../components/estructura/estructura_home/GridTa
 import Footer from "../components/estructura/Footer.jsx";
 import useDatosUsuarios from "../hooks/useDatosUsuarios.js";
 import AlertaSuccess from "../components/alerts/AlertaSuccess.jsx";
+import Loading from "../components/estructura/Loading.jsx";
 
 const Home = () => {
-  const { estadoSuccessAlert, modificarEstadoSuccesAlert } = useDatosUsuarios();
+  const { estadoSuccessAlert, modificarEstadoSuccesAlert, cargandoUsuario } =
+    useDatosUsuarios();
 
   return (
     <div className="home">
+      {cargandoUsuario && <Loading />}
       <Cabecera />
       <HeroSection />
       <Buscador />
