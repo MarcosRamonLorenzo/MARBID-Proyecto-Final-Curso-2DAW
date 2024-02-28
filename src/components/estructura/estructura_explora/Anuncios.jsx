@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "./Anuncios.scss";
 import useDatosAnuncios from "../../../hooks/useDatosAnuncio.js";
 import Anuncio from "./Anuncio";
@@ -13,36 +13,37 @@ const Anuncios = () => {
     navegar,
     manejarEstadoErrorAnuncio,
   } = useDatosAnuncios();
-  const { sesionIniciada, estadoUsuario, borrarAnuncio } = useDatosUsuarios();
+  const { sesionIniciada, estadoUsuario } = useDatosUsuarios();
   return (
-    <div
-      className="anuncios"
-      onClick={(e) => {
-        if (e.target.tagName === "IMG") {
-          if (sesionIniciada && estadoUsuario) {
-            //Cojo el id del padre el cual es la id del anuncio seleccionado.
-            seleccionarAnuncio(e.target.parentNode.id);
-          } else {
-            navegar("/IniciarSesion");
-          }
-        }
-      }}
-    >
+    <Fragment>
       {anuncios && anuncios.length > 0 ? (
-        anuncios.map((valor, index) => {
-          return <Anuncio key={index} anuncio={valor} />;
-        })
+        <div
+          className="anuncios"
+          onClick={(e) => {
+            if (e.target.tagName === "IMG") {
+              if (sesionIniciada && estadoUsuario) {
+                //Cojo el id del padre el cual es la id del anuncio seleccionado.
+                seleccionarAnuncio(e.target.parentNode.id);
+              } else {
+                navegar("/IniciarSesion");
+              }
+            }
+          }}
+        >
+          {anuncios.map((valor, index) => (
+            <Anuncio key={index} anuncio={valor} />
+          ))}
+        </div>
       ) : (
         <p>No hay anuncios actualmente.</p>
       )}
-
       {errorAnuncio && (
         <AlertError
           mensajeError={errorAnuncio}
           estadoError={manejarEstadoErrorAnuncio}
         />
       )}
-    </div>
+    </Fragment>
   );
 };
 

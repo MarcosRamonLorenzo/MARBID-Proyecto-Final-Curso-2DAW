@@ -4,7 +4,7 @@ import BotonMeGusta from "../BotonMeGusta.jsx";
 import { Card, Button } from "react-bootstrap";
 import useDatosAnuncios from "../../../hooks/useDatosAnuncio.js";
 
-const Anuncio = ({ anuncio }, modoEditar = false) => {
+const Anuncio = ({ anuncio, modoEditar = false }) => {
   const { borrarAnuncio } = useDatosAnuncios();
   // Poner en base a la id_usuario, el nombre del usuario del anuncio.
   return (
