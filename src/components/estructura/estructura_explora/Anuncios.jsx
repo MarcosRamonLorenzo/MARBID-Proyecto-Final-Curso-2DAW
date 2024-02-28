@@ -13,7 +13,7 @@ const Anuncios = () => {
     navegar,
     manejarEstadoErrorAnuncio,
   } = useDatosAnuncios();
-  const { sesionIniciada, estadoUsuario, borrarAnuncio } = useDatosUsuarios();
+  const { sesionIniciada, estadoUsuario } = useDatosUsuarios();
   return (
     <div
       className="anuncios"
