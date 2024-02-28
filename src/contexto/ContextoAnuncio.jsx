@@ -94,6 +94,23 @@ const ContextoAnuncio = ({ children }) => {
     }
   };
 
+  const borrarAnuncio = async (idAnuncio) => {
+    try {
+      setCargandoAnuncio(true);
+      const { error } = await supabaseConexion
+        .from("ANUNCIO")
+        .delete()
+        .eq("id_anuncio", idAnuncio);
+
+      if (error) throw error;
+
+      setCargandoAnuncio(valorInicialFalse);
+    } catch (error) {
+      setCargandoAnuncio(valorInicialFalse);
+      setErrorAnuncio(error.message);
+    }
+  };
+
   const insertarAnuncio = async () => {
     setCargandoAnuncio(true);
 
@@ -280,6 +297,7 @@ const ContextoAnuncio = ({ children }) => {
     manejarEstadoErrorAnuncio,
     filtrarPorCategoria,
     manejarEstadoErrorFiltrado,
+    borrarAnuncio,
   };
 
   return (
