@@ -44,7 +44,7 @@
   .row div::before {
     content: "";
     position: absolute;
-    background-color: rgba(23, 22, 22, 0.341);
+    background-color: rgba(23, 22, 22, 0.111);
     color: $text-color;
     z-index: 1001;
     display: flex;
