@@ -15,8 +15,19 @@ const AnuncioIndividual = () => {
             <>
               <div className="datos-anuncio-individual">
                 <p>Usuario</p>
-                <h2>{anuncioSeleccionado.nombre}</h2>
-                <img src={anuncioSeleccionado.imagen} alt="" />
+                <h2>
+                  {anuncioSeleccionado.nombre
+                    ? anuncioSeleccionado.nombre
+                    : "No hay nombre"}
+                </h2>
+                <img
+                  src={
+                    anuncioSeleccionado.imagen
+                      ? anuncioSeleccionado.imagen
+                      : "No hay imagen."
+                  }
+                  alt=""
+                />
                 <div className="fecha-anuncio">
                   <h5>Fecha de Creación.</h5>
                   {anuncioSeleccionado.fecha_creacion}
@@ -24,12 +35,25 @@ const AnuncioIndividual = () => {
 
                 <div className="descripcion-anuncio">
                   <h5>Descipción del Anuncio.</h5>
-                  <p>{anuncioSeleccionado.descripcion}</p>
+                  <p>
+                    {anuncioSeleccionado.descripcion
+                      ? anuncioSeleccionado.descripcion
+                      : "No hay descripción."}
+                  </p>
                 </div>
               </div>
               <div className="precio-anuncio-individual">
-                <h3>{anuncioSeleccionado.precio}€</h3>
-                <p>Categoria</p>
+                <h3>
+                  {anuncioSeleccionado.precio
+                    ? anuncioSeleccionado.precio
+                    : "No hay precio"}
+                  €
+                </h3>
+                <p>
+                  {anuncioSeleccionado.categoria
+                    ? anuncioSeleccionado.categoria
+                    : "No hay categoría"}
+                </p>
                 <p>Entrega en 2 días</p>
                 <ul className="lista-garantias">
                   <li>Satisfacción Garantizada</li>
