@@ -43,6 +43,9 @@ const ContextoAnuncio = ({ children }) => {
 
   //Funciones.
 
+  //Navegación.
+  const navegar = useNavigate();
+
   //Alerts
 
   const modificarEstadoSuccesAlert = (estadoAlert) => {
@@ -56,8 +59,6 @@ const ContextoAnuncio = ({ children }) => {
       setEstadoAlertaSuccess({ ...nuevoEstado, estado: false });
     }, 3000);
   };
-
-  const navegar = useNavigate();
 
   const manejarEstadoErrorFiltrado = () => {
     setErrorFiltrado(valorInicialVacio);
