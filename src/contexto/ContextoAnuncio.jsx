@@ -177,11 +177,13 @@ const ContextoAnuncio = ({ children }) => {
       //Si existe cateogria y el id de la categoría se añade la categoría al anuncio.
       const idCategoria = categoria ? await getIDCategoria(categoria) : null;
 
+      // Tenemos que hacer un delete y un create en el caso de que el usuario no quiera la categoria o anteriormente no tuviera una anteriormente.
       if (idCategoria) {
         editarCategoriaEnAnuncio(formularioEditarOferta.id, idCategoria);
       }
 
       if (error) throw error;
+
       getAnunciosCreadosDeUsuario();
       // Limpia el estado.
       setFormularioEditarOferta(valorInicialCreacionOferta);
