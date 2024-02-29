@@ -11,7 +11,7 @@ const HeroSection = () => {
           />
         </video>
         <p>
-          SE <span> FREELANCER</span>
+          SÉ <span> FREELANCER</span>
         </p>
       </div>
       <div className="hero-section-2">
