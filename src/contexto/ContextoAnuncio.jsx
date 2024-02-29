@@ -26,8 +26,6 @@ const ContextoAnuncio = ({ children }) => {
   // Estados del anuncio.
   const [anuncios, setAnuncios] = useState(valorInicalNull);
   const [errorAnuncio, setErrorAnuncio] = useState(valorInicialVacio);
-  const [formularioEditarCategoria, setFormularioEditarCategoria] =
-    useState(valorInicalNull);
   const [formularioCreacionOferta, setFormularioCreacionOferta] = useState(
     valorInicialCreacionOferta
   );
@@ -86,8 +84,8 @@ const ContextoAnuncio = ({ children }) => {
   const actualizarCateogriaFormularioSeleccionado = (evento) => {
     //Aquí no se usa el target.
     const { value } = evento;
-    setFormularioEditarCategoria({
-      ...formularioEditarCategoria,
+    setFormularioEditarOferta({
+      ...formularioEditarOferta,
       categoria: value,
     });
   };
@@ -168,13 +166,25 @@ const ContextoAnuncio = ({ children }) => {
         precio: formularioEditarOferta.precio,
       };
 
+      const categoria = formularioEditarOferta.categoria;
+
       const { error } = await supabaseConexion
         .from("ANUNCIO")
-        .update(formularioEditar)
+        .update([formularioEditar])
         .eq("id", formularioEditarOferta.id);
+
+      //Si se ha insertado corretamente añadimos la cateogria al anuncio.
+      //Si existe cateogria y el id de la categoría se añade la categoría al anuncio.
+      const idCategoria = categoria ? await getIDCategoria(categoria) : null;
+
+      if (idCategoria) {
+        editarCategoriaEnAnuncio(formularioEditarOferta.id, idCategoria);
+      }
 
       if (error) throw error;
       getAnunciosCreadosDeUsuario();
+      // Limpia el estado.
+      setFormularioEditarOferta(valorInicialCreacionOferta);
       setCargandoAnuncio(valorInicialFalse);
     } catch (error) {
       setCargandoAnuncio(valorInicialFalse);
@@ -215,8 +225,8 @@ const ContextoAnuncio = ({ children }) => {
       });
       obtenerAnuncios();
 
-      //Si se ha insertado corretamente añadimos la cateogría al anuncio.
-      //Si existre cxateogria y el id de la categoría se añade la categoría al anuncio.
+      //Si se ha insertado corretamente añadimos la cateogria al anuncio.
+      //Si existe cateogria y el id de la categoría se añade la categoría al anuncio.
       const idCategoria = categoria ? await getIDCategoria(categoria) : null;
 
       if (idCategoria) {
@@ -230,9 +240,23 @@ const ContextoAnuncio = ({ children }) => {
 
   const insertarCategoriaEnAnuncio = async (idAnuncio, idCategoria) => {
     try {
-      const { data, error } = await supabaseConexion
+      const { error } = await supabaseConexion
         .from("CATEGORIAS_EN_ANUNCIO")
         .insert({ id_anuncio: idAnuncio, id_categoria: idCategoria });
+
+      if (error) throw error;
+    } catch (error) {
+      setErrorAnuncio(error.message);
+      setCargandoAnuncio(valorInicialFalse);
+    }
+  };
+
+  const editarCategoriaEnAnuncio = async (idAnuncio, idCategoria) => {
+    try {
+      const { error } = await supabaseConexion
+        .from("CATEGORIAS_EN_ANUNCIO")
+        .update({ id_categoria: idCategoria })
+        .eq("id_anuncio", idAnuncio);
 
       if (error) throw error;
     } catch (error) {
@@ -322,13 +346,12 @@ const ContextoAnuncio = ({ children }) => {
         const { data: categoriaData, error: categoriaDataError } =
           await supabaseConexion
             .from("CATEGORIA")
-            .select("nombre")
+            .select("*")
             .eq("id", idCategoria);
 
         if (categoriaDataError) throw categoriaDataError;
 
         const nombreCategoria = categoriaData[0]?.nombre;
-
         // Asignar valores al estado
         anuncioSeleccionado.categoria = nombreCategoria;
       }
@@ -406,7 +429,6 @@ const ContextoAnuncio = ({ children }) => {
     categorias,
     estadoAlertaSuccess,
     errorFiltrado,
-    formularioEditarCategoria,
     formularioEditarOferta,
     borrarAnuncio,
     modificarEstadoSuccesAlert,

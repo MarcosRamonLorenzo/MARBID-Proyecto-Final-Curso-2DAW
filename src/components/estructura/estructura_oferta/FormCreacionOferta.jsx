@@ -8,10 +8,7 @@ import AlertError from "../../alerts/AlertError.jsx";
 import AlertaSucess from "../../alerts/AlertaSuccess.jsx";
 import useDatosAnuncios from "../../../hooks/useDatosAnuncio.js";
 
-const FormCreacionOferta = ({
-  modoEditar = false,
-  anuncioSeleccionadoEditar = null,
-}) => {
+const FormCreacionOferta = ({ modoEditar = false }) => {
   const { categorias, estadoAlertaSuccess, modificarEstadoSuccesAlert } =
     useDatosAnuncios();
 
@@ -187,11 +184,10 @@ const FormCreacionOferta = ({
               id="categoriaOferta"
               value={
                 modoEditar
-                  ? anuncioSeleccionadoEditar &&
-                    anuncioSeleccionadoEditar.categoria
+                  ? formularioEditarOferta && formularioEditarOferta.categoria
                     ? {
-                        value: anuncioSeleccionadoEditar.categoria,
-                        label: anuncioSeleccionadoEditar.categoria,
+                        value: formularioEditarOferta.categoria,
+                        label: formularioEditarOferta.categoria,
                       }
                     : { value: null, label: null }
                   : {
@@ -226,7 +222,7 @@ const FormCreacionOferta = ({
               }
               onChange={(e) => {
                 if (modoEditar) {
-                  actualizarCateogriaFormularioSeleccionado(e);
+                  actualizarDatoFormularioEditar(e);
                 } else {
                   actualizarDatoFormulario(e);
                 }
