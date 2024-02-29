@@ -3,7 +3,7 @@ import Anuncio from "../estructura_explora/Anuncio";
 import useDatosAnuncios from "../../../hooks/useDatosAnuncio";
 import "./AnunciosPanel.scss";
 
-// El modo del panel cambiara en dependencia de a que subruta entre el usuario.
+// El modo del panel cambiará en dependencia de a que subruta entre el usuario.
 const AnunciosPanel = ({ ofertasCreadas, modoDelPanel }) => {
   let anuncios = [];
   const { anunciosCreados, seleccionarAnuncio } = useDatosAnuncios();
