@@ -6,4 +6,8 @@
   @media only screen and (max-width: 700px) {
     @include card_size(20em);
   }
+
+  .card-descripcion {
+    margin-top: 25%;
+  }
 }

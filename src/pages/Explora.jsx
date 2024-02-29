@@ -16,7 +16,7 @@ const Explora = () => {
     categorias,
     errorCategoria,
     errorFiltrado,
-    manejarEstadoErrorCategoria,
+    manejarEstadoErrorAnuncio,
     manejarEstadoErrorFiltrado,
   } = useDatosAnuncios();
 
@@ -66,7 +66,7 @@ const Explora = () => {
       {errorCategoria && (
         <AlertError
           mensajeError={errorCategoria}
-          estadoError={manejarEstadoErrorCategoria}
+          estadoError={manejarEstadoErrorAnuncio}
         />
       )}
     </Fragment>
