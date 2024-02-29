@@ -168,8 +168,6 @@ const ContextoAnuncio = ({ children }) => {
 
       const categoria = formularioEditarOferta.categoria;
 
-      console.log(categoria);
-
       const { error } = await supabaseConexion
         .from("ANUNCIO")
         .update([formularioEditar])
