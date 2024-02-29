@@ -46,6 +46,9 @@ const ContextoAnuncio = ({ children }) => {
 
   //Funciones.
 
+  //Navegación.
+  const navegar = useNavigate();
+
   //Alerts
 
   const modificarEstadoSuccesAlert = (estadoAlert) => {
@@ -59,8 +62,6 @@ const ContextoAnuncio = ({ children }) => {
       setEstadoAlertaSuccess({ ...nuevoEstado, estado: false });
     }, 3000);
   };
-
-  const navegar = useNavigate();
 
   const manejarEstadoErrorFiltrado = () => {
     setErrorFiltrado(valorInicialVacio);
@@ -198,7 +199,7 @@ const ContextoAnuncio = ({ children }) => {
 
     const idAnuncio = self.crypto.randomUUID();
 
-    //Creamos el anuncio a insertar y cogemos la cateogria por separado ya que están en tablas distintas.
+    //Creamos el anuncio a insertar y cogemos la cateogría por separado ya que están en tablas distintas.
     const anuncioAInsertar = {
       id: idAnuncio,
       nombre: formularioCreacionOferta.nombre,
@@ -374,18 +375,18 @@ const ContextoAnuncio = ({ children }) => {
     }
   };
 
-  //Funcion para formatear la fecha y hora de los anuncios
+  //Funcion para formatear la fecha y hora de los anuncios.
   const formatearFechaHora = (cadenaFecha) => {
     const fecha = new Date(cadenaFecha);
 
-    // Formatear la fecha en formato DD/MM/AAAA
+    // Formatear la fecha en formato DD/MM/AAAA.
     const fechaFormateada = fecha.toLocaleDateString("es-ES", {
       day: "numeric",
       month: "numeric",
       year: "numeric",
     });
 
-    // Formatear la hora en formato HH:MM:SS
+    // Formatear la hora en formato HH:MM:SS.
     const horaFormateada = fecha.toLocaleTimeString("es-ES", {
       hour: "2-digit",
       minute: "2-digit",
@@ -404,7 +405,7 @@ const ContextoAnuncio = ({ children }) => {
 
       setAnunciosCreados(data);
     } catch (error) {
-      console.log(error);
+      setErrorAnuncio(error.message);
     }
   };
 

@@ -54,7 +54,7 @@ const ContextoUsuarios = ({ children }) => {
   // Funciones.
 
   //LogIn.
-
+  //Esto de loginGoogle no funciona aun.
   const logInGoogle = async () => {
     try {
       const { error } = await supabaseConexion.auth.signInWithOAuth({
