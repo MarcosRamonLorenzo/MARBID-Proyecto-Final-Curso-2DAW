@@ -26,7 +26,12 @@ const ContextoAnuncio = ({ children }) => {
   // Estados del anuncio.
   const [anuncios, setAnuncios] = useState(valorInicalNull);
   const [errorAnuncio, setErrorAnuncio] = useState(valorInicialVacio);
+  const [formularioEditarCategoria, setFormularioEditarCategoria] =
+    useState(valorInicalNull);
   const [formularioCreacionOferta, setFormularioCreacionOferta] = useState(
+    valorInicialCreacionOferta
+  );
+  const [formularioEditarOferta, setFormularioEditarOferta] = useState(
     valorInicialCreacionOferta
   );
   const [cargandoAnuncio, setCargandoAnuncio] = useState(valorInicialFalse);
@@ -68,9 +73,23 @@ const ContextoAnuncio = ({ children }) => {
     setErrorAnuncio(valorInicialVacio);
   };
 
+  const actualizarDatoFormularioEditar = (evento) => {
+    const { name, value } = evento.target;
+    setFormularioEditarOferta({ ...formularioEditarOferta, [name]: value });
+  };
+
   const actualizarDatoFormulario = (evento) => {
     const { name, value } = evento.target;
     setFormularioCreacionOferta({ ...formularioCreacionOferta, [name]: value });
+  };
+
+  const actualizarCateogriaFormularioSeleccionado = (evento) => {
+    //Aquí no se usa el target.
+    const { value } = evento;
+    setFormularioEditarCategoria({
+      ...formularioEditarCategoria,
+      categoria: value,
+    });
   };
 
   const actualizarCateogriaFormulario = (evento) => {
@@ -133,6 +152,34 @@ const ContextoAnuncio = ({ children }) => {
       getAnunciosCreadosDeUsuario();
       // Debido a que no descargamos los anuncios, si se borra uno o varios no recargan y podría dar errores.
       obtenerAnuncios();
+    } catch (error) {
+      setCargandoAnuncio(valorInicialFalse);
+      setErrorAnuncio(error.message);
+    }
+  };
+
+  const editarAnuncio = async () => {
+    setCargandoAnuncio(true);
+    try {
+      const formularioEditar = {
+        nombre: formularioEditarOferta.nombre,
+        descripcion: formularioEditarOferta.descripcion,
+        imagen: formularioEditarOferta.imagen,
+        precio: formularioEditarOferta.precio,
+      };
+
+      console.log("Hola");
+      console.log(formularioEditar);
+      console.log(formularioEditarOferta);
+
+      const { error } = await supabaseConexion
+        .from("ANUNCIO")
+        .update(formularioEditar)
+        .eq("id", formularioEditarOferta.id);
+
+      if (error) throw error;
+      getAnunciosCreadosDeUsuario();
+      setCargandoAnuncio(valorInicialFalse);
     } catch (error) {
       setCargandoAnuncio(valorInicialFalse);
       setErrorAnuncio(error.message);
@@ -241,25 +288,66 @@ const ContextoAnuncio = ({ children }) => {
     }
   };
 
-  const seleccionarAnuncio = async (idAnuncio) => {
+  const seleccionarAnuncio = async (idAnuncio, navegarPagina = false) => {
     try {
+      // Por si hay uno ya seleccionado, así no se buguean.
+      setAnuncioSeleccionado(valorInicalNull);
       setCargandoAnuncio(true);
-      const { data, error } = await supabaseConexion
+
+      // Obtener datos del anuncio
+      const { data: anuncioData, error: anuncioError } = await supabaseConexion
         .from("ANUNCIO")
         .select("*")
         .eq("id", idAnuncio);
 
-      if (error) throw error;
+      if (anuncioError) throw anuncioError;
 
-      const anuncioSeleccionado = data[0];
-      //Formateamos la fecha antes de agregarla al estado.
+      const anuncioSeleccionado = anuncioData[0];
+
+      // Formateamos la fecha antes de agregarla al estado.
       anuncioSeleccionado.fecha_creacion = formatearFechaHora(
         anuncioSeleccionado.fecha_creacion
       );
+
+      // Obtener el id de la categoría asociada al anuncio
+      const { data: idCategoriaData, error: categoriaError } =
+        await supabaseConexion
+          .from("CATEGORIAS_EN_ANUNCIO")
+          .select("id_categoria")
+          .eq("id_anuncio", idAnuncio);
+
+      if (categoriaError) throw categoriaError;
+
+      // Si no tiene categoría asociada al anuncio no se hace esta parte.
+      if (idCategoriaData.length > 0) {
+        const idCategoria = idCategoriaData[0]?.id_categoria;
+
+        // Obtener el nombre de la categoría usando el id obtenido
+        const { data: categoriaData, error: categoriaDataError } =
+          await supabaseConexion
+            .from("CATEGORIA")
+            .select("nombre")
+            .eq("id", idCategoria);
+
+        if (categoriaDataError) throw categoriaDataError;
+
+        const nombreCategoria = categoriaData[0]?.nombre;
+
+        // Asignar valores al estado
+        anuncioSeleccionado.categoria = nombreCategoria;
+      }
+
       setAnuncioSeleccionado(anuncioSeleccionado);
-      //Navegamos a la página de anuncio individual.
-      //Lo hago aquí ya que así nos esperamos a que el anuncio seleccionado se actualice.
-      navegar(`/Anuncio`);
+
+
+      // Navegar a la página de anuncio individual si es necesario
+      if (navegarPagina) {
+        navegar(`/Anuncio`);
+      } else {
+        // Si no, añadir la oferta a formulario seleccionado.
+        setFormularioEditarOferta(anuncioSeleccionado);
+      }
+
       setCargandoAnuncio(valorInicialFalse);
     } catch (error) {
       setCargandoAnuncio(valorInicialFalse);
@@ -323,6 +411,8 @@ const ContextoAnuncio = ({ children }) => {
     categorias,
     estadoAlertaSuccess,
     errorFiltrado,
+    formularioEditarCategoria,
+    formularioEditarOferta,
     borrarAnuncio,
     modificarEstadoSuccesAlert,
     actualizarDatoFormulario,
@@ -333,6 +423,9 @@ const ContextoAnuncio = ({ children }) => {
     manejarEstadoErrorAnuncio,
     filtrarPorCategoria,
     manejarEstadoErrorFiltrado,
+    actualizarDatoFormularioEditar,
+    actualizarCateogriaFormularioSeleccionado,
+    editarAnuncio,
   };
 
   return (

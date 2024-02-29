@@ -9,7 +9,7 @@ import ContextoAnuncio from "./contexto/ContextoAnuncio.jsx";
 import ContextoUsuarios from "./contexto/ContextoUsuarios.jsx";
 import CreacionProducto from "./pages/CreacionProducto.jsx";
 import OfertasCreadas from "./pages/OfertasCreadas.jsx";
-import OfertasAplicadas from "./components/estructura/estructura_panel_control/OfertasAplicadas.jsx";
+import OfertasAplicadas from "./pages/OfertasAplicadas.jsx";
 import OfertasFavoritas from "./pages/OfertasFavoritas.jsx";
 import AnuncioIndividual from "./pages/AnuncioIndividual.jsx";
 

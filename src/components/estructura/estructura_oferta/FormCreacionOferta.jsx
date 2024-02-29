@@ -8,7 +8,10 @@ import AlertError from "../../alerts/AlertError.jsx";
 import AlertaSucess from "../../alerts/AlertaSuccess.jsx";
 import useDatosAnuncios from "../../../hooks/useDatosAnuncio.js";
 
-const FormCreacionOferta = () => {
+const FormCreacionOferta = ({
+  modoEditar = false,
+  anuncioSeleccionadoEditar = null,
+}) => {
   const { categorias, estadoAlertaSuccess, modificarEstadoSuccesAlert } =
     useDatosAnuncios();
 
@@ -44,6 +47,10 @@ const FormCreacionOferta = () => {
     formularioCreacionOferta,
     errorAnuncio,
     manejarEstadoErrorAnuncio,
+    formularioEditarOferta,
+    actualizarCateogriaFormularioSeleccionado,
+    actualizarDatoFormularioEditar,
+    editarAnuncio,
   } = useDatosAnuncio();
 
   const manejarInsertOferta = () => {
@@ -104,12 +111,23 @@ const FormCreacionOferta = () => {
               id="nombreOferta"
               name="nombre"
               placeholder="Example Oferta"
-              value={formularioCreacionOferta.nombre}
+              value={
+                modoEditar
+                  ? formularioEditarOferta && formularioEditarOferta.nombre
+                    ? formularioEditarOferta.nombre
+                    : "Esperando a que cargue anuncio..."
+                  : formularioCreacionOferta.nombre
+              }
               onChange={(e) => {
-                actualizarDatoFormulario(e);
+                if (modoEditar) {
+                  actualizarDatoFormularioEditar(e);
+                } else {
+                  actualizarDatoFormulario(e);
+                }
               }}
             />
           </div>
+
           <div className="descripcion-oferta">
             <label className="label" htmlFor="descripcionOferta">
               Descripción de la Oferta:
@@ -118,12 +136,23 @@ const FormCreacionOferta = () => {
               id="descripcionOferta"
               name="descripcion"
               placeholder="Example Descripción"
-              value={formularioCreacionOferta.descripcion}
+              value={
+                modoEditar
+                  ? formularioEditarOferta && formularioEditarOferta.descripcion
+                    ? formularioEditarOferta.descripcion
+                    : ""
+                  : formularioCreacionOferta.descripcion
+              }
               onChange={(e) => {
-                actualizarDatoFormulario(e);
+                if (modoEditar) {
+                  actualizarDatoFormularioEditar(e);
+                } else {
+                  actualizarDatoFormulario(e);
+                }
               }}
             />
           </div>
+
           <div className="precio-oferta">
             <label className="label" htmlFor="precioOferta">
               Precio de la Oferta:
@@ -134,9 +163,19 @@ const FormCreacionOferta = () => {
               name="precio"
               min="1"
               step="0.1"
-              value={formularioCreacionOferta.precio}
+              value={
+                modoEditar
+                  ? formularioEditarOferta && formularioEditarOferta.precio
+                    ? formularioEditarOferta.precio
+                    : ""
+                  : formularioCreacionOferta.precio
+              }
               onChange={(e) => {
-                actualizarDatoFormulario(e);
+                if (modoEditar) {
+                  actualizarDatoFormularioEditar(e);
+                } else {
+                  actualizarDatoFormulario(e);
+                }
               }}
             />
           </div>
@@ -146,13 +185,27 @@ const FormCreacionOferta = () => {
             <label htmlFor="categoriaOferta">Selecciona una Categoría:</label>
             <Select
               id="categoriaOferta"
-              value={{
-                // Para que se vea la categoría seleccionada (label) y que si se manda el formulario tenga ese valor (value).
-                value: formularioCreacionOferta.categoria,
-                label: formularioCreacionOferta.categoria,
-              }}
+              value={
+                modoEditar
+                  ? anuncioSeleccionadoEditar &&
+                    anuncioSeleccionadoEditar.categoria
+                    ? {
+                        value: anuncioSeleccionadoEditar.categoria,
+                        label: anuncioSeleccionadoEditar.categoria,
+                      }
+                    : { value: null, label: null }
+                  : {
+                      // Para que se vea la categoría seleccionada (label) y que si se manda el formulario tenga ese valor (value).
+                      value: formularioCreacionOferta.categoria,
+                      label: formularioCreacionOferta.categoria,
+                    }
+              }
               onChange={(e) => {
-                actualizarCateogriaFormulario(e);
+                if (modoEditar) {
+                  actualizarCateogriaFormularioSeleccionado(e);
+                } else {
+                  actualizarCateogriaFormulario(e);
+                }
               }}
               options={options}
             />
@@ -164,21 +217,43 @@ const FormCreacionOferta = () => {
               id="imagenOferta"
               name="imagen"
               placeholder="Example URL"
-              value={formularioCreacionOferta.imagen}
+              value={
+                modoEditar
+                  ? formularioEditarOferta && formularioEditarOferta.imagen
+                    ? formularioEditarOferta.imagen
+                    : ""
+                  : formularioCreacionOferta.imagen
+              }
               onChange={(e) => {
-                actualizarDatoFormulario(e);
+                if (modoEditar) {
+                  actualizarCateogriaFormularioSeleccionado(e);
+                } else {
+                  actualizarDatoFormulario(e);
+                }
               }}
             />
             <img src="#" alt="" />
           </div>
-          <button
-            onClick={() => {
-              manejarInsertOferta();
-            }}
-            className="boton-oferta"
-          >
-            Crear Oferta
-          </button>
+          {modoEditar ? (
+            <button
+              id="boton-editar"
+              onClick={() => {
+                editarAnuncio();
+              }}
+              className="boton-oferta"
+            >
+              Editar
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                manejarInsertOferta();
+              }}
+              className="boton-oferta"
+            >
+              Crear Oferta
+            </button>
+          )}
         </div>
 
         {mostrarError && (

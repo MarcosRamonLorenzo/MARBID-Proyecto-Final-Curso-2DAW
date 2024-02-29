@@ -23,7 +23,7 @@ const Anuncios = () => {
             if (e.target.tagName === "IMG") {
               if (sesionIniciada && estadoUsuario) {
                 //Cojo el id del padre el cual es la id del anuncio seleccionado.
-                seleccionarAnuncio(e.target.parentNode.id);
+                seleccionarAnuncio(e.target.parentNode.id, true);
               } else {
                 navegar("/IniciarSesion");
               }
