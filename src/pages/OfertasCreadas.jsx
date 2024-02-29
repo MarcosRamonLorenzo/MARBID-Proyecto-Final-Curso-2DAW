@@ -43,6 +43,10 @@ const OfertasCreadas = () => {
           seleccionarAnuncio(e.target.parentNode.id);
           setMostrarEditar(true);
         }
+        // Cuando se hace la función de editar se cierra el modal.
+        if (e.target.id === "boton-editar") {
+          setMostrarEditar(false);
+        }
       }}
     >
       <h1>Ofertas Creadas </h1>

@@ -21,14 +21,6 @@ const ModalEditar = ({ setMostrar, anuncio }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            variant="primary"
-            onClick={() => {
-              setMostrar(false);
-            }}
-          >
-            Aceptar
-          </Button>
-          <Button
             variant="danger"
             onClick={() => {
               setMostrar(false);

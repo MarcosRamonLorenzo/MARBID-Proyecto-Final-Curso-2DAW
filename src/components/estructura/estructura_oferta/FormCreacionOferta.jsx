@@ -47,8 +47,10 @@ const FormCreacionOferta = ({
     formularioCreacionOferta,
     errorAnuncio,
     manejarEstadoErrorAnuncio,
+    formularioEditarOferta,
     actualizarCateogriaFormularioSeleccionado,
     actualizarDatoFormularioEditar,
+    editarAnuncio,
   } = useDatosAnuncio();
 
   const manejarInsertOferta = () => {
@@ -111,9 +113,8 @@ const FormCreacionOferta = ({
               placeholder="Example Oferta"
               value={
                 modoEditar
-                  ? anuncioSeleccionadoEditar &&
-                    anuncioSeleccionadoEditar.nombre
-                    ? anuncioSeleccionadoEditar.nombre
+                  ? formularioEditarOferta && formularioEditarOferta.nombre
+                    ? formularioEditarOferta.nombre
                     : "Esperando a que cargue anuncio..."
                   : formularioCreacionOferta.nombre
               }
@@ -137,9 +138,8 @@ const FormCreacionOferta = ({
               placeholder="Example Descripción"
               value={
                 modoEditar
-                  ? anuncioSeleccionadoEditar &&
-                    anuncioSeleccionadoEditar.descripcion
-                    ? anuncioSeleccionadoEditar.descripcion
+                  ? formularioEditarOferta && formularioEditarOferta.descripcion
+                    ? formularioEditarOferta.descripcion
                     : ""
                   : formularioCreacionOferta.descripcion
               }
@@ -165,9 +165,8 @@ const FormCreacionOferta = ({
               step="0.1"
               value={
                 modoEditar
-                  ? anuncioSeleccionadoEditar &&
-                    anuncioSeleccionadoEditar.precio
-                    ? anuncioSeleccionadoEditar.precio
+                  ? formularioEditarOferta && formularioEditarOferta.precio
+                    ? formularioEditarOferta.precio
                     : ""
                   : formularioCreacionOferta.precio
               }
@@ -220,9 +219,8 @@ const FormCreacionOferta = ({
               placeholder="Example URL"
               value={
                 modoEditar
-                  ? anuncioSeleccionadoEditar &&
-                    anuncioSeleccionadoEditar.imagen
-                    ? anuncioSeleccionadoEditar.imagen
+                  ? formularioEditarOferta && formularioEditarOferta.imagen
+                    ? formularioEditarOferta.imagen
                     : ""
                   : formularioCreacionOferta.imagen
               }
@@ -238,8 +236,9 @@ const FormCreacionOferta = ({
           </div>
           {modoEditar ? (
             <button
+              id="boton-editar"
               onClick={() => {
-                manejarInsertOferta();
+                editarAnuncio();
               }}
               className="boton-oferta"
             >

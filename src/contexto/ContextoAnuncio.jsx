@@ -26,9 +26,8 @@ const ContextoAnuncio = ({ children }) => {
   // Estados del anuncio.
   const [anuncios, setAnuncios] = useState(valorInicalNull);
   const [errorAnuncio, setErrorAnuncio] = useState(valorInicialVacio);
-  const [formularioEditarCategoria, setFormularioEditarCategoria] = useState(
-    valorInicialCreacionOferta
-  );
+  const [formularioEditarCategoria, setFormularioEditarCategoria] =
+    useState(valorInicalNull);
   const [formularioCreacionOferta, setFormularioCreacionOferta] = useState(
     valorInicialCreacionOferta
   );
@@ -161,6 +160,24 @@ const ContextoAnuncio = ({ children }) => {
   const editarAnuncio = async () => {
     setCargandoAnuncio(true);
     try {
+      const formularioEditar = {
+        nombre: formularioEditarOferta.nombre,
+        descripcion: formularioEditarOferta.descripcion,
+        imagen: formularioEditarOferta.imagen,
+        precio: formularioEditarOferta.precio,
+      };
+
+      console.log("Hola");
+      console.log(formularioEditar);
+      console.log(formularioEditarOferta);
+
+      const { error } = await supabaseConexion
+        .from("ANUNCIO")
+        .update(formularioEditar)
+        .eq("id", formularioEditarOferta.id);
+
+      if (error) throw error;
+      getAnunciosCreadosDeUsuario();
       setCargandoAnuncio(valorInicialFalse);
     } catch (error) {
       setCargandoAnuncio(valorInicialFalse);
@@ -406,6 +423,7 @@ const ContextoAnuncio = ({ children }) => {
     manejarEstadoErrorFiltrado,
     actualizarDatoFormularioEditar,
     actualizarCateogriaFormularioSeleccionado,
+    editarAnuncio,
   };
 
   return (
