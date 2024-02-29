@@ -168,10 +168,6 @@ const ContextoAnuncio = ({ children }) => {
         precio: formularioEditarOferta.precio,
       };
 
-      console.log("Hola");
-      console.log(formularioEditar);
-      console.log(formularioEditarOferta);
-
       const { error } = await supabaseConexion
         .from("ANUNCIO")
         .update(formularioEditar)
@@ -338,7 +334,6 @@ const ContextoAnuncio = ({ children }) => {
       }
 
       setAnuncioSeleccionado(anuncioSeleccionado);
-
 
       // Navegar a la página de anuncio individual si es necesario
       if (navegarPagina) {

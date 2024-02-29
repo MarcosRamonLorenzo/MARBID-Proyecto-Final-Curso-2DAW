@@ -6,7 +6,7 @@ function AlertNoHaySesion() {
     <Alert variant="success" className="mx-5">
       <Alert.Heading>¿A dónde vas vaquero?</Alert.Heading>
       <p>
-        As entrado a una página que no deberías. Vueve al menú principal e
+        Has entrado a una página que no deberías. Vueve al menú principal e
         inicia sesión para acceder a la página.
       </p>
     </Alert>
