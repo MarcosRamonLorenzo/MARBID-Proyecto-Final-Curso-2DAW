@@ -12,7 +12,6 @@ const AlertaSuccess = ({ mensaje, funcionEstado }) => {
       <Alert
         variant="success"
         onClose={() => {
-          // Limpio el estado del error para que se pueda repetir varias veces. Esto provoca que desaparezca el estado.
           cerrarAlert();
         }}
         dismissible
